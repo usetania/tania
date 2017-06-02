@@ -1,0 +1,135 @@
+body {
+	
+}
+
+.img-area {
+	width: 100%;
+}
+
+.wcarea {
+	font-size: 18px !important;
+	line-height: 40px;
+	list-style: none;
+}
+
+.wcarea .icon {
+	padding-right: 10px;
+}
+
+/* Signup & Login Area */
+
+.be-splash-screen {
+	background-image: url(../img/micros.jpg);
+	background-size: cover;
+}
+
+.tania-splash {
+  background-color: #fafafa;
+}
+.tania-splash .be-wrapper {
+  padding-top: 0;
+}
+.tania-splash .be-wrapper .be-content {
+  margin: 0;
+}
+
+.tania {
+	text-align: center !important;
+}
+
+.tania img {
+	width: 180px;
+	padding: 50px 0 10px 0;
+}
+
+.tania-heading {
+	padding-top: 80px;
+	text-align: center;
+}
+
+.tania h2 {
+	line-height: 46px;
+	padding: 0 30px;
+	font-size: 38px;
+	color: #46B7A9;
+	font-weight: 500;
+}
+
+.tania p {
+	padding: 30px 50px 0 50px;
+	text-align: center;
+	font-size: 18px;
+	color: #83817E;
+	font-weight: 300;
+	line-height: 28px;
+}
+
+.tania .loginform {
+	padding: 100px 0;
+	text-align: center;
+	margin-top: 50px;
+	padding: 80px 80px;
+}
+
+.loginform h3 {
+	text-align: left;
+	margin-left: -15px;
+	color: #83817E !important;
+	font-weight: 400;
+}
+
+.tania .form-horizontal {
+	width: 100%;
+	text-align: center;
+}
+
+.tania-footer {
+	color: #83817E !important;
+	text-align: center;
+}
+
+
+/* SIDEBAR */
+
+/* Content */
+.table tbody tr td.inventory-image img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.panel-expense{
+	padding: 60px 0;
+}
+
+.btn-expense {
+  padding: 20px 0;
+  text-align: center;
+  width: 120px;
+  margin: 15px;
+  background-color: #906FA9;
+  border-radius: 5px;
+}
+
+.btn-expense:hover {
+  background-color: #7B5498;
+  border: 1px solid #6E468D;
+}
+
+.btn-expense > .icon {
+  display: block;
+  font-size: 36px;
+  line-height: 20px;
+  margin-bottom: 7px;
+}
+
+.user-display-bg {
+  max-height: 300px !important;
+  overflow: hidden;
+}
+.user-display-bg img {
+  width: 100%;
+  max-height: 200px;
+  border-radius: 2px;
+}

@@ -1,0 +1,25 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+dashboard:
+    path: /
+    defaults: { _controller: AppBundle:Dashboard:index }
+    methods: [GET]
+
+areas:
+    path: /areas
+    defaults: { _controller: AppBundle:Area:index }
+    methods: [GET]
+
+areas_show:
+    path: /areas/{id}
+    defaults: { _controller: AppBundle:Area:show }
+    requirements:
+        id: '\d+'
+    methods: [GET]
+
+areas_add:
+    path: /areas/add
+    defaults: { _controller: AppBundle:Area:add }
+    methods: [GET]

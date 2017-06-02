@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <a href="{{ path('areas_add') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-layers"></span> Add Area</a>
+            <h2 class="page-head-title">All Areas</h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+            {% for i in 1..7 %}
+                <div class="col-xs-12 col-md-3">
+                    <div class="user-display">
+                        <div class="user-display-bg"><img src="{{ asset('assets/img/gh-2.jpg') }}" alt="Amaryllis"></div>
+                        <div class="user-display-bottom">
+                            <div class="user-display-info">
+                                <div class="name"><a href="{{ path('areas_show', {'id': 1}) }}">Amaryllis</a></div>
+                                <div class="nick">Indoor</div>
+                            </div>
+                            <div class="row user-display-details">
+                                <div class="col-xs-7">
+                                    <div class="title">System</div>
+                                    <div class="counter">NFT</div>
+                                </div>
+                                <div class="col-xs-5">
+                                    <div class="title">Capacity</div>
+                                    <div class="counter">250</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

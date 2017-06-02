@@ -1,0 +1,155 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
+
+<div class="be-content">
+    <div class="page-head">
+        <h2 class="page-head-title">Overview</h2>
+    </div>
+    <div class="main-content container-fluid">
+
+        <!-- Plantation Area -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default panel-table">
+                    <div class="panel-heading">Plantation Area
+                        <div class="tools">
+                            <button class="btn btn-default btn-xs">See All Area</button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width:17%;">Area<br>Name</th>
+                                    <th style="width:17%;">Hydroponic<br>System</th>
+                                    <th style="width:15%;">Growing<br>Capacity</th>
+                                    <th style="width:18%;">Last<br>Activity</th>
+                                    <th style="width:10%;">Nutrient Reservoir</th>
+                                    <th style="width:10%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in 1..3 %}
+                                <tr>
+                                    <td class="cell-detail"><span>Amaryllis</span><span class="cell-detail-description">Indoor</span></td>
+                                    <td class="cell-detail"> <span>NFT</span><span class="cell-detail-description">Nutrient Film Technique</span></td>
+                                    <td class="milestone"><span class="version">175 / 250</span>
+                                        <div class="progress">
+                                            <div style="width: 70%" class="progress-bar progress-bar-primary"></div>
+                                        </div>
+                                    </td>
+                                    <td class="cell-detail"><span>Transplant new seedlings</span><span class="cell-detail-description">Nov, 27 2016</span></td>
+                                    <td class="cell-detail"><span>Veggie</span><span class="cell-detail-description">270 Litre</span></td>
+                                    <td class="text-right">
+                                        <a href="area-detail.html" class="btn btn-default btn-sm">View Detail</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- At A Glance -->
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default panel-table">
+                    <div class="panel-heading"> 
+                        <div class="tools"><span class="icon mdi mdi-more-vert"></span></div>
+                        <div class="title">Tasks List</div>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table table-striped table-borderless">
+                            <thead>
+                                <tr>
+                                    <th style="width:50%;">Tasks Name</th>
+                                    <th style="width:30%;">Executors</th>
+                                    <th style="width:20%;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-x">
+                                <tr>
+                                    <td>Pruning Tomato and Cucumber</td>
+                                    <td>Mark Swayne</td>
+                                    <td class="text-danger">Urgent</td>
+                                </tr>
+                                <tr>
+                                    <td>Seedling Basil and Lettuce Mix</td>
+                                    <td>Jessica Chastity</td>
+                                    <td class="text-success">Completed</td>
+                                </tr>
+                                <tr>
+                                    <td>Checking drip sticks on Tomato area</td>
+                                    <td>Mark Swayne</td>
+                                    <td class="text-warning">Uncompleted</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default panel-table">
+                    <div class="panel-heading"> 
+                        <div class="tools"><span class="icon mdi mdi-more-vert"></span></div>
+                        <div class="title">Weekly Harvest</div>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table table-striped table-borderless">
+                            <thead>
+                                <tr>
+                                <th style="width:40%;">Client</th>
+                                <th style="width:20%;">Amount</th>
+                                <th style="width:40%;">Plant</th>
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-x">
+                                <tr>
+                                {% for i in 1..5 %}
+                                    <td>Orient8 Hotel</td>
+                                    <td>4 Kg</td>
+                                    <td>Mesclun Mix</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-divider xs-pb-15">This Month Reports</div>
+                        <div class="panel-body xs-pt-25">
+                            <div class="row user-progress user-progress-small">
+                                <div class="col-md-4"><span class="title">Revenue</span></div>
+                                <div class="col-md-3">$1526</div>
+                                    <div class="col-md-5">
+                                        <div class="progress">
+                                            <div style="width: 40%" class="progress-bar progress-bar-success"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row user-progress user-progress-small">
+                                    <div class="col-md-4"><span class="title">Expense</span></div>
+                                    <div class="col-md-3">$721</div>
+                                    <div class="col-md-5">
+                                        <div class="progress">
+                                            <div style="width: 61%" class="progress-bar progress-bar-info"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

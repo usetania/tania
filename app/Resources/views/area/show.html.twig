@@ -1,0 +1,137 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <a href="{{ path('areas') }}" class="btn btn-default"><i class="icon mdi mdi-long-arrow-return"></i> Back to All Area</a><br><br>
+            <h2 class="page-head-title">Amaryllis</h2>
+        </div>
+        
+        <div class="main-content container-fluid">
+            <div class="user-profile">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="user-display">
+                            <div class="user-display-bg"><img src="{{ asset('assets/img/gh-2.jpg') }}" alt="Profile Background"></div>
+                        </div>
+                        <div class="user-info-list panel panel-default">
+                            <div class="panel-body">
+                                <table class="no-border no-strip skills">
+                                    <tbody class="no-border-x no-border-y">
+                                        <tr>
+                                            <td class="icon"><span class="mdi mdi-toys"></span></td>
+                                            <td class="item">System<span class="icon s7-portfolio"></span></td>
+                                            <td>NFT (Nutrient Film Technique)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><span class="mdi mdi-gradient"></span></td>
+                                            <td class="item">Total Capacity<span class="icon s7-gift"></span></td>
+                                            <td>
+                                            <div class="progress">
+                                                <div style="width: 90%" class="progress-bar progress-bar-primary">288 / 320</div>
+                                            </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><span class="mdi mdi-flower-alt"></span></td>
+                                            <td class="item">Plant Variety</td>
+                                            <td>4</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="icon"><span class="mdi mdi-drink"></span></td>
+                                            <td class="item">Nutrient Reservoir</td>
+                                            <td>Veggie</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="widget widget-fullwidth widget-small">
+                            <div class="widget-head xs-pb-30">
+                                <div class="tools"></span><span class="icon mdi mdi-refresh-sync" title="Refresh"></span> <span class="icon mdi mdi-settings" title="Change Sensors"></span></span></div>
+                                <div class="title">Room Conditions<span class="panel-subtitle">Last update on 08:20 (2 minutes ago)</span></div>
+                            </div>
+                            <div class="widget-chart-container">
+                                <div class="widget-counter-group widget-counter-group-right">
+                                    <div class="counter counter-big">
+                                        <div class="value">32 ℃</div>
+                                        <div class="desc">Temperature</div>
+                                    </div>
+                                    <div class="counter counter-big">
+                                        <div class="value">72%</div>
+                                        <div class="desc">Humidity</div>
+                                    </div>
+                                </div>
+                                <div id="bar-chart1" style="height: 380px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default panel-table">
+                            <div class="panel-heading">Cultivated Plant in Amaryllis
+                            <!--<div class="tools"><span class="icon mdi mdi-plus"></span></div>-->
+                            </div>
+
+                            <div class="panel-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:47%;">Variety Name</th>
+                                            <th style="width:38%;">Type</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in 1..5 %}
+                                        <tr>
+                                            <td class="user-avatar"><img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="Avatar">Basil Sweet Genovese</td>
+                                            <td>Herbs</td>
+                                            <td>34</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-heading-divider">Latest Activity
+                                <div class="tools"><span class="icon mdi mdi-more-vert"></span></div>
+                                <span class="panel-subtitle">Recent activities on this area</span>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="user-timeline">
+                                    <li class="latest">
+                                        <div class="user-timeline-date">Nov, 27 2016 - 06:23</div>
+                                        <div class="user-timeline-title">Transplant new seedlings</div>
+                                        <div class="user-timeline-description">85 pots of Mint</div>
+                                    </li>
+                                    <li>
+                                        <div class="user-timeline-date">Nov, 27 2016 - 06:07</div>
+                                        <div class="user-timeline-title">Discard lousy plants</div>
+                                        <div class="user-timeline-description">4 pots of Basil Sweet Genovese</div>
+                                    </li>
+                                    <li>
+                                        <div class="user-timeline-date">Nov, 27 2016 - 05:41</div>
+                                        <div class="user-timeline-title">Harvesting</div>
+                                        <div class="user-timeline-description">15 pots of Horenso Spinach</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -7,6 +7,11 @@ dashboard:
     defaults: { _controller: AppBundle:Dashboard:index }
     methods: [GET]
 
+fields:
+    path: /fields
+    defaults: { _controller: AppBundle:Field:index }
+    methods: [GET]
+
 areas:
     path: /areas
     defaults: { _controller: AppBundle:Area:index }

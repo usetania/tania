@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <h2 class="page-head-title">The Detail of The Field</h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_start(form) }}
+                                {{ form_errors(form) }}
+                                <div class="form-group">
+                                    {{ form_label(form.name) }}
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6">
+                                            {{ form_label(form.lat, 'Latitude') }}
+                                            {{ form_errors(form.lat) }}
+                                            {{ form_widget(form.lat, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            {{ form_label(form.lng, 'Longitude') }}
+                                            {{ form_errors(form.lng) }}
+                                            {{ form_widget(form.lng, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.description) }}
+                                    {{ form_errors(form.description) }}
+                                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.photoUrl) }}
+                                    {{ form_errors(form.photoUrl) }}
+                                    {{ form_widget(form.photoUrl, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 text-center">
+                                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+                                        <a href="{{ path('fields') }}" class="btn btn-default btn-lg">Cancel</a>
+                                    </div>
+                                </div>
+                            {{form_end(form)}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

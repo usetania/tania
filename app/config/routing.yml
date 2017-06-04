@@ -12,6 +12,18 @@ fields:
     defaults: { _controller: AppBundle:Field:index }
     methods: [GET]
 
+fields_create:
+    path: /fields/create
+    defaults: { _controller: AppBundle:Field:create }
+    methods: [GET, POST]
+
+fields_show:
+    path: /fields/{id}
+    defaults: { _controller: AppBundle:Field:show}
+    requirements:
+        id: '\d+'
+    methods: [GET, POST]
+
 areas:
     path: /areas
     defaults: { _controller: AppBundle:Area:index }

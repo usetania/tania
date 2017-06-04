@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -18,6 +19,7 @@ class Field
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
      */
     private $name;
 
@@ -35,6 +37,23 @@ class Field
      * @ORM\Column(type="text", nullable=TRUE)
      */
     private $description;
+
+    /**
+     * @ORM\Column(type="text", nullable=TRUE)
+     */
+    private $photoUrl;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=TRUE)
+     * @Assert\Type("\DateTime")
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\Type("\DateTime")
+     */
+    private $createdAt;
 
     /**
      * Get id
@@ -140,5 +159,77 @@ class Field
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set photo url
+     *
+     * @param string $photoUrl
+     *
+     * @return Field
+     */
+    public function setPhotoUrl($photoUrl)
+    {
+        $this->photoUrl = $photoUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get photo url
+     *
+     * @return string
+     */
+    public function getPhotoUrl()
+    {
+        return $this->photoUrl;
+    }
+
+    /**
+     * Set updated datetime
+     *
+     * @param string $updatedAt
+     *
+     * @return Field
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updated datetime
+     *
+     * @return string
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set created datetime
+     *
+     * @param string $createdAt
+     *
+     * @return Field
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get created datetime
+     *
+     * @return string
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
     }
 }

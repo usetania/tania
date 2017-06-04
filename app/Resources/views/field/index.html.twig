@@ -4,5 +4,30 @@
 <div class="be-wrapper">
     {% include 'navbar.html.twig' %} 
     {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <a href="{{ path('fields_create') }}" class="btn btn-space btn-primary btn-lg pull-right">
+                <span class="icon mdi mdi-layers"></span> Add New Field
+            </a>
+            <h2 class="page-head-title">All Fields/Greenhouses</h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+            {% for field in fields %}
+                <div class="col-xs-12 col-md-3">
+                    <div class="user-display">
+                        <div class="user-display-bg"><img src="{{ asset('assets/img/gh-2.jpg') }}" alt="Amaryllis"></div>
+                        <div class="user-display-bottom">
+                            <div class="user-display-info">
+                                <div class="name"><a href="{{ path('fields_show', {'id': field.id }) }}">{{ field.name }}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

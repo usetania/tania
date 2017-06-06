@@ -22,8 +22,8 @@ class ReservoirType extends AbstractType
             ->add('capacity', NumberType::class, array('scale' => 2))
             ->add('measurementUnit', ChoiceType::class, array(
                 'choices' => array(
-                    'Litre' => 'litre',
-                    'Gallon' => 'gallon'
+                    'Litre' => 1,
+                    'Gallon' => 2
                 )
             ))
             ->add('save', SubmitType::class, array('label' => 'Add'));

@@ -15,14 +15,14 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-default panel-table">
-                        <div class="panel-heading">You have 3 reservoirs</div>
+                        <div class="panel-heading">You have {{ reservoirs|length }} reservoir{% if reservoirs|length > 1 %}s {% endif %}</div>
                         <div class="panel-body">
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
                                         <th>Capacity</th>
-                                        <th>Mesurement Unit</th>
+                                        <th>Measurement Unit</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -30,7 +30,13 @@
                                     <tr>
                                         <td class="cell-detail">{{ reservoir.name }} <span class="cell-detail-description">Used in 2 area</span></td>
                                         <td class="cell-detail">{{ reservoir.capacity }}</td>
-                                        <td class="cell-detail">{{ reservoir.measurementUnit }}</td>
+                                        <td class="cell-detail">
+                                            {% if reservoir.measurementUnit == 1 %}
+                                                Litre
+                                            {% elseif reservoir.measurementUnit == 2 %}
+                                                Gallon
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

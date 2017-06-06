@@ -1,28 +1,21 @@
 <?php
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="reservoirs")
+ * @ORM\Table(name="areas")
  */
-class Reservoir
+class Area
 {
     /**
-     * Many Reservoirs have One Field
-     * @ORM\ManyToOne(targetEntity="Field", inversedBy="reservoirs")
-     * @ORM\JoinColumn(name="field_id", referencedColumnName="id")
+     * Many Areas have One Reservoirs
+     * @ORM\ManyToOne(targetEntity="Reservoir", inversedBy="areas")
+     * @ORM\JoinColumn(name="reservoir_id", referencedColumnName="id")
      */
-    private $field;
-
-    /**
-     * One Reservoir has Many areas
-     * @ORM\OneToMany(targetEntity="Area", mappedBy="reservoir")
-     */
-    private $areas;
+    private $reservoir;
 
     /**
      * @ORM\Column(type="integer")
@@ -30,24 +23,35 @@ class Reservoir
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
+    
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
      */
     private $name;
-
+    
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
+     * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
-    private $capacity;
+    private $growingMethod;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
+    private $capacity;
+    
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     */
     private $measurementUnit;
+
+    /**
+     * @ORM\Column(type="text", nullable=TRUE)
+     */
+    private $photoUrl;
 
     /**
      * @ORM\Column(type="datetime", nullable=TRUE)
@@ -60,11 +64,6 @@ class Reservoir
      * @Assert\Type("\DateTime")
      */
     private $createdAt;
-
-    public function __construct()
-    {
-        $this->areas = new ArrayCollection();
-    }
 
     /**
      * Get id
@@ -81,7 +80,7 @@ class Reservoir
      *
      * @param string $name
      *
-     * @return Reservoir
+     * @return Area
      */
     public function setName($name)
     {
@@ -101,11 +100,35 @@ class Reservoir
     }
 
     /**
+     * Set growingMethod
+     *
+     * @param integer $growingMethod
+     *
+     * @return Area
+     */
+    public function setGrowingMethod($growingMethod)
+    {
+        $this->growingMethod = $growingMethod;
+
+        return $this;
+    }
+
+    /**
+     * Get growingMethod
+     *
+     * @return integer
+     */
+    public function getGrowingMethod()
+    {
+        return $this->growingMethod;
+    }
+
+    /**
      * Set capacity
      *
-     * @param string $capacity
+     * @param integer $capacity
      *
-     * @return Reservoir
+     * @return Area
      */
     public function setCapacity($capacity)
     {
@@ -117,7 +140,7 @@ class Reservoir
     /**
      * Get capacity
      *
-     * @return string
+     * @return integer
      */
     public function getCapacity()
     {
@@ -127,9 +150,9 @@ class Reservoir
     /**
      * Set measurementUnit
      *
-     * @param string $measurementUnit
+     * @param integer $measurementUnit
      *
-     * @return Reservoir
+     * @return Area
      */
     public function setMeasurementUnit($measurementUnit)
     {
@@ -141,7 +164,7 @@ class Reservoir
     /**
      * Get measurementUnit
      *
-     * @return string
+     * @return integer
      */
     public function getMeasurementUnit()
     {
@@ -149,11 +172,35 @@ class Reservoir
     }
 
     /**
+     * Set photoUrl
+     *
+     * @param string $photoUrl
+     *
+     * @return Area
+     */
+    public function setPhotoUrl($photoUrl)
+    {
+        $this->photoUrl = $photoUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get photoUrl
+     *
+     * @return string
+     */
+    public function getPhotoUrl()
+    {
+        return $this->photoUrl;
+    }
+
+    /**
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
      *
-     * @return Reservoir
+     * @return Area
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -177,7 +224,7 @@ class Reservoir
      *
      * @param \DateTime $createdAt
      *
-     * @return Reservoir
+     * @return Area
      */
     public function setCreatedAt($createdAt)
     {
@@ -197,60 +244,26 @@ class Reservoir
     }
 
     /**
-     * Set field
+     * Set reservoir
      *
-     * @param \AppBundle\Entity\Field $field
+     * @param \AppBundle\Entity\Reservoir $reservoir
      *
-     * @return Reservoir
+     * @return Area
      */
-    public function setField(\AppBundle\Entity\Field $field = null)
+    public function setReservoir(\AppBundle\Entity\Reservoir $reservoir = null)
     {
-        $this->field = $field;
+        $this->reservoir = $reservoir;
 
         return $this;
     }
 
     /**
-     * Get field
+     * Get reservoir
      *
-     * @return \AppBundle\Entity\Field
+     * @return \AppBundle\Entity\Reservoir
      */
-    public function getField()
+    public function getReservoir()
     {
-        return $this->field;
-    }
-
-    /**
-     * Add area
-     *
-     * @param \AppBundle\Entity\Area $area
-     *
-     * @return Reservoir
-     */
-    public function addArea(\AppBundle\Entity\Area $area)
-    {
-        $this->areas[] = $area;
-
-        return $this;
-    }
-
-    /**
-     * Remove area
-     *
-     * @param \AppBundle\Entity\Area $area
-     */
-    public function removeArea(\AppBundle\Entity\Area $area)
-    {
-        $this->areas->removeElement($area);
-    }
-
-    /**
-     * Get areas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAreas()
-    {
-        return $this->areas;
+        return $this->reservoir;
     }
 }

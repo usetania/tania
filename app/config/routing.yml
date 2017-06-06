@@ -36,10 +36,10 @@ areas_show:
         id: '\d+'
     methods: [GET]
 
-areas_add:
-    path: /areas/add
-    defaults: { _controller: AppBundle:Area:add }
-    methods: [GET]
+areas_create:
+    path: /areas/create
+    defaults: { _controller: AppBundle:Area:create }
+    methods: [GET, POST]
 
 reservoirs:
     path: /reservoirs

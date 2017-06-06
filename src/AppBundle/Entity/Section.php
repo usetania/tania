@@ -3,6 +3,7 @@ namespace AppBundle\Entity;
 
 class Section
 {
+    private $id;
     private $name;
     private $locationId;
     private $system;

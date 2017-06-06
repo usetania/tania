@@ -40,3 +40,8 @@ areas_add:
     path: /areas/add
     defaults: { _controller: AppBundle:Area:add }
     methods: [GET]
+
+reservoirs:
+    path: /reservoirs
+    defaults: { _controller: AppBundle:Reservoir:index }
+    methods: [GET, POST]

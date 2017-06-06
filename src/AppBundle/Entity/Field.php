@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -10,6 +11,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Field
 {
+    /**
+     * One Field has Many Reservoirs
+     * @ORM\OneToMany(targetEntity="Reservoir", mappedBy="field")
+     */
+    private $reservoirs;
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -54,6 +61,11 @@ class Field
      * @Assert\Type("\DateTime")
      */
     private $createdAt;
+
+    public function __construct()
+    {
+        $this->reservoirs = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -231,5 +243,39 @@ class Field
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Add reservoir
+     *
+     * @param \AppBundle\Entity\Reservoir $reservoir
+     *
+     * @return Field
+     */
+    public function addReservoir(\AppBundle\Entity\Reservoir $reservoir)
+    {
+        $this->reservoirs[] = $reservoir;
+
+        return $this;
+    }
+
+    /**
+     * Remove reservoir
+     *
+     * @param \AppBundle\Entity\Reservoir $reservoir
+     */
+    public function removeReservoir(\AppBundle\Entity\Reservoir $reservoir)
+    {
+        $this->reservoirs->removeElement($reservoir);
+    }
+
+    /**
+     * Get reservoirs
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReservoirs()
+    {
+        return $this->reservoirs;
     }
 }

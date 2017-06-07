@@ -28,7 +28,7 @@
                                 <tbody>
                                     {% for reservoir in reservoirs %}
                                     <tr>
-                                        <td class="cell-detail">{{ reservoir.name }} <span class="cell-detail-description">Used in 2 area</span></td>
+                                        <td class="cell-detail">{{ reservoir.name }} <span class="cell-detail-description">Used in {{ reservoir.areas|length }} area</span></td>
                                         <td class="cell-detail">{{ reservoir.capacity }}</td>
                                         <td class="cell-detail">
                                             {% if reservoir.measurementUnit == 1 %}

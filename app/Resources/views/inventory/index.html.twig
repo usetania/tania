@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <div class="pull-right">
+                <a href="{{ path('seeds_create') }}" class="btn btn-space btn-success btn-lg"><i class="icon mdi mdi-plus"></i> Add Seed</a>
+            </div>
+            <h2 class="page-head-title">Inventories</h2>
+        </div>
+        
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default panel-table">
+                        <div class="panel-heading">Seeds Collection
+                            <div class="tools"></div>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name of Plant Variety</th>
+                                        <th>Category</th>
+                                        <th>Expired In</th>
+                                        <th>Stock</th>
+                                        <th>Country of Origin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for seed in seeds %}
+                                    <tr>
+                                        <td class="inventory-image cell-detail user-info">
+                                            <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="{{ seed.name }}">{{ seed.name }} 
+                                            <span class="cell-detail-description">{{ seed.producerName }}</span>
+                                        </td>
+                                        <td>
+                                            {% if seed.category == 1 %}
+                                                Herb
+                                            {% elseif seed.category == 2 %}
+                                                Vegetable
+                                            {% elseif seed.category == 3 %}
+                                                Sprout/Microgreens
+                                            {% elseif seed.category == 4 %}
+                                                Fruit
+                                            {% elseif seed.category == 5 %}
+                                                Tubber
+                                            {% elseif seed.category == 6 %}
+                                                Flower
+                                            {% elseif seed.category == 7 %}
+                                                Other
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {{ seed.expirationMonth }} {{ seed.expirationYear }}
+                                        </td>
+                                        <td>
+                                            {% if seed.measurementUnit == 1 %}
+                                                {{ seed.quantity }} seeds
+                                            {% elseif seed.measurementUnit == 2 %}
+                                                {{ seed.quantity }} gramme
+                                            {% elseif seed.measurementUnit == 3 %}
+                                                {{ seed.quantity }} kilogramme
+                                            {% elseif seed.measurementUnit == 4 %}
+                                                {{ seed.quantity }} lbs
+                                            {% elseif seed.measurementUnit == 5 %}
+                                                {{ seed.quantity }} oz
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            {{ seed.originCountry }}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

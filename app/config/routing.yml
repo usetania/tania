@@ -45,3 +45,13 @@ reservoirs:
     path: /reservoirs
     defaults: { _controller: AppBundle:Reservoir:index }
     methods: [GET, POST]
+
+inventories:
+    path: /inventories
+    defaults: { _controller: AppBundle:Inventory:index }
+    methods: [GET]
+
+seeds_create:
+    path: /seeds/create
+    defaults: { _controller: AppBundle:Inventory:seedCreate }
+    methods: [GET, POST]

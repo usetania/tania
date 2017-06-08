@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <h2 class="page-head-title">Create New Task</h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_start(form, {'attr': {'class': 'form-horizontal group-border-dashed'}}) }}
+                                {{ form_errors(form) }}
+                                <div class="form-group">
+                                    {{ form_label(form.name, 'Name', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                    <div class="col-sm-6">
+                                        {{ form_errors(form.name) }}
+                                        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.notes, 'Notes', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                    <div class="col-sm-6">
+                                        {{ form_errors(form.notes) }}
+                                        {{ form_widget(form.notes, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.category, 'Category', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                    <div class="col-sm-6">
+                                        {{ form_errors(form.category) }}
+                                        {{ form_widget(form.category, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.dueDate, 'Due Date', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                    <div class="col-sm-6">
+                                        {{ form_errors(form.dueDate) }}
+                                        {{ form_widget(form.dueDate) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.urgencyLevel, 'Urgency Level', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+                                    <div class="col-sm-6">
+                                        {{ form_errors(form.urgencyLevel) }}
+                                        {{ form_widget(form.urgencyLevel, {'attr': {'class': 'form-control'}}) }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 text-center">
+                                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+                                        <button class="btn btn-default btn-lg">Cancel</button>
+                                    </div>
+                                </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

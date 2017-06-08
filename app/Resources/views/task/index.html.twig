@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+  {% include 'navbar.html.twig' %} 
+  {% include 'sidebar.html.twig' %}
+
+  <div class="be-content">
+    <div class="page-head">
+        <a href="{{ path('tasks_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-plus"></span> Add New</a>
+        <h2 class="page-head-title">Farm Tasks</h2>
+    </div>
+    <div class="main-content container-fluid">
+        <!-- Area Task -->
+        <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default panel-table">
+            <div class="panel-heading">All Tasks</div>
+            <div class="panel-body">
+                <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th style="width:15%;">Category</th>
+                    <th style="width:15%;">Task</th>
+                    <th style="width:35%;">Notes</th>
+                    <th style="width:15%;">Due Date</th>
+                    <th style="width:15%;">Level of Importance</th>
+                    <th>Check</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                    <tr>
+                    <td class="cell-detail">{{ task.category }}</td>
+                    <td class="cell-detail">{{ task.name }}</td>
+                    <td class="cell-detail">{{ task.notes }}</td>
+                    <td class="cell-detail"></td>
+                    <td class="cell-detail"><span class="label label-success">{{ task.urgencyLevel }}</span></td>
+                    <td class="cell-detail"><input type="checkbox" name=""></td>                        
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                    <td class="cell-detail">Chrysant<span class="cell-detail-description">Area</span></td>
+                    <td class="cell-detail">Unplug all of the drip stick</td>
+                    <td class="cell-detail">Unplug all of the drip stick that connected to pots and put it on the washing bin.</td>
+                    <td class="cell-detail">23/02/2017</td>
+                    <td class="cell-detail"><span class="label label-danger">Critical</span></td>
+                    <td class="cell-detail"><input type="checkbox" name=""></td>                        
+                    </tr>
+                    <tr>
+                    <td class="cell-detail">Tubby<span class="cell-detail-description">Nutrient</span></td>
+                    <td class="cell-detail">Drain the water in this tank</td>
+                    <td class="cell-detail">Soak it with Bayclin for 1 hour, and rinse it with clean water. Make sure it clean and chemical residue free.</td>
+                    <td class="cell-detail">24/02/2017</td>
+                    <td class="cell-detail"><span class="label label-warning">Medium</span></td>
+                    <td class="cell-detail"><input type="checkbox" name=""></td>                        
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+    </div>
+</div>
+{% endblock %}

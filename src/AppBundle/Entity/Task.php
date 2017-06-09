@@ -48,6 +48,12 @@ class Task
     private $urgencyLevel;
 
     /**
+     * @ORM\Column(type="integer", length=2, nullable=TRUE)
+     * @Assert\NotBlank()
+     */
+    private $isDone;
+
+    /**
      * @ORM\Column(type="datetime", nullable=TRUE)
      * @Assert\Type("\DateTime")
      */
@@ -235,5 +241,29 @@ class Task
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * Set isDone
+     *
+     * @param integer $isDone
+     *
+     * @return Task
+     */
+    public function setIsDone($isDone)
+    {
+        $this->isDone = $isDone;
+
+        return $this;
+    }
+
+    /**
+     * Get isDone
+     *
+     * @return integer
+     */
+    public function getIsDone()
+    {
+        return $this->isDone;
     }
 }

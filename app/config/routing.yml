@@ -65,3 +65,10 @@ tasks_create:
     path: /tasks/create
     defaults: { _controller: AppBundle:Task:create }
     methods: [GET, POST]
+
+tasks_show:
+    path: /tasks/{id}
+    defaults: { _controller: AppBundle:Task:show}
+    requirements:
+        id: '\d+'
+    methods: [GET, POST]

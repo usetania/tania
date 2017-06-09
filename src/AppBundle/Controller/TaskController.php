@@ -45,4 +45,28 @@ class TaskController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    public function showAction($id, Request $request, EntityManagerInterface $em)
+    {
+        $task = $em->getRepository('AppBundle:Task')->find($id);
+
+        $form = $this->createForm(TaskType::class, $task);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $task = $form->getData();
+
+            // save to database here
+            $task->setUpdatedAt(new \DateTime('now'));
+
+            $em->flush();
+
+            return $this->redirectToRoute('tasks');
+        }
+
+        return $this->render('task/show.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
 }

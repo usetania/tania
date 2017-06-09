@@ -29,10 +29,15 @@ class TaskType extends AbstractType
                 'choices' => array(
                     'Low' => 'low',
                     'Medium' => 'medium',
-                    'High' => 'high',
-                    'Critical' => 'critical'
+                    'High' => 'high'
                 )
             ))
-            ->add('save', SubmitType::class, array('label' => 'Create task'));
+            ->add('isDone', ChoiceType::class, array(
+                'choices' => array(
+                    'No' => 0,
+                    'Yes' => 1
+                )
+            ))
+            ->add('save', SubmitType::class, array('label' => 'Save'));
     }
 }

@@ -66,7 +66,7 @@ body {
 
 .tania .loginform {
 	padding: 100px 0;
-	text-align: center;
+	text-align: left;
 	margin-top: 50px;
 	padding: 80px 80px;
 }
@@ -76,6 +76,10 @@ body {
 	margin-left: -15px;
 	color: #83817E !important;
 	font-weight: 400;
+}
+
+.loginform .forgot-link {
+	text-align: center;
 }
 
 .tania .form-horizontal {

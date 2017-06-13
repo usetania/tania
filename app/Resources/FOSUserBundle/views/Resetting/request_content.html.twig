@@ -1,0 +1,30 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="be-wrapper">
+    <div class="be-content">
+        <div class="main-content container-fluid">
+            <div class="row tania">
+                <div class="col-md-6 col-xs-12">
+                    <img src="{{ asset('assets/img/tania.png') }}" class="tania-img">
+                    <h2>MANAGE FARMS EASIER &amp; SMARTER</h2>
+                    <p>This impressive and modern farm management application will help you to manage the operations of your farm in a more intuitive, collaborative, and efficient way.</p>
+                </div>
+                <div class="col-md-6 col-xs-12 loginform">
+                    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                        <span class="splash-title xs-pb-20">Reset Password</span>
+                        <div class="form-group">
+                            <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                            <input type="text" id="username" name="username" required="required" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-block btn-primary btn-xl" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="tania-footer">&copy; 2017 Tania. Build for the ♥︎ of plants.</div>
+            </div>
+        </div>
+    </div>
+</div>

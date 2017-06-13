@@ -1,0 +1,27 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+<div class="be-wrapper">
+    <div class="be-content">
+        <div class="main-content container-fluid">
+            <div class="row tania">
+                <div class="col-md-6 col-xs-12">
+                    <img src="{{ asset('assets/img/tania.png') }}" class="tania-img">
+                    <h2>MANAGE FARMS EASIER &amp; SMARTER</h2>
+                    <p>This impressive and modern farm management application will help you to manage the operations of your farm in a more intuitive, collaborative, and efficient way.</p>
+                </div>
+                <div class="col-md-6 col-xs-12 loginform">
+                    <p>
+                        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="tania-footer">&copy; 2017 Tania. Build for the ♥︎ of plants.</div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

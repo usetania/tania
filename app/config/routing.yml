@@ -8,67 +8,76 @@ dashboard:
     methods: [GET]
 
 fields:
-    path: /fields
-    defaults: { _controller: AppBundle:Field:index }
+    path: /fields{trailingSlash}
+    defaults: { _controller: AppBundle:Field:index, trailingSlash : "/" }
     methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 fields_create:
-    path: /fields/create
-    defaults: { _controller: AppBundle:Field:create }
+    path: /fields/create{trailingSlash}
+    defaults: { _controller: AppBundle:Field:create, trailingSlash : "/" }
     methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 fields_show:
-    path: /fields/{id}
-    defaults: { _controller: AppBundle:Field:show}
-    requirements:
-        id: '\d+'
+    path: /fields/{id}{trailingSlash}
+    defaults: { _controller: AppBundle:Field:show, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET, POST]
 
 areas:
-    path: /areas
-    defaults: { _controller: AppBundle:Area:index }
+    path: /areas{trailingSlash}
+    defaults: { _controller: AppBundle:Area:index, trailingSlash : "/" }
     methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 areas_show:
-    path: /areas/{id}
-    defaults: { _controller: AppBundle:Area:show }
-    requirements:
-        id: '\d+'
+    path: /areas/{id}{trailingSlash}
+    defaults: { _controller: AppBundle:Area:show, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET]
 
 areas_create:
-    path: /areas/create
-    defaults: { _controller: AppBundle:Area:create }
+    path: /areas/create{trailingSlash}
+    defaults: { _controller: AppBundle:Area:create, trailingSlash : "/" }
     methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 reservoirs:
-    path: /reservoirs
-    defaults: { _controller: AppBundle:Reservoir:index }
+    path: /reservoirs{trailingSlash}
+    defaults: { _controller: AppBundle:Reservoir:index, trailingSlash : "/" }
     methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 inventories:
-    path: /inventories
-    defaults: { _controller: AppBundle:Inventory:index }
+    path: /inventories{trailingSlash}
+    defaults: { _controller: AppBundle:Inventory:index, trailingSlash : "/" }
     methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 seeds_create:
-    path: /seeds/create
-    defaults: { _controller: AppBundle:Inventory:seedCreate }
+    path: /seeds/create{trailingSlash}
+    defaults: { _controller: AppBundle:Inventory:seedCreate, trailingSlash : "/" }
     methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 tasks:
-    path: /tasks
-    defaults: { _controller: AppBundle:Task:index }
+    path: /tasks{trailingSlash}
+    defaults: { _controller: AppBundle:Task:index, trailingSlash : "/" }
     methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 tasks_create:
-    path: /tasks/create
-    defaults: { _controller: AppBundle:Task:create }
+    path: /tasks/create{trailingSlash}
+    defaults: { _controller: AppBundle:Task:create, trailingSlash : "/" }
     methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 tasks_show:
-    path: /tasks/{id}
-    defaults: { _controller: AppBundle:Task:show}
-    requirements:
-        id: '\d+'
+    path: /tasks/{id}{trailingSlash}
+    defaults: { _controller: AppBundle:Task:show, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET, POST]
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

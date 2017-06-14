@@ -79,5 +79,17 @@ tasks_show:
     requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET, POST]
 
+plants:
+    path: /plants{trailingSlash}
+    defaults: { _controller: AppBundle:Plant:index, trailingSlash : "/" }
+    methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+plants_create:
+    path: /plants/create{trailingSlash}
+    defaults: { _controller: AppBundle:Plant:create, trailingSlash : "/" }
+    methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

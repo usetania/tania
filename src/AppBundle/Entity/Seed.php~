@@ -424,38 +424,4 @@ class Seed
     {
         return $this->createdAt;
     }
-
-    /**
-     * Add plant
-     *
-     * @param \AppBundle\Entity\Plant $plant
-     *
-     * @return Seed
-     */
-    public function addPlant(\AppBundle\Entity\Plant $plant)
-    {
-        $this->plants[] = $plant;
-
-        return $this;
-    }
-
-    /**
-     * Remove plant
-     *
-     * @param \AppBundle\Entity\Plant $plant
-     */
-    public function removePlant(\AppBundle\Entity\Plant $plant)
-    {
-        $this->plants->removeElement($plant);
-    }
-
-    /**
-     * Get plants
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPlants()
-    {
-        return $this->plants;
-    }
 }

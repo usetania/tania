@@ -1,5 +1,45 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
 
+    <div class="be-content">
+        <div class="page-head">
+            <a href="{{ path('plants_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-flower-alt"></span> Add New Variety</a>
+            <h2 class="page-head-title">Plant Varieties</h2>
+        </div>
+        
+        <div class="main-content container-fluid">
+            <div class="row">
+            {% for plant in plants %}
+                <div class="col-xs-12 col-md-3">
+                    <div class="user-display">
+                        <div class="user-display-bg">
+                            <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="">
+                        </div>
+                        <div class="user-display-bottom">
+                            <div class="user-display-info">
+                                <div class="name"><a href="plant-detail.html">{{ plant.seed.name }}</a></div>
+                                <div class="nick">{{ plant.seed.category }}</div>
+                            </div>
+                            <div class="row user-display-details">
+                                <div class="col-xs-5">
+                                    <div class="title">Amount</div>
+                                    <div class="counter">{{ plant.seedlingAmount }}</div>
+                                </div>
+                                <div class="col-xs-7">
+                                    <div class="title">Planting Area</div>
+                                    <div class="counter">{{ plant.area.name }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>    
+        </div>
+    </div>
+</div>
 {% endblock %}

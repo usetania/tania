@@ -2,6 +2,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Data\CountryList;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -32,16 +33,9 @@ class SeedType extends AbstractType
 
         $builder
             ->add('name', TextType::class)
-            ->add('category', ChoiceType::class, array(
-                'choices' => array(
-                    'Herb' => 1,
-                    'Vegetable' => 2,
-                    'Sprout/Microgreens' => 3,
-                    'Fruit' => 4,
-                    'Tubber' => 5,
-                    'Flower' => 6,
-                    'Other' => 7
-                )
+            ->add('seedCategory', EntityType::class, array(
+                'class' => 'AppBundle:SeedCategory',
+                'choice_label' => 'name'
             ))
             ->add('quantity', IntegerType::class)
             ->add('measurementUnit', ChoiceType::class, array(

@@ -31,9 +31,11 @@ class PlantController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $plant = $form->getData();
+            // subtract area capacity and seed inventory
+            
 
             // save to database here
+            $plant = $form->getData();
             $plant->setCreatedAt(new \DateTime('now'));
 
             $em->persist($plant);
@@ -45,5 +47,13 @@ class PlantController extends Controller
         return $this->render('plant/create.html.twig', array(
             'form' => $form->createView()
         ));
+    }
+
+    /**
+        Display the detail of the plant
+    */
+    public function showAction($id, EntityManagerInterface $em, Request $request)
+    {
+        return $this->render('plant/show.html.twig');
     }
 }

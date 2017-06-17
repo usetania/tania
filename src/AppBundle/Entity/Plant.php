@@ -31,8 +31,8 @@ class Plant
     private $seed;
 
     /**
-     * @ORM\Column(type="datetime", nullable=TRUE)
-     * @Assert\Type("\DateTime")
+     * @ORM\Column(type="date", nullable=TRUE)
+     * @Assert\Type("\Date")
      */
     private $seedlingDate;
 
@@ -41,6 +41,12 @@ class Plant
      * @Assert\NotBlank()
      */
     private $seedlingAmount;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank()
+     */
+    private $areaCapacity;
 
     /**
      * @ORM\Column(type="datetime", nullable=TRUE)
@@ -57,7 +63,7 @@ class Plant
     /**
      * Set seedlingDate
      *
-     * @param \DateTime $seedlingDate
+     * @param \Date $seedlingDate
      *
      * @return Plant
      */
@@ -71,7 +77,7 @@ class Plant
     /**
      * Get seedlingDate
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getSeedlingDate()
     {
@@ -206,5 +212,29 @@ class Plant
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set areaCapacity
+     *
+     * @param integer $areaCapacity
+     *
+     * @return Plant
+     */
+    public function setAreaCapacity($areaCapacity)
+    {
+        $this->areaCapacity = $areaCapacity;
+
+        return $this;
+    }
+
+    /**
+     * Get areaCapacity
+     *
+     * @return integer
+     */
+    public function getAreaCapacity()
+    {
+        return $this->areaCapacity;
     }
 }

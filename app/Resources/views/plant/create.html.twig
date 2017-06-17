@@ -15,30 +15,34 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            {{ form_start(form, {'attr': {'class': 'form-horizontal group-border-dashed'}}) }}
+                            {{ form_start(form) }}
                                 <div class="form-group">
-                                    {{ form_label(form.area, 'Select area to plant', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-                                    <div class="col-sm-6">
-                                        {{ form_widget(form.area, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            {{ form_label(form.area, 'Select area to plant', { 'label_attr': {'class': 'control-label'}}) }}
+                                            {{ form_widget(form.area, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                        <div class="col-sm-6">
+                                            {{ form_label(form.areaCapacity, 'How many plant would you want?', { 'label_attr': {'class': 'control-label'}}) }}
+                                            {{ form_widget(form.areaCapacity, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    {{ form_label(form.seed, 'Pick from your seeds collection', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-                                    <div class="col-sm-6">
-                                        {{ form_widget(form.seed, {'attr': {'class': 'form-control'}}) }}
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            {{ form_label(form.seed, 'Pick from your seeds collection', { 'label_attr': {'class': 'control-label'}}) }}
+                                            {{ form_widget(form.seed, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                        <div class="col-sm-6">
+                                            {{ form_label(form.seedlingAmount, 'How many seeds would you use?', { 'label_attr': {'class': 'control-label'}}) }}
+                                            {{ form_widget(form.seedlingAmount, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    {{ form_label(form.seedlingDate, 'Choose seedling date', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-                                    <div class="col-sm-6 col-xs-12">
-                                        {{ form_widget(form.seedlingDate, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    {{ form_label(form.seedlingAmount, 'Amount of seedlings', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-                                    <div class="col-sm-3 col-xs-12">
-                                        {{ form_widget(form.seedlingAmount, {'attr': {'class': 'form-control'}}) }}
-                                    </div>
+                                <div class="datetime-group">
+                                    {{ form_label(form.seedlingDate, 'Choose seedling date', { 'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_widget(form.seedlingDate) }}
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 text-center">

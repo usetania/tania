@@ -38,23 +38,7 @@
                                             <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="{{ seed.name }}">{{ seed.name }} 
                                             <span class="cell-detail-description">{{ seed.producerName }}</span>
                                         </td>
-                                        <td>
-                                            {% if seed.category == 1 %}
-                                                Herb
-                                            {% elseif seed.category == 2 %}
-                                                Vegetable
-                                            {% elseif seed.category == 3 %}
-                                                Sprout/Microgreens
-                                            {% elseif seed.category == 4 %}
-                                                Fruit
-                                            {% elseif seed.category == 5 %}
-                                                Tubber
-                                            {% elseif seed.category == 6 %}
-                                                Flower
-                                            {% elseif seed.category == 7 %}
-                                                Other
-                                            {% endif %}
-                                        </td>
+                                        <td>{{ seed.seedCategory.name }}</td>
                                         <td>
                                             {{ seed.expirationMonth }} {{ seed.expirationYear }}
                                         </td>

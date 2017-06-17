@@ -79,3 +79,6 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\RegistrationFormType
+
+vich_uploader:
+    db_driver: orm

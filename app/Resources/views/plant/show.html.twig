@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <a href="plant.html" class="btn btn-default"><i class="icon mdi mdi-long-arrow-return"></i> Back to All Plants</a>
+            <button class="btn btn-space btn-success btn-big pull-right"><span class="icon mdi mdi-scissors"></span> Harvest</button>
+            <button class="btn btn-space btn-default btn-big pull-right"><span class="icon mdi mdi-delete"></span> Dispose</button>
+            <h2 class="page-head-title">Basil Sweet Genovese</h2>
+        </div>
+
+        <div class="main-content container-fluid">
+            <div class="user-profile">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="user-display">
+                            <div class="user-display-bg"><img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="Profile Background"></div>
+                            <div class="user-display-bottom">
+                                <div class="row user-display-details">
+                                    <div class="col-xs-4">
+                                        <div class="title">Type</div>
+                                        <div class="counter">Herb</div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="title">Amount</div>
+                                        <div class="counter">370</div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="title">Planting Area</div>
+                                        <div class="counter">3</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-heading-dividerd">
+                            Add New Seedlings
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group xs-mt-10">
+                                        <label for="" class="col-sm-3 control-label">Amount</label>
+                                        <div class="col-sm-6">
+                                            <input id="" type="text" placeholder="e.g. 200" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"> Date of<br>Seedlings </label>
+                                        <div class="col-md-6 col-xs-7">
+                                            <div data-min-view="2" data-date-format="yyyy-mm-dd" class="input-group date datetimepicker">
+                                            <input size="16" type="text" value="" class="form-control"><span class="input-group-addon btn btn-primary"><i class="icon-th mdi mdi-calendar"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Area for<br>Planting</label>
+                                        <div class="col-sm-6">
+                                            <select class="form-control">
+                                            <option>Amaryllis</option>
+                                            <option>Jasmine</option>
+                                            <option>Chrysant</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row xs-pt-15">
+                                        <div class="col-xs-6">
+                                            
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <p class="text-right">
+                                                <button type="submit" class="btn btn-space btn-primary">Add</button>
+                                                <button class="btn btn-space btn-default">Cancel</button>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="panel panel-default panel-table">
+                            <div class="panel-heading">
+                                Planting Area of Basil Sweet Genovese
+                            </div>
+                            <div class="panel-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-xs-4">Age (days)</th>
+                                            <th class="col-xs-5">Area</th>
+                                            <th class="col-xs-3">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td>40 <span class="icon mdi mdi-favorite text-success" style="color:; margin-left: 10px;"></span></td>
+                                        <td>Amaryllis</td>
+                                        <td>25</td>
+                                        </tr>
+                                        <tr>
+                                        <td>34</td>
+                                        <td>Jasmine</td>
+                                        <td>68</td>
+                                        </tr>
+                                        <tr>
+                                        <td>29</td>
+                                        <td>Amaryllis</td>
+                                        <td>92</td>
+                                        </tr>
+                                        <tr>
+                                        <td>21</td>
+                                        <td>Chrysant</td>
+                                        <td>45</td>
+                                        </tr>
+                                        <tr>
+                                        <td>18</td>
+                                        <td>Jasmine</td>
+                                        <td>55</td>
+                                        </tr>
+                                        <tr>
+                                        <td>12</td>
+                                        <td>Amaryllis</td>
+                                        <td>85</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading panel-heading-divider">Latest Activity
+                                <!--<button class="btn btn-default pull-right">Add Activity</button>-->
+                                <span class="panel-subtitle">Recent updates on this plant</span>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="user-timeline">
+                                    <li class="latest">
+                                        <div class="user-timeline-date">Nov, 27 2016 - 06:23</div>
+                                        <div class="user-timeline-title">Transplant new seedlings</div>
+                                        <div class="user-timeline-description">85 pots from November, 15 2016 into Amaryllis</div>
+                                    </li>
+                                    <li>
+                                        <div class="user-timeline-date">Nov, 27 2016 - 05:41</div>
+                                        <div class="user-timeline-title">Harvesting</div>
+                                        <div class="user-timeline-description">15 pots aged 40 days from Chrysant</div>
+                                    </li>
+                                    <li><a href="#">See All Activities</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

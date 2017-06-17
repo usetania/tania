@@ -91,5 +91,11 @@ plants_create:
     methods: [GET, POST]
     requirements: { trailingSlash : "[/]{0,1}" }
 
+plants_show:
+    path: /plants/{id}{trailingSlash}
+    defaults: { _controller: AppBundle:Plant:show, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
+    methods: [GET, POST]
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -12,6 +12,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Seed
 {
     /**
+     * Many Seeds have One seedCategory
+     * @ORM\ManyToOne(targetEntity="SeedCategory", inversedBy="seeds")
+     * @ORM\JoinColumn(name="seedcategory_id", referencedColumnName="id")
+     */
+    private $seedCategory;
+
+    /**
      * @ORM\OneToMany(targetEntity="Plant", mappedBy="seed")
      */
     private $plants;
@@ -33,12 +40,6 @@ class Seed
      * @Assert\NotBlank()
      */
     private $name;
-    
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
-     */
-    private $category;
 
     /**
      * @ORM\Column(type="integer")
@@ -135,30 +136,6 @@ class Seed
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set category
-     *
-     * @param integer $category
-     *
-     * @return Seed
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return integer
-     */
-    public function getCategory()
-    {
-        return $this->category;
     }
 
     /**
@@ -457,5 +434,29 @@ class Seed
     public function getPlants()
     {
         return $this->plants;
+    }
+
+    /**
+     * Set seedCategory
+     *
+     * @param \AppBundle\Entity\SeedCategory $seedCategory
+     *
+     * @return Seed
+     */
+    public function setSeedCategory(\AppBundle\Entity\SeedCategory $seedCategory = null)
+    {
+        $this->seedCategory = $seedCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get seedCategory
+     *
+     * @return \AppBundle\Entity\SeedCategory
+     */
+    public function getSeedCategory()
+    {
+        return $this->seedCategory;
     }
 }

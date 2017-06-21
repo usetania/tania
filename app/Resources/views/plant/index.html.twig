@@ -22,7 +22,7 @@
                         <div class="user-display-bottom">
                             <div class="user-display-info">
                                 <div class="name"><a href="{{ path('plants_show', {'id': plant.id }) }}">{{ plant.seed.name }}</a></div>
-                                <div class="nick">{{ plant.seed.category }}</div>
+                                <div class="nick">{{ plant.seed.seedCategory.name }}</div>
                             </div>
                             <div class="row user-display-details">
                                 <div class="col-xs-5">

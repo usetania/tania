@@ -19,7 +19,7 @@ class Area
     private $reservoir;
 
     /**
-     * @ORM\OneToMany(targetEntity="Plant", mappedBy="area")
+     * @ORM\OneToMany(targetEntity="Plant", mappedBy="area", cascade={"persist", "remove"}, orphanRemoval=TRUE)
      */
     private $plants;
 

@@ -20,19 +20,19 @@ class Plant
     
     /**
      * @ORM\ManyToOne(targetEntity="Area", inversedBy="plants")
-     * @ORM\JoinColumn(name="area_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="area_id", referencedColumnName="id", nullable=FALSE)
      */
     private $area;
 
     /**
      * @ORM\ManyToOne(targetEntity="Seed", inversedBy="plants")
-     * @ORM\JoinColumn(name="seed_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="seed_id", referencedColumnName="id", nullable=FALSE)
      */
     private $seed;
 
     /**
      * @ORM\Column(type="date", nullable=TRUE)
-     * @Assert\Type("\Date")
+     * @Assert\Date()
      */
     private $seedlingDate;
 

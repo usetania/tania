@@ -19,7 +19,7 @@ class Seed
     private $seedCategory;
 
     /**
-     * @ORM\OneToMany(targetEntity="Plant", mappedBy="seed")
+     * @ORM\OneToMany(targetEntity="Plant", mappedBy="seed", cascade={"persist", "remove"}, orphanRemoval=TRUE)
      */
     private $plants;
 

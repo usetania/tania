@@ -12,7 +12,7 @@ class SeedCategory
 {
     /**
      * One SeedCategory has Many seeds
-     * @ORM\OneToMany(targetEntity="Seed", mappedBy="seedcategory")
+     * @ORM\OneToMany(targetEntity="Seed", mappedBy="seedCategory")
      */
     private $seeds;
 

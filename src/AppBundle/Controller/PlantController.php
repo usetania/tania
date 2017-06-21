@@ -31,13 +31,13 @@ class PlantController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            // subtract area capacity and seed inventory
-            
-
+            // validate the area capacity and seed inventory
+            dump($plant);
+            exit;
             // save to database here
             $plant = $form->getData();
             $plant->setCreatedAt(new \DateTime('now'));
-
+            
             $em->persist($plant);
             $em->flush();
 

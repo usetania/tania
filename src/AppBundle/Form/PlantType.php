@@ -23,7 +23,7 @@ class PlantType extends AbstractType
                     } else if($area->getMeasurementUnit() == 2) {
                         $unit = "trays";
                     }
-                    return $area->getName() . " (Current capacities: ". $area->getCapacity() . " ". $unit . ")";
+                    return $area->getName() . " (Capacities: ". $area->getCapacity() . " ". $unit . ")";
                 }
             ))
             ->add('seed', EntityType::class, array(
@@ -42,7 +42,7 @@ class PlantType extends AbstractType
                         $unit = 'oz';
                     }
 
-                    return $seed->getName() . " (Current quantities: ". $seed->getQuantity() . " " . $unit .")";
+                    return $seed->getName() . " (Quantities: ". $seed->getQuantity() . " " . $unit .")";
                 }
             ))
             ->add('seedlingDate', DateType::class)

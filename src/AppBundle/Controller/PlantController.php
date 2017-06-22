@@ -32,16 +32,34 @@ class PlantController extends Controller
 
         if($form->isSubmitted() && $form->isValid()) {
             // validate the area capacity and seed inventory
-            dump($plant);
-            exit;
-            // save to database here
-            $plant = $form->getData();
-            $plant->setCreatedAt(new \DateTime('now'));
+            $seedsInfo = $em->getRepository('AppBundle:Plant')->findBy(array('seed' => $plant->getSeed()->getId()));
+            $areasInfo = $em->getRepository('AppBundle:Plant')->findBy(array('area' => $plant->getArea()->getId()));
             
-            $em->persist($plant);
-            $em->flush();
+            $usedSeed = array_reduce($seedsInfo, function($carry, $item) {
+                return $carry += $item->getSeedlingAmount();
+            });
 
-            return $this->redirectToRoute('plants');
+            $usedArea = array_reduce($areasInfo, function($carry, $item) {
+                return $carry += $item->getAreaCapacity();
+            });
+
+            $totalSeed = $usedSeed + $plant->getSeedlingAmount();
+            $totalArea = $usedArea + $plant->getAreaCapacity();
+
+            if($totalSeed <= $plant->getSeed()->getQuantity() && $totalArea <= $plant->getArea()->getCapacity()) {
+                // save to database here
+                $plant = $form->getData();
+                $plant->setCreatedAt(new \DateTime('now'));
+                
+                $em->persist($plant);
+                $em->flush();
+
+                return $this->redirectToRoute('plants');
+            } else {
+                // give error message
+                $this->addFlash('notice', 'The capacity of the area or the quantity of the seed are insufficient.');
+                return $this->redirectToRoute('plants_create');
+            }
         }
 
         return $this->render('plant/create.html.twig', array(

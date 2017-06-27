@@ -13,12 +13,15 @@
         
         <div class="main-content container-fluid">
             <div class="row">
+            {% set index = 0 %}
             {% for plant in plants %}
                 <div class="col-xs-12 col-md-3">
                     <div class="user-display">
+                        {% if images[index] %}
                         <div class="user-display-bg">
-                            <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="">
+                            <img src="{{ images[index] }}" alt="{{ plant.seed.name }}">
                         </div>
+                        {% endif %}
                         <div class="user-display-bottom">
                             <div class="user-display-info">
                                 <div class="name"><a href="{{ path('plants_show', {'id': plant.id }) }}">{{ plant.seed.name }}</a></div>
@@ -37,6 +40,7 @@
                         </div>
                     </div>
                 </div>
+                {% set index = index + 1 %}
             {% endfor %}
             </div>    
         </div>

@@ -4,10 +4,15 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fields")
+ * @Vich\Uploadable
  */
 class Field
 {
@@ -46,13 +51,24 @@ class Field
     private $description;
 
     /**
-     * @ORM\Column(type="text", nullable=TRUE)
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * 
+     * @Vich\UploadableField(mapping="field_image", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName")
+     * 
+     * @var File
      */
-    private $photoUrl;
+    private $imageFile;
+
+    /**
+     * @ORM\Embedded(class="Vich\UploaderBundle\Entity\File")
+     *
+     * @var EmbeddedFile
+     */
+    private $image;
 
     /**
      * @ORM\Column(type="datetime", nullable=TRUE)
-     * @Assert\Type("\DateTime")
+     * @Assert\DateTime()
      */
     private $updatedAt;
 
@@ -65,6 +81,7 @@ class Field
     public function __construct()
     {
         $this->reservoirs = new ArrayCollection();
+        $this->image = new EmbeddedFile();
     }
 
     /**
@@ -174,30 +191,6 @@ class Field
     }
 
     /**
-     * Set photo url
-     *
-     * @param string $photoUrl
-     *
-     * @return Field
-     */
-    public function setPhotoUrl($photoUrl)
-    {
-        $this->photoUrl = $photoUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get photo url
-     *
-     * @return string
-     */
-    public function getPhotoUrl()
-    {
-        return $this->photoUrl;
-    }
-
-    /**
      * Set updated datetime
      *
      * @param string $updatedAt
@@ -277,5 +270,49 @@ class Field
     public function getReservoirs()
     {
         return $this->reservoirs;
+    }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|UploadedFile $image
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param EmbeddedFile $image
+     */
+    public function setImage(EmbeddedFile $image)
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return EmbeddedFile
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

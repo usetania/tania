@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Data\CategoryMaster;
 use AppBundle\Entity\Area;
 use AppBundle\Form\AreaType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,18 +19,60 @@ class AreaController extends Controller
     public function indexAction(EntityManagerInterface $em)
     {
         $areas = $em->getRepository('AppBundle:Area')->findAll();
-
+        
+        $growingMethodNames = array_map(function($item) {
+            $growingMethodName = CategoryMaster::growingMethods();
+            return $growingMethodName[$item->getGrowingMethod()];
+        }, $areas);
+        
         return $this->render('area/index.html.twig', array(
-            'areas' => $areas
+            'areas' => $areas,
+            'growingMethods' => $growingMethodNames
         ));
     }
 
     /**
         The detail of single area.
     */
-    public function showAction($id)
+    public function showAction($id, EntityManagerInterface $em, Request $request)
     {
-        return $this->render('area/show.html.twig');
+        $area = $em->getRepository('AppBundle:Area')->find($id);
+        $plants = $em->getRepository('AppBundle:Plant')->findBy(array('area' => $id));
+        
+        // counting total varieties
+        $qb = $em->createQueryBuilder();
+        $plantQ = $qb->select(array('SUM(p.seedlingAmount) AS seedling_total', 'SUM(p.areaCapacity) AS area_capacity'))
+            ->from('AppBundle:Plant', 'p')
+            ->where('p.area = :area_id')
+            ->groupBy('p.seed')
+            ->setParameter('area_id', $id)
+            ->getQuery();
+        $sumVarieties = $plantQ->getResult();
+
+        // get growing method name from the master or categories
+        $growingMethodName = CategoryMaster::growingMethods()[$area->getGrowingMethod()];
+
+        // generate seed's image path
+        $paths = array_map(function($plant) {
+            $fileName = $plant->getSeed()->getImage()->getName();
+            if(null == $fileName) {
+                return null;
+            } else {
+                $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
+                return $helper->asset($plant->getSeed(), 'imageFile');
+            }
+        }, $plants);
+
+        return $this->render('area/show.html.twig', array(
+            'area' => $area,
+            'growingMethod' => $growingMethodName,
+            'plants' => $plants,
+            'images' => $paths,
+            'total_varieties' => count($sumVarieties),
+            'current_capacities' => array_reduce($sumVarieties, function($carry, $item) {
+                return $carry += $item['area_capacity'];
+            })
+        ));
     }
 
     /**

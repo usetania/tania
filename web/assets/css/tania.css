@@ -137,3 +137,8 @@ body {
   max-height: 200px;
   border-radius: 2px;
 }
+
+/* Vich Bundle */
+.vich-image img {
+	width: 100%;
+}

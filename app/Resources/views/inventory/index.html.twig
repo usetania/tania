@@ -35,7 +35,12 @@
                                     {% for seed in seeds %}
                                     <tr>
                                         <td class="inventory-image cell-detail user-info">
-                                            <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="{{ seed.name }}">{{ seed.name }} 
+                                            {% if vich_uploader_asset(seed, 'imageFile') %}
+                                            <img src="{{ vich_uploader_asset(seed, 'imageFile') }}" alt="{{ seed.name }}">
+                                            {% else %}
+                                            <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="{{ seed.name }}"> 
+                                            {% endif %}
+                                            {{ seed.name }}
                                             <span class="cell-detail-description">{{ seed.producerName }}</span>
                                         </td>
                                         <td>{{ seed.seedCategory.name }}</td>

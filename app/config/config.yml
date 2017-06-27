@@ -82,3 +82,27 @@ fos_user:
 
 vich_uploader:
     db_driver: orm
+    mappings:
+        field_image:
+            uri_prefix: /uploads/fields
+            upload_destination: '%kernel.root_dir%/../web/uploads/fields'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+        
+        area_image:
+            uri_prefix: /uploads/areas
+            upload_destination: '%kernel.root_dir%/../web/uploads/areas'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+        
+        seed_image:
+            uri_prefix: /uploads/seeds
+            upload_destination: '%kernel.root_dir%/../web/uploads/seeds'
+            namer: vich_uploader.namer_uniqid
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true

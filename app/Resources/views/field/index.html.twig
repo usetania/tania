@@ -17,7 +17,11 @@
             {% for field in fields %}
                 <div class="col-xs-12 col-md-3">
                     <div class="user-display">
-                        <div class="user-display-bg"><img src="{{ asset('assets/img/gh-2.jpg') }}" alt="Amaryllis"></div>
+                        {% if vich_uploader_asset(field, 'imageFile') %}
+                        <div class="user-display-bg">
+                            <img src="{{ vich_uploader_asset(field, 'imageFile') }}" alt="{{ field.name }}">
+                        </div>
+                        {% endif %}
                         <div class="user-display-bottom">
                             <div class="user-display-info">
                                 <div class="name"><a href="{{ path('fields_show', {'id': field.id }) }}">{{ field.name }}</a></div>

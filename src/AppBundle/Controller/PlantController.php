@@ -15,8 +15,21 @@ class PlantController extends Controller
     public function indexAction(EntityManagerInterface $em)
     {
         $plants = $em->getRepository('AppBundle:Plant')->findAll();
+        
+        // generate seed's image path
+        $paths = array_map(function($plant) {
+            $fileName = $plant->getSeed()->getImage()->getName();
+            if(null == $fileName) {
+                return null;
+            } else {
+                $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
+                return $helper->asset($plant->getSeed(), 'imageFile');
+            }
+        }, $plants);
+
         return $this->render('plant/index.html.twig', array(
-            'plants' => $plants
+            'plants' => $plants,
+            'images' => $paths
         ));
     }
 
@@ -45,7 +58,7 @@ class PlantController extends Controller
 
             $totalSeed = $usedSeed + $plant->getSeedlingAmount();
             $totalArea = $usedArea + $plant->getAreaCapacity();
-
+            
             if($totalSeed <= $plant->getSeed()->getQuantity() && $totalArea <= $plant->getArea()->getCapacity()) {
                 // save to database here
                 $plant = $form->getData();

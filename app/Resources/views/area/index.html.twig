@@ -12,10 +12,15 @@
         </div>
         <div class="main-content container-fluid">
             <div class="row">
+            {% set index = 0 %}
             {% for area in areas %}
                 <div class="col-xs-12 col-md-3">
                     <div class="user-display">
-                        <div class="user-display-bg"><img src="{{ asset('assets/img/gh-2.jpg') }}" alt="{{area.name}}"></div>
+                        {% if vich_uploader_asset(area, 'imageFile') %}
+                        <div class="user-display-bg">
+                            <img src="{{ vich_uploader_asset(area, 'imageFile') }}" alt="{{ area.name }}">
+                        </div>
+                        {% endif %}
                         <div class="user-display-bottom">
                             <div class="user-display-info">
                                 <div class="name"><a href="{{ path('areas_show', {'id': area.id}) }}">{{area.name}}</a></div>
@@ -25,15 +30,7 @@
                                 <div class="col-xs-6">
                                     <div class="title">System</div>
                                     <div class="counter">
-                                        {% if area.growingMethod == 1 %}
-                                            NFT
-                                        {% elseif area.growingMethod == 2 %}
-                                            Drip Irrigation
-                                        {% elseif area.growingMethod == 3 %}
-                                            Ebb &amp; Flow
-                                        {% elseif area.growingMethod == 4 %}
-                                            Soil
-                                        {% endif %}
+                                        {{ growingMethods[index] }}
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
@@ -50,6 +47,7 @@
                         </div>
                     </div>
                 </div>
+                {% set index = index + 1 %}
             {% endfor %}
             </div>
         </div>

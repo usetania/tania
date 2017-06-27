@@ -2,6 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Data\CategoryMaster;
+use AppBundle\DoctrineExtensions\Utils\AnyValue;
 use AppBundle\Entity\Area;
 use AppBundle\Form\AreaType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,15 +41,22 @@ class AreaController extends Controller
         $plants = $em->getRepository('AppBundle:Plant')->findBy(array('area' => $id));
         
         // counting total varieties
-        $qb = $em->createQueryBuilder();
-        $plantQ = $qb->select(array('SUM(p.seedlingAmount) AS seedling_total', 'SUM(p.areaCapacity) AS area_capacity'))
+        $qb = $em->createQueryBuilder('p');
+        $plantQ = $qb->addSelect('SUM(p.seedlingAmount) AS seedling_total')
+            ->addSelect('SUM(p.areaCapacity) AS area_capacity')
+            ->addSelect('ANY_VALUE(s.name) AS seed_name')
+            ->addSelect('ANY_VALUE(sc.name) AS seed_category')
+            ->addSelect('ANY_VALUE(s.imageFile) AS seed_id')
             ->from('AppBundle:Plant', 'p')
+            ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
+            ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')
             ->where('p.area = :area_id')
             ->groupBy('p.seed')
             ->setParameter('area_id', $id)
             ->getQuery();
         $sumVarieties = $plantQ->getResult();
-
+        dump($sumVarieties);
+        exit;
         // get growing method name from the master or categories
         $growingMethodName = CategoryMaster::growingMethods()[$area->getGrowingMethod()];
 
@@ -66,7 +74,7 @@ class AreaController extends Controller
         return $this->render('area/show.html.twig', array(
             'area' => $area,
             'growingMethod' => $growingMethodName,
-            'plants' => $plants,
+            'plants' => $sumVarieties,
             'images' => $paths,
             'total_varieties' => count($sumVarieties),
             'current_capacities' => array_reduce($sumVarieties, function($carry, $item) {

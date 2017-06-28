@@ -14,22 +14,39 @@ class PlantController extends Controller
 {
     public function indexAction(EntityManagerInterface $em)
     {
-        $plants = $em->getRepository('AppBundle:Plant')->findAll();
-        
-        // generate seed's image path
-        $paths = array_map(function($plant) {
-            $fileName = $plant->getSeed()->getImage()->getName();
-            if(null == $fileName) {
-                return null;
-            } else {
-                $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
-                return $helper->asset($plant->getSeed(), 'imageFile');
+        $qb = $em->createQueryBuilder('p');
+        $plantQ = $qb->addSelect('SUM(p.seedlingAmount) AS seedling_total')
+            ->addSelect('ANY_VALUE(p.id) AS id')
+            ->addSelect('COUNT(p.area) AS area_count')
+            ->addSelect('ANY_VALUE(sc.name) AS seed_category')
+            ->addSelect('s AS seed')
+            ->from('AppBundle:Plant', 'p')
+            ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
+            ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')
+            ->groupBy('p.seed')
+            ->getQuery();
+        $plants = $plantQ->getResult();
+
+        // measurement unit
+        $measurementUnits = array_map(function($item) {
+            if($item['seed']->getMeasurementUnit() == 1) {
+                $unit = 'seeds';
+            } else if($item['seed']->getMeasurementUnit() == 2) {
+                $unit = 'gr';
+            } else if($item['seed']->getMeasurementUnit() == 3) {
+                $unit = 'kg';
+            } else if($item['seed']->getMeasurementUnit() == 4) {
+                $unit = 'lbs';
+            } else if($item['seed']->getMeasurementUnit() == 5) {
+                $unit = 'oz';
             }
+
+            return $unit;
         }, $plants);
 
         return $this->render('plant/index.html.twig', array(
             'plants' => $plants,
-            'images' => $paths
+            'units' => $measurementUnits
         ));
     }
 

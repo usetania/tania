@@ -38,15 +38,13 @@ class AreaController extends Controller
     public function showAction($id, EntityManagerInterface $em, Request $request)
     {
         $area = $em->getRepository('AppBundle:Area')->find($id);
-        $plants = $em->getRepository('AppBundle:Plant')->findBy(array('area' => $id));
         
         // counting total varieties
         $qb = $em->createQueryBuilder('p');
         $plantQ = $qb->addSelect('SUM(p.seedlingAmount) AS seedling_total')
             ->addSelect('SUM(p.areaCapacity) AS area_capacity')
-            ->addSelect('ANY_VALUE(s.name) AS seed_name')
             ->addSelect('ANY_VALUE(sc.name) AS seed_category')
-            ->addSelect('ANY_VALUE(s.imageFile) AS seed_id')
+            ->addSelect('s AS seed')
             ->from('AppBundle:Plant', 'p')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
             ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')
@@ -54,30 +52,17 @@ class AreaController extends Controller
             ->groupBy('p.seed')
             ->setParameter('area_id', $id)
             ->getQuery();
-        $sumVarieties = $plantQ->getResult();
-        dump($sumVarieties);
-        exit;
+        $plants = $plantQ->getResult();
+        
         // get growing method name from the master or categories
         $growingMethodName = CategoryMaster::growingMethods()[$area->getGrowingMethod()];
-
-        // generate seed's image path
-        $paths = array_map(function($plant) {
-            $fileName = $plant->getSeed()->getImage()->getName();
-            if(null == $fileName) {
-                return null;
-            } else {
-                $helper = $this->container->get('vich_uploader.templating.helper.uploader_helper');
-                return $helper->asset($plant->getSeed(), 'imageFile');
-            }
-        }, $plants);
 
         return $this->render('area/show.html.twig', array(
             'area' => $area,
             'growingMethod' => $growingMethodName,
-            'plants' => $sumVarieties,
-            'images' => $paths,
-            'total_varieties' => count($sumVarieties),
-            'current_capacities' => array_reduce($sumVarieties, function($carry, $item) {
+            'plants' => $plants,
+            'total_varieties' => count($plants),
+            'current_capacities' => array_reduce($plants, function($carry, $item) {
                 return $carry += $item['area_capacity'];
             })
         ));

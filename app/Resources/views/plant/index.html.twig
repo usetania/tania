@@ -17,24 +17,28 @@
             {% for plant in plants %}
                 <div class="col-xs-12 col-md-3">
                     <div class="user-display">
-                        {% if images[index] %}
+                        {% if vich_uploader_asset(plant['seed'], 'imageFile', 'AppBundle\\Entity\\Seed') %}
                         <div class="user-display-bg">
-                            <img src="{{ images[index] }}" alt="{{ plant.seed.name }}">
+                            <img src="{{ vich_uploader_asset(plant['seed'], 'imageFile', 'AppBundle\\Entity\\Seed') }}" alt="{{ plant['seed'].name }}">
+                        </div>
+                        {% else %}
+                        <div class="user-display-bg">
+                            <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="{{ plant['seed'].name }}">
                         </div>
                         {% endif %}
                         <div class="user-display-bottom">
                             <div class="user-display-info">
-                                <div class="name"><a href="{{ path('plants_show', {'id': plant.id }) }}">{{ plant.seed.name }}</a></div>
-                                <div class="nick">{{ plant.seed.seedCategory.name }}</div>
+                                <div class="name"><a href="{{ path('plants_show', {'id': plant['id'] }) }}">{{ plant['seed'].name }}</a></div>
+                                <div class="nick">{{ plant['seed_category'] }}</div>
                             </div>
                             <div class="row user-display-details">
                                 <div class="col-xs-5">
                                     <div class="title">Amount</div>
-                                    <div class="counter">{{ plant.seedlingAmount }}</div>
+                                    <div class="counter">{{ plant['seedling_total'] }} {{ units[index] }}</div>
                                 </div>
                                 <div class="col-xs-7">
-                                    <div class="title">Planting Area</div>
-                                    <div class="counter">{{ plant.area.name }}</div>
+                                    <div class="title">Total Seedling Area</div>
+                                    <div class="counter">{{ plant['area_count'] }}</div>
                                 </div>
                             </div>
                         </div>

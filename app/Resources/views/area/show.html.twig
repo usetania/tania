@@ -71,21 +71,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    {% set index = 0 %}
                                     {% for plant in plants %}
                                         <tr>
                                             <td class="user-avatar">
-                                                {% if images[index] %}
-                                                <img src="{{ images[index] }}" alt="{{ plant['seed_name'] }}">
+                                                {% if vich_uploader_asset(plant['seed'], 'imageFile', 'AppBundle\\Entity\\Seed') %}
+                                                <img src="{{ vich_uploader_asset(plant['seed'], 'imageFile', 'AppBundle\\Entity\\Seed') }}" alt="{{ plant['seed'].name }}">
                                                 {% else %}
-                                                <img src="{{ vich_uploader_asset(plant, 'imageFile', 'AppBundle\\Entity\\Seed') }}" alt="{{ plant['seed_name'] }}">
+                                                <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="{{ plant['seed'].name }}">
                                                 {% endif %}
-                                                {{ plant['seed_name'] }}
+                                                {{ plant['seed'].name }}
                                             </td>
                                             <td>{{ plant['seed_category'] }}</td>
                                             <td>{{ plant['seedling_total'] }}</td>
                                         </tr>
-                                        {% set index = index + 1 %}
                                     {% endfor %}
                                     </tbody>
                                 </table>

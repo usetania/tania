@@ -142,3 +142,13 @@ body {
 .vich-image img {
 	width: 100%;
 }
+
+/* Branding */
+.be-top-header .navbar-header .navbar-brand {
+	background: none;
+}
+
+.be-top-header .navbar-header .navbar-brand img {
+	height: 40px;
+	margin-top: 8px;
+}

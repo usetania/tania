@@ -14,11 +14,15 @@
     {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/perfect-scrollbar/perfect-scrollbar.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/material-design-icons/css/material-design-iconic-font.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/bmatznerleaflet/css/leaflet.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/tania.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}"/>
     {% endblock %}
     
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="{{ asset('bundles/bmatznerleaflet/css/leaflet.ie.css') }} />
+    <![endif]-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -27,6 +31,16 @@
 <body>
     {% block body %}{% endblock %}
 
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    {% if classActive == "fields_create" %}
+    <script type="text/javascript" src="{{ asset('bundles/bmatznerleaflet/js/leaflet.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/field-map.js') }}"></script>
+    {% elseif classActive == "fields_show" %}
+    <script type="text/javascript" src="{{ asset('bundles/bmatznerleaflet/js/leaflet.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/field-map-show.js') }}"></script>
+    {% endif %}
+    {% endblock %}
 </body>
 </html>

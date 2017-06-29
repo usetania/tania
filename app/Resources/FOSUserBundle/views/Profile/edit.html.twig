@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
+    {% include "@FOSUser/Profile/edit_content.html.twig" %}
+</div>
+{% endblock body %}

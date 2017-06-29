@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class ReservoirController extends Controller
 {
-    public function indexAction(EntityManagerInterface $em, Request $request)
+    public function indexAction(EntityManagerInterface $em, Request $request, $_route)
     {
         $reservoir = new Reservoir();
         $reservoirs = $em->getRepository('AppBundle:Reservoir')->findAll();
@@ -34,7 +34,8 @@ class ReservoirController extends Controller
 
         return $this->render('reservoir/index.html.twig', array(
             'form' => $form->createView(),
-            'reservoirs' => $reservoirs
+            'reservoirs' => $reservoirs,
+            'classActive' => $_route
         ));
     }
 }

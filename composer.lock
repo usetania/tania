@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa03ff812cde981ed951e6e7eebd7e51",
+    "content-hash": "a79b9af27aff92bc3ee4e04a6c25ce73",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -49,6 +49,51 @@
                 "transliterator"
             ],
             "time": "2017-04-04T11:38:05+00:00"
+        },
+        {
+            "name": "bmatzner/leaflet-bundle",
+            "version": "0.7.0",
+            "target-dir": "Bmatzner/LeafletBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bmatzner/BmatznerLeafletBundle.git",
+                "reference": "03a9537b6f55362b5dc98f37d768cbe84a1d961d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bmatzner/BmatznerLeafletBundle/zipball/03a9537b6f55362b5dc98f37d768cbe84a1d961d",
+                "reference": "03a9537b6f55362b5dc98f37d768cbe84a1d961d",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": ">=2.1"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Bmatzner\\LeafletBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernd Matzner",
+                    "email": "bernd@matznermatzner.de",
+                    "homepage": "http://berndmatzner.de"
+                }
+            ],
+            "description": "Leaflet Bundle for Symfony2",
+            "homepage": "http://leafletjs.com",
+            "keywords": [
+                "javascript",
+                "leaflet",
+                "mapping",
+                "symfony"
+            ],
+            "time": "2013-11-22T10:55:53+00:00"
         },
         {
             "name": "composer/ca-bundle",

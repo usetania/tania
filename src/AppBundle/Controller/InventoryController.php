@@ -12,16 +12,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class InventoryController extends Controller
 {
-    public function indexAction(EntityManagerInterface $em)
+    public function indexAction(EntityManagerInterface $em, $_route)
     {
         $seeds = $em->getRepository('AppBundle:Seed')->findAll();
 
         return $this->render('inventory/index.html.twig', array(
-            'seeds' => $seeds
+            'seeds' => $seeds,
+            'classActive' => $_route
         ));
     }
 
-    public function seedCreateAction(Request $request, EntityManagerInterface $em)
+    public function seedCreateAction(Request $request, EntityManagerInterface $em, $_route)
     {
         $seed = new Seed();
 
@@ -42,7 +43,8 @@ class InventoryController extends Controller
         }
 
         return $this->render('seed/create.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'classActive' => $_route
         ));
     }
 }

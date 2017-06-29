@@ -4,23 +4,34 @@
             <div class="left-sidebar-scroll">
                 <div class="left-sidebar-content">
                     <ul class="sidebar-elements">
-                        <li class="active"><a href="{{ path('dashboard') }}"><i class="icon mdi mdi-home"></i><span>Dashboard</span></a></li>
+                        <li {% if classActive == 'dashboard' %}class="active"{% endif %}><a href="{{ path('dashboard') }}"><i class="icon mdi mdi-home"></i><span>Dashboard</span></a></li>
                         <li class="divider">Farm Management</li>
-                        <li><a href="{{ path('fields') }}"><i class="icon mdi mdi-layers"></i> Fields</a></li>
-                        <li><a href="{{ path('reservoirs') }}"><i class="icon mdi mdi-local-drink"></i> Reservoirs</a></li>
-                        <li><a href="{{ path('areas') }}"><i class="icon mdi mdi-layers"></i> Areas</a></li>
-                        <li><a href="{{ path('inventories') }}"><i class="icon mdi mdi-widgets"></i> Inventories</a></li>
+                        <li {% if classActive == 'fields' %} class="active" {% elseif classActive == 'fields_create' %} class="active" {% elseif classActive == 'fields_show' %} class="active" {% endif %}>
+                            <a href="{{ path('fields') }}"><i class="icon mdi mdi-nature"></i> Farms</a>
+                        </li>
+                        <li {% if classActive == 'reservoirs' %}class="active"{% endif %}>
+                            <a href="{{ path('reservoirs') }}"><i class="icon mdi mdi-local-drink"></i> Reservoirs</a>
+                        </li>
+                        <li {% if classActive == 'areas' %} class="active" {% elseif classActive == 'areas_create' %} class="active" {% elseif classActive == 'areas_show' %} class="active" {% endif %}>
+                            <a href="{{ path('areas') }}"><i class="icon mdi mdi-layers"></i> Areas</a>
+                        </li>
+                        <li {% if classActive == 'inventories' %} class="active" {% elseif classActive == 'seeds_create' %} class="active" {% endif %}>
+                            <a href="{{ path('inventories') }}"><i class="icon mdi mdi-widgets"></i> Inventories</a>
+                        </li>
                         <li class="divider">Operation</li>
-                        <li><a href="{{ path('plants') }}"><i class="icon mdi mdi-flower-alt"></i> Plant</a></li>
-                        <li><a href="{{ path('tasks') }}"><i class="icon mdi mdi-assignment-o"></i> Tasks</a></li>
+                        <li {% if classActive == 'plants' %} class="active" {% elseif classActive == 'plants_create' %} class="active" {% elseif classActive == 'plants_show' %} class="active" {% endif %}>
+                            <a href="{{ path('plants') }}"><i class="icon mdi mdi-flower-alt"></i> Plant</a>
+                        </li>
+                        <li {% if classActive == 'tasks' %} class="active" {% elseif classActive == 'tasks_create' %} class="active" {% elseif classActive == 'tasks_show' %} class="active" {% endif %}>
+                            <a href="{{ path('tasks') }}"><i class="icon mdi mdi-assignment-o"></i> Tasks</a>
+                        </li>
                         <li class="divider">Settings</li>
-                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon mdi mdi-power"></i> Log Out</a></li>
+                        <li {% if classActive == 'fos_user_profile_edit' %} class="active" {% endif %}><a href="{{ path('fos_user_profile_edit') }}"><i class="icon mdi mdi-settings"></i> Account</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon mdi mdi-power"></i> Logout</a></li>
                         <!--
                         <li class="divider">Business</li>
                         <li><a href="finance.html"><i class="icon mdi mdi-balance-wallet"></i> Finance</a></li>
                         <li><a href="inventory.html"><i class="icon mdi mdi-widgets"></i> Inventory</a></li>
-                        <li class="divider">Settings</li>
-                        <li><a href="preference.html"><i class="icon mdi mdi-settings"></i> Preferences</a></li>
                         -->
                     </ul>
                 </div>

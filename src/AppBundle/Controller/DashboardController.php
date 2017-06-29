@@ -7,8 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DashboardController extends Controller
 {
-    public function indexAction()
+    public function indexAction($_route)
     {
-        return $this->render('dashboard/index.html.twig');
+        return $this->render('dashboard/index.html.twig', array(
+            'classActive' => $_route
+        ));
     }
 }

@@ -17,7 +17,7 @@ class AreaController extends Controller
     /**
         The root of area routes.
     */
-    public function indexAction(EntityManagerInterface $em)
+    public function indexAction(EntityManagerInterface $em, $_route)
     {
         $areas = $em->getRepository('AppBundle:Area')->findAll();
         
@@ -28,14 +28,15 @@ class AreaController extends Controller
         
         return $this->render('area/index.html.twig', array(
             'areas' => $areas,
-            'growingMethods' => $growingMethodNames
+            'growingMethods' => $growingMethodNames,
+            'classActive' => $_route
         ));
     }
 
     /**
         The detail of single area.
     */
-    public function showAction($id, EntityManagerInterface $em, Request $request)
+    public function showAction($id, EntityManagerInterface $em, Request $request, $_route)
     {
         $area = $em->getRepository('AppBundle:Area')->find($id);
         
@@ -64,14 +65,15 @@ class AreaController extends Controller
             'total_varieties' => count($plants),
             'current_capacities' => array_reduce($plants, function($carry, $item) {
                 return $carry += $item['area_capacity'];
-            })
+            }),
+            'classActive' => $_route
         ));
     }
 
     /**
         Show the form to add new area and persist it to the database.
     */
-    public function createAction(EntityManagerInterface $em, Request $request)
+    public function createAction(EntityManagerInterface $em, Request $request, $_route)
     {
         $area = new Area();
         
@@ -91,7 +93,8 @@ class AreaController extends Controller
         }
 
         return $this->render('area/create.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'classActive' => $_route
         ));
     }
 }

@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class PlantController extends Controller
 {
-    public function indexAction(EntityManagerInterface $em)
+    public function indexAction(EntityManagerInterface $em, $_route)
     {
         $qb = $em->createQueryBuilder('p');
         $plantQ = $qb->addSelect('SUM(p.areaCapacity) AS seedling_total')
@@ -29,14 +29,15 @@ class PlantController extends Controller
         $plants = $plantQ->getResult();
 
         return $this->render('plant/index.html.twig', array(
-            'plants' => $plants
+            'plants' => $plants,
+            'classActive' => $_route
         ));
     }
 
     /**
         Show the form to add new plant and persist it to the database.
     */
-    public function createAction(EntityManagerInterface $em, Request $request)
+    public function createAction(EntityManagerInterface $em, Request $request, $_route)
     {
         $plant = new Plant();
         
@@ -76,14 +77,15 @@ class PlantController extends Controller
         }
 
         return $this->render('plant/create.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'classActive' => $_route
         ));
     }
 
     /**
         Display the detail of the plant
     */
-    public function showAction($id, EntityManagerInterface $em, Request $request)
+    public function showAction($id, EntityManagerInterface $em, Request $request, $_route)
     {
         $plants = $em->getRepository('AppBundle:Plant')->findBy(array('seed' => $id));
         
@@ -108,7 +110,8 @@ class PlantController extends Controller
         
         return $this->render('plant/show.html.twig', array(
             'plants' => $plantsWithMeasurementAndDaysAgo,
-            'totalArea' => count($plantsWithMeasurementAndDaysAgo)
+            'totalArea' => count($plantsWithMeasurementAndDaysAgo),
+            'classActive' => $_route
         ));
     }
 }

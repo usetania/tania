@@ -15,22 +15,23 @@ class FieldController extends Controller
     /**
         The root of field controller.
     */
-    public function indexAction(EntityManagerInterface $em)
+    public function indexAction(EntityManagerInterface $em, $_route)
     {
         $fields = $em->getRepository('AppBundle:Field')->findAll();
-
+        
         return $this->render('field/index.html.twig', array(
-            'fields' => $fields
+            'fields' => $fields,
+            'classActive' => $_route
         ));
     }
 
     /**
         This method will render the new field submission form and handle the submission.
     */
-    public function createAction(Request $request, EntityManagerInterface $em)
+    public function createAction(Request $request, EntityManagerInterface $em, $_route)
     {
         $field = new Field();
-
+        
         $form = $this->createForm(FieldType::class, $field);
         
         $form->handleRequest($request);
@@ -48,7 +49,8 @@ class FieldController extends Controller
         }
 
         return $this->render('field/add.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'classActive' => $_route
         ));
     }
 
@@ -56,7 +58,7 @@ class FieldController extends Controller
         This method will render the detail of the field form
         and handle the data update when necessary.
     */
-    public function showAction($id, EntityManagerInterface $em, Request $request)
+    public function showAction($id, EntityManagerInterface $em, Request $request, $_route)
     {
         $field = $em->getRepository('AppBundle:Field')->find($id);
 
@@ -76,7 +78,10 @@ class FieldController extends Controller
         }
 
         return $this->render('field/show.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'classActive' => $_route,
+            'lat' => $field->getLat(),
+            'lng' => $field->getLng()
         ));
     }
 }

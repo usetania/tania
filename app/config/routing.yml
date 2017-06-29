@@ -8,19 +8,19 @@ dashboard:
     methods: [GET]
 
 fields:
-    path: /fields{trailingSlash}
+    path: /farms{trailingSlash}
     defaults: { _controller: AppBundle:Field:index, trailingSlash : "/" }
     methods: [GET]
     requirements: { trailingSlash : "[/]{0,1}" }
 
 fields_create:
-    path: /fields/create{trailingSlash}
+    path: /farms/create{trailingSlash}
     defaults: { _controller: AppBundle:Field:create, trailingSlash : "/" }
     methods: [GET, POST]
     requirements: { trailingSlash : "[/]{0,1}" }
 
 fields_show:
-    path: /fields/{id}{trailingSlash}
+    path: /farms/{id}{trailingSlash}
     defaults: { _controller: AppBundle:Field:show, trailingSlash : "/" }
     requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET, POST]

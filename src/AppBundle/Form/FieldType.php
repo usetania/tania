@@ -24,6 +24,6 @@ class FieldType extends AbstractType
                 'image_uri' => TRUE,
                 'download_uri' => TRUE
             ))
-            ->add('save', SubmitType::class, array('label' => 'Create field'));
+            ->add('save', SubmitType::class, array('label' => 'Save'));
     }
 }

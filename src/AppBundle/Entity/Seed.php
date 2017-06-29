@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -96,6 +97,7 @@ class Seed
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * 
+     * @Assert\File(maxSize="2M")
      * @Vich\UploadableField(mapping="seed_image", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName")
      * 
      * @var File
@@ -495,5 +497,24 @@ class Seed
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * @Assert\Callback
+     * @param ExecutionContextInterface $context
+     */
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        // do your own validation
+        if (! in_array($this->imageFile->getMimeType(), array(
+            'image/jpeg',
+            'image/gif',
+            'image/png'
+        ))) {
+            $context
+                ->buildViolation('Wrong file type (only jpg,gif,png allowed)')
+                ->atPath('imageFile')
+                ->addViolation();
+        }
     }
 }

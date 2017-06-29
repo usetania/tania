@@ -12,16 +12,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class TaskController extends Controller
 {
-    public function indexAction(EntityManagerInterface $em)
+    public function indexAction(EntityManagerInterface $em, $_route)
     {
         $tasks = $em->getRepository('AppBundle:Task')->findAll();
 
         return $this->render('task/index.html.twig', array(
-            'tasks' => $tasks
+            'tasks' => $tasks,
+            'classActive' => $_route
         ));
     }
 
-    public function createAction(Request $request, EntityManagerInterface $em)
+    public function createAction(Request $request, EntityManagerInterface $em, $_route)
     {
         $task = new Task();
 
@@ -42,11 +43,12 @@ class TaskController extends Controller
         }
 
         return $this->render('task/create.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'classActive' => $_route
         ));
     }
 
-    public function showAction($id, Request $request, EntityManagerInterface $em)
+    public function showAction($id, Request $request, EntityManagerInterface $em, $_route)
     {
         $task = $em->getRepository('AppBundle:Task')->find($id);
 
@@ -66,7 +68,8 @@ class TaskController extends Controller
         }
 
         return $this->render('task/show.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'classActive' => $_route
         ));
     }
 }

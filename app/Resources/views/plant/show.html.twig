@@ -8,9 +8,9 @@
     <div class="be-content">
         <div class="page-head">
             <div class="pull-right">
-                <a href="" class="btn btn-space btn-success btn-lg"><i class="icon mdi mdi-plus"></i> Add new seedling</a>
+                <a href="{{ path('plants_create') }}" class="btn btn-space btn-success btn-lg"><i class="icon mdi mdi-plus"></i> Add new seedling</a>
             </div>
-            <h2 class="page-head-title">Basil Sweet Genovese</h2>
+            <h2 class="page-head-title">{{ plants[0].seed.name }}</h2>
         </div>
 
         <div class="main-content container-fluid">
@@ -19,48 +19,25 @@
                     <div class="col-sm-12">
                         <div class="panel panel-default panel-table">
                             <div class="panel-heading">
-                                Total area: 2
+                                Total area: {{ totalArea }}
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
-                                        <tr>
-                                            <th class="col-xs-4">Age (days)</th>
-                                            <th class="col-xs-5">Area</th>
+                                            <tr>
+                                                <th class="col-xs-4">Age (days)</th>
+                                                <th class="col-xs-5">Area</th>
                                             <th class="col-xs-3">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        {% for plant in plants %}
                                         <tr>
-                                        <td>40 <span class="icon mdi mdi-favorite text-success" style="color:; margin-left: 10px;"></span></td>
-                                        <td>Amaryllis</td>
-                                        <td>25</td>
+                                            <td>{{ plant.seedlingDate }}</td>
+                                            <td>{{ plant.area.name }}</td>
+                                            <td>{{ plant.areaCapacity }} {{ plant.area.measurementUnit }}</td>
                                         </tr>
-                                        <tr>
-                                        <td>34</td>
-                                        <td>Jasmine</td>
-                                        <td>68</td>
-                                        </tr>
-                                        <tr>
-                                        <td>29</td>
-                                        <td>Amaryllis</td>
-                                        <td>92</td>
-                                        </tr>
-                                        <tr>
-                                        <td>21</td>
-                                        <td>Chrysant</td>
-                                        <td>45</td>
-                                        </tr>
-                                        <tr>
-                                        <td>18</td>
-                                        <td>Jasmine</td>
-                                        <td>55</td>
-                                        </tr>
-                                        <tr>
-                                        <td>12</td>
-                                        <td>Amaryllis</td>
-                                        <td>85</td>
-                                        </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                             </div>

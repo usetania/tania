@@ -15,38 +15,21 @@ class PlantController extends Controller
     public function indexAction(EntityManagerInterface $em)
     {
         $qb = $em->createQueryBuilder('p');
-        $plantQ = $qb->addSelect('SUM(p.seedlingAmount) AS seedling_total')
+        $plantQ = $qb->addSelect('SUM(p.areaCapacity) AS seedling_total')
             ->addSelect('ANY_VALUE(p.id) AS id')
             ->addSelect('COUNT(p.area) AS area_count')
             ->addSelect('ANY_VALUE(sc.name) AS seed_category')
             ->addSelect('s AS seed')
             ->from('AppBundle:Plant', 'p')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
+            ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')
             ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')
             ->groupBy('p.seed')
             ->getQuery();
         $plants = $plantQ->getResult();
 
-        // measurement unit
-        $measurementUnits = array_map(function($item) {
-            if($item['seed']->getMeasurementUnit() == 1) {
-                $unit = 'seeds';
-            } else if($item['seed']->getMeasurementUnit() == 2) {
-                $unit = 'gr';
-            } else if($item['seed']->getMeasurementUnit() == 3) {
-                $unit = 'kg';
-            } else if($item['seed']->getMeasurementUnit() == 4) {
-                $unit = 'lbs';
-            } else if($item['seed']->getMeasurementUnit() == 5) {
-                $unit = 'oz';
-            }
-
-            return $unit;
-        }, $plants);
-
         return $this->render('plant/index.html.twig', array(
-            'plants' => $plants,
-            'units' => $measurementUnits
+            'plants' => $plants
         ));
     }
 
@@ -102,6 +85,30 @@ class PlantController extends Controller
     */
     public function showAction($id, EntityManagerInterface $em, Request $request)
     {
-        return $this->render('plant/show.html.twig');
+        $plants = $em->getRepository('AppBundle:Plant')->findBy(array('seed' => $id));
+        
+        $plantsWithMeasurementAndDaysAgo = array_map(function($plant) {
+            // translate the measurement
+            if($plant->getArea()->getMeasurementUnit() == 1) {
+                $unit = 'Pots/Points';
+                $plant->getArea()->setMeasurementUnit($unit);
+            } else if($plant->getArea()->getMeasurementUnit() == 2) {
+                $unit = 'Trays';
+                $plant->getArea()->setMeasurementUnit($unit);
+            }
+
+            // translate the date time to days ago
+            $seedlingDate = date_create($plant->getSeedlingDate()->format('Y-m-d'));
+            $currentDate = date_create(date('Y-m-d'));
+            $interval = date_diff($currentDate, $seedlingDate);
+            $plant->setSeedlingDate($interval->format('%a'));
+
+            return $plant;
+        }, $plants);
+        
+        return $this->render('plant/show.html.twig', array(
+            'plants' => $plantsWithMeasurementAndDaysAgo,
+            'totalArea' => count($plantsWithMeasurementAndDaysAgo)
+        ));
     }
 }

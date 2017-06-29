@@ -13,7 +13,6 @@
         
         <div class="main-content container-fluid">
             <div class="row">
-            {% set index = 0 %}
             {% for plant in plants %}
                 <div class="col-xs-12 col-md-3">
                     <div class="user-display">
@@ -28,13 +27,13 @@
                         {% endif %}
                         <div class="user-display-bottom">
                             <div class="user-display-info">
-                                <div class="name"><a href="{{ path('plants_show', {'id': plant['id'] }) }}">{{ plant['seed'].name }}</a></div>
+                                <div class="name"><a href="{{ path('plants_show', {'id': plant['seed'].id }) }}">{{ plant['seed'].name }}</a></div>
                                 <div class="nick">{{ plant['seed_category'] }}</div>
                             </div>
                             <div class="row user-display-details">
                                 <div class="col-xs-5">
                                     <div class="title">Amount</div>
-                                    <div class="counter">{{ plant['seedling_total'] }} {{ units[index] }}</div>
+                                    <div class="counter">{{ plant['seedling_total'] }}</div>
                                 </div>
                                 <div class="col-xs-7">
                                     <div class="title">Total Seedling Area</div>
@@ -44,7 +43,6 @@
                         </div>
                     </div>
                 </div>
-                {% set index = index + 1 %}
             {% endfor %}
             </div>    
         </div>

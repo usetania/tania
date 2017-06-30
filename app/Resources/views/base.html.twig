@@ -40,6 +40,9 @@
     {% elseif classActive == "fields_show" %}
     <script type="text/javascript" src="{{ asset('bundles/bmatznerleaflet/js/leaflet.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/field-map-show.js') }}"></script>
+    {% elseif classActive == "dashboard" %}
+    <script type="text/javascript" src="{{ asset('bundles/bmatznerleaflet/js/leaflet.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}"></script>
     {% endif %}
     {% endblock %}
 </body>

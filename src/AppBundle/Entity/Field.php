@@ -324,16 +324,18 @@ class Field
      */
     public function validate(ExecutionContextInterface $context, $payload)
     {
-        // do your own validation
-        if (! in_array($this->imageFile->getMimeType(), array(
-            'image/jpeg',
-            'image/gif',
-            'image/png'
-        ))) {
-            $context
-                ->buildViolation('Wrong file type (only jpg,gif,png allowed)')
-                ->atPath('imageFile')
-                ->addViolation();
+        // check only when not null
+        if($this->imageFile != null) {
+            if (!in_array($this->imageFile->getMimeType(), array(
+                'image/jpeg',
+                'image/gif',
+                'image/png'
+            ))) {
+                $context
+                    ->buildViolation('Wrong file type (only jpg,gif,png allowed)')
+                    ->atPath('imageFile')
+                    ->addViolation();
+            }
         }
     }
 }

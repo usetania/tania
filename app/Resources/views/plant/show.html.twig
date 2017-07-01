@@ -24,10 +24,11 @@
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
-                                            <tr>
-                                                <th class="col-xs-4">Age (days)</th>
-                                                <th class="col-xs-5">Area</th>
-                                            <th class="col-xs-3">Amount</th>
+                                        <tr>
+                                            <th class="col-xs-5">Age (days)</th>
+                                            <th class="col-xs-3">Area</th>
+                                            <th class="col-xs-2">Amount</th>
+                                            <th class="col-xs-2">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -36,6 +37,7 @@
                                             <td>{{ plant.seedlingDate }}</td>
                                             <td>{{ plant.area.name }}</td>
                                             <td>{{ plant.areaCapacity }} {{ plant.area.measurementUnit }}</td>
+                                            <td><a href="{{ path('plants_harvest', {'id': plant.id }) }}">update detail</a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

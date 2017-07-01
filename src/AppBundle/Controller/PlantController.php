@@ -2,7 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Plant;
-use AppBundle\Form\PlantType;
+use AppBundle\Form\PlantHarvestType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -99,7 +99,7 @@ class PlantController extends Controller
                 $plant->getArea()->setMeasurementUnit($unit);
             }
 
-            // translate the date time to days ago
+            // translate the date time object to "days ago" string
             $seedlingDate = date_create($plant->getSeedlingDate()->format('Y-m-d'));
             $currentDate = date_create(date('Y-m-d'));
             $interval = date_diff($currentDate, $seedlingDate);
@@ -112,6 +112,51 @@ class PlantController extends Controller
             'plants' => $plantsWithMeasurementAndDaysAgo,
             'totalArea' => count($plantsWithMeasurementAndDaysAgo),
             'classActive' => $_route
+        ));
+    }
+
+    public function harvestAction($id, $_route, EntityManagerInterface $em, Request $request)
+    {
+        $plant = $em->getRepository('AppBundle:Plant')->find($id);
+        
+        $form = $this->createForm(PlantHarvestType::class, $plant);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            // validate the area capacity and seed inventory
+            $seedsInfo = $em->getRepository('AppBundle:Plant')->findBy(array('seed' => $plant->getSeed()->getId()));
+            $areasInfo = $em->getRepository('AppBundle:Plant')->findBy(array('area' => $plant->getArea()->getId()));
+            
+            $usedSeed = array_reduce($seedsInfo, function($carry, $item) {
+                return $carry += $item->getSeedlingAmount();
+            });
+
+            $usedArea = array_reduce($areasInfo, function($carry, $item) {
+                return $carry += $item->getAreaCapacity();
+            });
+
+            $totalSeed = $usedSeed + $plant->getSeedlingAmount();
+            $totalArea = $usedArea + $plant->getAreaCapacity();
+            
+            if($totalSeed <= $plant->getSeed()->getQuantity() && $totalArea <= $plant->getArea()->getCapacity()) {
+                // save to database here
+                $plant = $form->getData();
+                $plant->setCreatedAt(new \DateTime('now'));
+                
+                $em->persist($plant);
+                $em->flush();
+
+                return $this->redirectToRoute('plants');
+            } else {
+                // give error message
+                $this->addFlash('notice', 'The capacity of the area or the quantity of the seed are insufficient.');
+                return $this->redirectToRoute('plants_create');
+            }
+        }
+
+        return $this->render('plant/harvest.html.twig', array(
+            'classActive' => $_route,
+            'form' => $form->createView()
         ));
     }
 }

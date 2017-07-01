@@ -97,5 +97,11 @@ plants_show:
     requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET, POST]
 
+plants_harvest:
+    path: /plants/{id}/harvest{trailingSlash}
+    defaults: { _controller: AppBundle:Plant:harvest, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
+    methods: [GET, POST]
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -19,7 +19,7 @@
                             <a href="{{ path('inventories') }}"><i class="icon mdi mdi-widgets"></i> Inventories</a>
                         </li>
                         <li class="divider">Operation</li>
-                        <li {% if classActive == 'plants' %} class="active" {% elseif classActive == 'plants_create' %} class="active" {% elseif classActive == 'plants_show' %} class="active" {% endif %}>
+                        <li {% if classActive == 'plants' %} class="active" {% elseif classActive == 'plants_create' %} class="active" {% elseif classActive == 'plants_show' %} class="active" {% elseif classActive == 'plants_harvest' %} class="active" {% endif %}>
                             <a href="{{ path('plants') }}"><i class="icon mdi mdi-flower-alt"></i> Plant</a>
                         </li>
                         <li {% if classActive == 'tasks' %} class="active" {% elseif classActive == 'tasks_create' %} class="active" {% elseif classActive == 'tasks_show' %} class="active" {% endif %}>

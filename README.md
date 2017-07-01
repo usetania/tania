@@ -39,6 +39,7 @@ You can use [the issue tracker of Tania](https://github.com/tanibox/tania/issues
 Current maintainers:
 
 - Asep Bagja Priandana - [Linkedin](https://www.linkedin.com/in/asepbagja/)
+- Retno Ika Safitri - [Linkedin](https://www.linkedin.com/in/retnoika/)
 
 If you are interested in being a core contributor to this project, please drop me an email at __asep@asep.co__.
 

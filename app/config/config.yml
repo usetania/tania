@@ -66,6 +66,13 @@ doctrine:
                     string_functions:
                         ANY_VALUE: AppBundle\DoctrineExtensions\Utils\AnyValue
 
+# Migrations configuration
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Tania\Migrations
+    table_name: migration_versions
+    name: Tania Migrations
+
 # Swiftmailer Configuration
 swiftmailer:
     transport: '%mailer_transport%'

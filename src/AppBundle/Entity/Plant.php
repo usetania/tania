@@ -66,6 +66,11 @@ class Plant
     private $note;
 
     /**
+     * @ORM\Column(type="string", nullable=TRUE, length=10)
+     */
+    private $action;
+
+    /**
      * @ORM\Column(type="datetime", nullable=TRUE)
      * @Assert\Type("\DateTime")
      */
@@ -325,5 +330,29 @@ class Plant
     public function getNote()
     {
         return $this->note;
+    }
+
+    /**
+     * Set action
+     *
+     * @param string $action
+     *
+     * @return Plant
+     */
+    public function setAction($action)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return string
+     */
+    public function getAction()
+    {
+        return $this->action;
     }
 }

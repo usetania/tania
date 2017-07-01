@@ -16,6 +16,14 @@ body {
 	padding-right: 10px;
 }
 
+#plant_harvest_action label {
+	margin: 0 10px 0 3px;
+}
+
+#plant_harvest_action input {
+	margin-top: 3px;
+}
+
 /* Signup & Login Area */
 
 .be-splash-screen {

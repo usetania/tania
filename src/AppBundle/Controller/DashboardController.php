@@ -24,6 +24,8 @@ class DashboardController extends Controller
             ->from('AppBundle:Plant', 'p')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
             ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')
+            ->where("p.action is null")
+            ->orWhere("p.action = 'donothing'")
             ->orderBy('p.seedlingDate', 'ASC')
             ->setMaxResults(5)
             ->getQuery();
@@ -44,6 +46,7 @@ class DashboardController extends Controller
         $taskQ = $taskQb->select('t')
             ->from('AppBundle:Task', 't')
             ->orderBy('t.dueDate', 'ASC')
+            ->where('t.isDone = 0')
             ->setMaxResults(5)
             ->getQuery();
         $tasks = $taskQ->getResult();

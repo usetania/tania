@@ -7,12 +7,12 @@
 
     <div class="be-content">
         <div class="page-head">
-            <h2 class="page-head-title">Updating The Plant Seedling</h2>
+            <h2 class="page-head-title">Action for {{ plant.seed.name }}</h2>
         </div>
 
         <div class="main-content container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-body">
                             {% for message in app.flashes('notice') %}
@@ -22,37 +22,22 @@
                             {% endfor %}
                             {{ form_start(form) }}
                                 <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            {{ form_label(form.area, 'Select area to plant', { 'label_attr': {'class': 'control-label'}}) }}
-                                            {{ form_widget(form.area, {'attr': {'class': 'form-control'}}) }}
-                                        </div>
-                                        <div class="col-sm-6">
-                                            {{ form_label(form.areaCapacity, 'How many plant would you want?', { 'label_attr': {'class': 'control-label'}}) }}
-                                            {{ form_widget(form.areaCapacity, {'attr': {'class': 'form-control'}}) }}
-                                        </div>
-                                    </div>
+                                    <label>Seedling date</label>
+                                    <input type="text" disabled value="{{ seedlingDate }}" class="form-control">
+                                </div>
+                                <div class="form-group"> 
+                                    {{ form_label(form.action, 'Harvest or Dispose') }}
+                                    {{ form_widget(form.action) }}
                                 </div>
                                 <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            {{ form_label(form.seed, 'Pick from your seeds collection', { 'label_attr': {'class': 'control-label'}}) }}
-                                            {{ form_widget(form.seed, {'attr': {'class': 'form-control'}}) }}
-                                        </div>
-                                        <div class="col-sm-6">
-                                            {{ form_label(form.seedlingAmount, 'How many seeds would you use?', { 'label_attr': {'class': 'control-label'}}) }}
-                                            {{ form_widget(form.seedlingAmount, {'attr': {'class': 'form-control'}}) }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="datetime-group">
-                                    {{ form_label(form.seedlingDate, 'Choose seedling date', { 'label_attr': {'class': 'control-label'}}) }}
-                                    {{ form_widget(form.seedlingDate) }}
+                                    {{ form_label(form.note) }}
+                                    {{ form_errors(form.note) }}
+                                    {{ form_widget(form.note, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 text-center">
                                         {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
-                                        <button class="btn btn-default btn-lg">Cancel</button>
+                                        <a href="{{ path('plants') }}" class="btn btn-default btn-lg">Cancel</button>
                                     </div>
                                 </div>
                             {{ form_end(form) }}

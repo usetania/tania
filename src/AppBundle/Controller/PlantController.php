@@ -123,40 +123,38 @@ class PlantController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            // validate the area capacity and seed inventory
-            $seedsInfo = $em->getRepository('AppBundle:Plant')->findBy(array('seed' => $plant->getSeed()->getId()));
-            $areasInfo = $em->getRepository('AppBundle:Plant')->findBy(array('area' => $plant->getArea()->getId()));
-            
-            $usedSeed = array_reduce($seedsInfo, function($carry, $item) {
-                return $carry += $item->getSeedlingAmount();
-            });
+            // when the farmer choose to harvest or dispose his/her plant
+            if($plant->getAction() != 'donothing') {
+                if($plant->getAction() == 'harvest') {
+                    // harvest
+                    $plant->setHarvestingDate(new \DateTime('now'));
+                    $plant->setDisposingDate(null);
+                } elseif($plant->getAction() == 'dispose') {
+                    // dispose
+                    $plant->setDisposingDate(new \DateTime('now'));
+                    $plant->setHarvestingDate(null);
+                }
 
-            $usedArea = array_reduce($areasInfo, function($carry, $item) {
-                return $carry += $item->getAreaCapacity();
-            });
-
-            $totalSeed = $usedSeed + $plant->getSeedlingAmount();
-            $totalArea = $usedArea + $plant->getAreaCapacity();
-            
-            if($totalSeed <= $plant->getSeed()->getQuantity() && $totalArea <= $plant->getArea()->getCapacity()) {
-                // save to database here
                 $plant = $form->getData();
-                $plant->setCreatedAt(new \DateTime('now'));
-                
-                $em->persist($plant);
-                $em->flush();
-
-                return $this->redirectToRoute('plants');
+                $plant->setUpdatedAt(new \DateTime('now'));
             } else {
-                // give error message
-                $this->addFlash('notice', 'The capacity of the area or the quantity of the seed are insufficient.');
-                return $this->redirectToRoute('plants_create');
+                // do nothing
+                $plant->setHarvestingDate(null);
+                $plant->setDisposingDate(null);
             }
+
+            // save to database here
+            $em->persist($plant);
+            $em->flush();
+
+            return $this->redirectToRoute('plants_show', array('id' => $plant->getSeed()->getId()));
         }
 
         return $this->render('plant/harvest.html.twig', array(
             'classActive' => $_route,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'plant' => $plant,
+            'seedlingDate' => $plant->getSeedlingDate()->format('d-M-Y')
         ));
     }
 }

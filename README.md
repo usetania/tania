@@ -14,18 +14,21 @@ This project is under active development. You can checkout the `development` bra
 
 ## General installation steps
 
-Setup the web application:
+First, setup your database and mailer parameters in `app/config/parameters.yml`. You can duplicate and rename the `app/config/parameters.yml.dist` file.
+
+Second, setup the web application:
+
 ```
 git clone git@github.com:Tanibox/tania.git
 cd tania
-composer install
+curl -sS https://getcomposer.org/installer | php
+php composer.phar install
 ```
-Don't forget to setup your database and mailer parameters in `app/config/parameters.yml` after completing `composer install`.
 
-Setup the database tables:
+The last, setup the database tables:
 
 ```
-php bin/console doctrine:migrations:migrate
+php bin/console --no-interaction doctrine:migrations:migrate
 ```
 
 Done! You can start to use Tania.

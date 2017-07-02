@@ -14,13 +14,18 @@ This project is under active development. You can checkout the `development` bra
 
 ## General installation steps
 
-First, setup your database and mailer parameters in `app/config/parameters.yml`. You can duplicate and rename the `app/config/parameters.yml.dist` file.
-
-Second, setup the web application:
+First, clone this project:
 
 ```
 git clone git@github.com:Tanibox/tania.git
 cd tania
+```
+
+Second, setup your database and mailer parameters in `app/config/parameters.yml`. You can duplicate and rename the `app/config/parameters.yml.dist` file.
+
+Third, setup the web application:
+
+```
 curl -sS https://getcomposer.org/installer | php
 php composer.phar install
 ```

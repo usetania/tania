@@ -3,6 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Plant;
 use AppBundle\Form\PlantHarvestType;
+use AppBundle\Form\PlantType;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

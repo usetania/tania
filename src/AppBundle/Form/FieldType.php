@@ -14,7 +14,9 @@ class FieldType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, array(
+                'attr' => array('maxlength' => 50))
+            )
             ->add('lat', NumberType::class, array('required' => FALSE, 'scale' => 8))
             ->add('lng', NumberType::class, array('required' => FALSE, 'scale' => 8))
             ->add('description', TextareaType::class, array('required' => FALSE))

@@ -31,14 +31,37 @@
             navigator.geolocation.getCurrentPosition(function(position){
                 mapInit([position.coords.latitude, position.coords.longitude]);
                 fieldMap.on('click', onMapClick);
+
+                // Automatically fill the lat lng input fields
+                $('#field_lat').val(position.coords.latitude);
+                $('#field_lng').val(position.coords.longitude);
             }, function(error) {
                 // if error it will use default lat lng
                 mapInit(defaultLatLng);
                 fieldMap.on('click', onMapClick);
+
+                // Automatically fill the lat lng input fields
+                $('#field_lat').val(position.coords.latitude);
+                $('#field_lng').val(position.coords.longitude);
             });
         } else {
             mapInit(defaultLatLng);
             fieldMap.on('click', onMapClick);
+
+            // Automatically fill the lat lng input fields
+            $('#field_lat').val(position.coords.latitude);
+            $('#field_lng').val(position.coords.longitude);
         }
+
+        /* form validation here */
+        $('#field_name').keyup(function(e) {
+            var maxLength = 50;
+            var textlen = $(this).val().length;
+
+            if(textlen <= maxLength) {
+                var spanText = "Name ("+textlen+"/"+maxLength+" chars)";
+                $('#label_field_name').text(spanText);
+            }
+        });
     });
 })();

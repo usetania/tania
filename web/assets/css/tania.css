@@ -151,6 +151,10 @@ body {
 	width: 100%;
 }
 
+.user-display-bg img {
+	height: 750px;
+}
+
 /* Branding */
 .be-top-header .navbar-header .navbar-brand {
 	background: none;

@@ -22,20 +22,21 @@
                                     <tr>
                                         <th>Name</th>
                                         <th>Capacity</th>
-                                        <th>Measurement Unit</th>
+                                        <th>Used In</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for reservoir in reservoirs %}
+                                        {% if reservoir.measurementUnit == 1 %}
+                                            {% set unit = "Litre" %}
+                                        {% elseif reservoir.measurementUnit == 2 %}
+                                            {% set unit = "Gallon" %}
+                                        {% endif %}
                                     <tr>
-                                        <td class="cell-detail">{{ reservoir.name }} <span class="cell-detail-description">Used in {{ reservoir.areas|length }} area</span></td>
-                                        <td class="cell-detail">{{ reservoir.capacity }}</td>
+                                        <td class="cell-detail">{{ reservoir.name }}</td>
+                                        <td class="cell-detail">{{ reservoir.capacity }} {{ unit }}</td>
                                         <td class="cell-detail">
-                                            {% if reservoir.measurementUnit == 1 %}
-                                                Litre
-                                            {% elseif reservoir.measurementUnit == 2 %}
-                                                Gallon
-                                            {% endif %}
+                                            {{ reservoir.areas|length }} areas
                                         </td>
                                     </tr>
                                     {% endfor %}

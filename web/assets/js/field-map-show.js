@@ -46,5 +46,16 @@
             mapInit(currentLatLng);
             fieldMap.on('click', onMapClick);
         }
+
+        /* form validation here */
+        $('#field_name').keyup(function(e) {
+            var maxLength = 50;
+            var textlen = $(this).val().length;
+
+            if(textlen <= maxLength) {
+                var spanText = "Name ("+textlen+"/"+maxLength+" chars)";
+                $('#label_field_name').text(spanText);
+            }
+        });
     });
 })();

@@ -15,8 +15,7 @@ class FieldType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'attr' => array('maxlength' => 50))
-            )
+                'attr' => array('maxlength' => 50)))
             ->add('lat', NumberType::class, array('required' => FALSE, 'scale' => 8))
             ->add('lng', NumberType::class, array('required' => FALSE, 'scale' => 8))
             ->add('description', TextareaType::class, array('required' => FALSE))

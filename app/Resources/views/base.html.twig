@@ -43,6 +43,8 @@
     {% elseif classActive == "dashboard" %}
     <script type="text/javascript" src="{{ asset('bundles/bmatznerleaflet/js/leaflet.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}"></script>
+    {% elseif classActive == "areas_create" %}
+    <script type="text/javascript" src="{{ asset('assets/js/area.js') }}"></script>
     {% endif %}
     {% endblock %}
 </body>

@@ -17,9 +17,7 @@
                 <div class="col-xs-12 col-md-3">
                     <div class="user-display">
                         {% if vich_uploader_asset(area, 'imageFile') %}
-                        <div class="user-display-bg">
-                            <img src="{{ vich_uploader_asset(area, 'imageFile') }}" alt="{{ area.name }}">
-                        </div>
+                        <div class="user-display-bg" style="background-image: url('{{ vich_uploader_asset(area, 'imageFile') }}');"></div>
                         {% endif %}
                         <div class="user-display-bottom">
                             <div class="user-display-info">
@@ -36,11 +34,7 @@
                                 <div class="col-xs-6">
                                     <div class="title">Capacity</div>
                                     <div class="counter">
-                                        {% if area.measurementUnit == 1 %}
-                                            {{ area.capacity }} Pots/Points
-                                        {% elseif area.measurementUnit == 2 %}
-                                            {{ area.capacity }} Trays
-                                        {% endif %}
+                                        {{ area.capacity }}&nbsp;{{ measurementUnits[index] }}
                                     </div>
                                 </div>
                             </div>

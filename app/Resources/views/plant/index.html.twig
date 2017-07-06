@@ -7,7 +7,7 @@
 
     <div class="be-content">
         <div class="page-head">
-            <a href="{{ path('plants_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-flower-alt"></span> Add New Variety</a>
+            <a href="{{ path('plants_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-flower-alt"></span> Add plant</a>
             <h2 class="page-head-title">Plant Varieties</h2>
         </div>
         
@@ -17,13 +17,9 @@
                 <div class="col-xs-12 col-md-3">
                     <div class="user-display">
                         {% if vich_uploader_asset(plant['seed'], 'imageFile', 'AppBundle\\Entity\\Seed') %}
-                        <div class="user-display-bg">
-                            <img src="{{ vich_uploader_asset(plant['seed'], 'imageFile', 'AppBundle\\Entity\\Seed') }}" alt="{{ plant['seed'].name }}">
-                        </div>
+                        <div class="user-display-bg" style="background-image: url('{{ vich_uploader_asset(plant['seed'], 'imageFile', 'AppBundle\\Entity\\Seed') }}');"></div>
                         {% else %}
-                        <div class="user-display-bg">
-                            <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="{{ plant['seed'].name }}">
-                        </div>
+                        <div class="user-display-bg" style="background-image: url('{{ asset('assets/img/plant-basil.jpg') }}');"></div>
                         {% endif %}
                         <div class="user-display-bottom">
                             <div class="user-display-info">

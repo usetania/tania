@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Data\CategoryMaster;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -8,44 +9,55 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PlantType extends AbstractType
 {
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'entityManager' => null
+        ]);
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('area', EntityType::class, array(
                 'class' => 'AppBundle:Area',
-                'choice_label' => function($area) {
+                'choice_label' => function($area) use($options) {
                     // measurement unit for area capacity
-                    if($area->getMeasurementUnit() == 1) {
-                        $unit = "pots/points";
-                    } else if($area->getMeasurementUnit() == 2) {
-                        $unit = "trays";
-                    }
-                    return $area->getName() . " (Capacities: ". $area->getCapacity() . " ". $unit . ")";
+                    $unit = CategoryMaster::areaUnits()[$area->getMeasurementUnit()];
+
+                    // capacity left
+                    $areasInfo = $options['entityManager']->getRepository('AppBundle:Plant')->findBy(array('area' => $area->getId()));
+                    $usedArea = array_reduce($areasInfo, function($carry, $item) {
+                        return $carry += $item->getAreaCapacity();
+                    });
+                    $areaLeft = $area->getCapacity() - $usedArea;
+
+                    return $area->getName() . " (Capacities: ". $areaLeft . " ". $unit . " remaining)";
                 }
             ))
             ->add('seed', EntityType::class, array(
                 'class' => 'AppBundle:Seed',
-                'choice_label' => function($seed) {
+                'choice_label' => function($seed) use($options) {
                     // measurement unit for seed amount
-                    if($seed->getMeasurementUnit() == 1) {
-                        $unit = 'seeds';
-                    } else if($seed->getMeasurementUnit() == 2) {
-                        $unit = 'gr';
-                    } else if($seed->getMeasurementUnit() == 3) {
-                        $unit = 'kg';
-                    } else if($seed->getMeasurementUnit() == 4) {
-                        $unit = 'lbs';
-                    } else if($seed->getMeasurementUnit() == 5) {
-                        $unit = 'oz';
-                    }
+                    $unit = CategoryMaster::seedUnits()[$seed->getMeasurementUnit()];
 
-                    return $seed->getName() . " (Quantities: ". $seed->getQuantity() . " " . $unit .")";
+                    // seeds left
+                    $seedsInfo = $options['entityManager']->getRepository('AppBundle:Plant')->findBy(array('seed' => $seed->getId()));
+                    $usedSeed = array_reduce($seedsInfo, function($carry, $item) {
+                        return $carry += $item->getSeedlingAmount();
+                    });
+                    $seedLeft = $seed->getQuantity() - $usedSeed;
+
+                    return $seed->getName() . " (Quantities: ". $seedLeft . " " . $unit ." remaining)";
                 }
             ))
-            ->add('seedlingDate', DateType::class)
+            ->add('seedlingDate', DateType::class, array(
+                'years' => range(date('Y'), date('Y') - 1)
+            ))
             ->add('seedlingAmount', IntegerType::class)
             ->add('areaCapacity', IntegerType::class)
             ->add('save', SubmitType::class, array('label' => 'Add plant'));

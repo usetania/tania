@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form;
 
+use AppBundle\Data\CategoryMaster;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,24 +16,25 @@ class AreaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, array(
+                'attr' => array('maxlength' => 50)))
             ->add('reservoir', EntityType::class, array(
                 'class' => 'AppBundle:Reservoir',
                 'choice_label' => 'name'
             ))
             ->add('growingMethod', ChoiceType::class, array(
                 'choices' => array(
-                    'Nutrient Film Technique' => 1,
-                    'Drip Irrigation' => 2,
-                    'Ebb and Flow' => 3,
-                    'Organic (soil based)' => 4
+                    CategoryMaster::growingMethods()[1] => 1,
+                    CategoryMaster::growingMethods()[2] => 2,
+                    CategoryMaster::growingMethods()[3] => 3,
+                    CategoryMaster::growingMethods()[4] => 4
                 )
             ))
             ->add('capacity', IntegerType::class)
             ->add('measurementUnit', ChoiceType::class, array(
                 'choices' => array(
-                    'Pots/Points' => 1,
-                    'Trays' => 2
+                    CategoryMaster::areaUnits()[1] => 1,
+                    CategoryMaster::areaUnits()[2] => 2
                 )
             ))
             ->add('imageFile', VichImageType::class, array(

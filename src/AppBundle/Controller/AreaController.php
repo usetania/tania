@@ -25,10 +25,16 @@ class AreaController extends Controller
             $growingMethodName = CategoryMaster::growingMethods();
             return $growingMethodName[$item->getGrowingMethod()];
         }, $areas);
+
+        $measurementUnits = array_map(function($item) {
+            $unit = CategoryMaster::areaUnits();
+            return $unit[$item->getMeasurementUnit()];
+        }, $areas);
         
         return $this->render('area/index.html.twig', array(
             'areas' => $areas,
             'growingMethods' => $growingMethodNames,
+            'measurementUnits' => $measurementUnits,
             'classActive' => $_route
         ));
     }

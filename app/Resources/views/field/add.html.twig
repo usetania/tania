@@ -17,7 +17,7 @@
                             {{ form_start(form) }}
                                 {{ form_errors(form) }}
                                 <div class="form-group">
-                                    {{ form_label(form.name) }}
+                                    {{ form_label(form.name, 'Name (0/50 chars)', {'label_attr': {'id': 'label_field_name'}}) }}
                                     {{ form_errors(form.name) }}
                                     {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
                                 </div>

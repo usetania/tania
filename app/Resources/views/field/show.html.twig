@@ -7,7 +7,7 @@
 
     <div class="be-content">
         <div class="page-head">
-            <h2 class="page-head-title">The Detail of The Field</h2>
+            <h2 class="page-head-title">Farm Details</h2>
         </div>
         <div class="main-content container-fluid">
             <div class="row">
@@ -17,7 +17,7 @@
                             {{ form_start(form) }}
                                 {{ form_errors(form) }}
                                 <div class="form-group">
-                                    {{ form_label(form.name) }}
+                                    {{ form_label(form.name, 'Name (0/50 chars)', {'label_attr': {'id': 'label_field_name'}}) }}
                                     {{ form_errors(form.name) }}
                                     {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
                                 </div>

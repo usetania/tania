@@ -16,9 +16,7 @@
                     <div class="col-md-5">
                         <div class="user-display">
                             {% if vich_uploader_asset(area, 'imageFile') %}
-                            <div class="user-display-bg">
-                                <img src="{{ vich_uploader_asset(area, 'imageFile') }}" alt="{{ area.name }}">
-                            </div>
+                            <div class="user-display-bg" style="background-image: url('{{ vich_uploader_asset(area, 'imageFile') }}');"></div>
                             {% endif %}
                         </div>
                         <div class="user-info-list panel panel-default">
@@ -32,7 +30,7 @@
                                         </tr>
                                         <tr>
                                             <td class="icon"><span class="mdi mdi-gradient"></span></td>
-                                            <td class="item">Total Capacity<span class="icon s7-gift"></span></td>
+                                            <td class="item">Capacity<span class="icon s7-gift"></span></td>
                                             <td>
                                             <div class="progress">
                                                 {% set percentage = current_capacities / area.capacity * 100 %}
@@ -58,7 +56,7 @@
                     <div class="col-md-7">
                         <div class="panel panel-default panel-table">
                             <div class="panel-heading">Plants in {{ area.name }}
-                            <!--<div class="tools"><span class="icon mdi mdi-plus"></span></div>-->
+                            <div class="tools"><a href="{{ path('plants_create') }}" class="btn btn-default btn-xs"><span class="icon mdi mdi-plus"> </span> Add plants</a></div>
                             </div>
 
                             <div class="panel-body">

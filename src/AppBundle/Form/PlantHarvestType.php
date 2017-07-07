@@ -17,7 +17,7 @@ class PlantHarvestType extends AbstractType
     {
         $builder
             ->add('action', ChoiceType::class, array(
-                'choices' => array('Do nothing' => 'donothing', 'Harvest' => 'harvest', 'Dispose' => 'dispose'),
+                'choices' => array('Harvest' => 'harvest', 'Dispose' => 'dispose'),
                 'expanded' => true
             ))
             ->add('note', TextareaType::class, array('required' => FALSE))

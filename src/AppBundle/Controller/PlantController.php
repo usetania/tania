@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Data\CategoryMaster;
 use AppBundle\Entity\Plant;
 use AppBundle\Form\PlantHarvestType;
 use AppBundle\Form\PlantType;
@@ -42,7 +43,9 @@ class PlantController extends Controller
     {
         $plant = new Plant();
         
-        $form = $this->createForm(PlantType::class, $plant);
+        $form = $this->createForm(PlantType::class, $plant, [
+            'entityManager' => $em
+        ]);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
@@ -92,13 +95,8 @@ class PlantController extends Controller
         
         $plantsWithMeasurementAndDaysAgo = array_map(function($plant) {
             // translate the measurement
-            if($plant->getArea()->getMeasurementUnit() == 1) {
-                $unit = 'Pots/Points';
-                $plant->getArea()->setMeasurementUnit($unit);
-            } else if($plant->getArea()->getMeasurementUnit() == 2) {
-                $unit = 'Trays';
-                $plant->getArea()->setMeasurementUnit($unit);
-            }
+            $unit = CategoryMaster::areaUnits()[$plant->getArea()->getMeasurementUnit()];
+            $plant->getArea()->setMeasurementUnit($unit);
 
             // translate the date time object to "days ago" string
             $seedlingDate = date_create($plant->getSeedlingDate()->format('Y-m-d'));

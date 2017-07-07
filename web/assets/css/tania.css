@@ -137,13 +137,10 @@ body {
 }
 
 .user-display-bg {
-  max-height: 300px !important;
-  overflow: hidden;
-}
-.user-display-bg img {
-  width: 100%;
-  max-height: 200px;
-  border-radius: 2px;
+	background-position: center center;
+	background-size: cover;
+  height: 200px;
+	border-radius: 2px;
 }
 
 /* Vich Bundle */

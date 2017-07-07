@@ -7,17 +7,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     
-    <link rel="shortcut icon" href="{{ asset('assets/img/logo-fav.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}">
     
-    <title>{% block title %}taniaOS{% endblock %}</title>
+    <title>{% block title %}Tania{% endblock %}</title>
     
     {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/perfect-scrollbar/perfect-scrollbar.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/material-design-icons/css/material-design-iconic-font.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('bundles/bmatznerleaflet/css/leaflet.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/tania.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/select2.min.css') }}"/>
     {% endblock %}
     
     <!--[if lte IE 8]>
@@ -34,6 +32,7 @@
     {% block javascripts %}
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+
     {% if classActive == "fields_create" %}
     <script type="text/javascript" src="{{ asset('bundles/bmatznerleaflet/js/leaflet.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/field-map.js') }}"></script>
@@ -43,6 +42,8 @@
     {% elseif classActive == "dashboard" %}
     <script type="text/javascript" src="{{ asset('bundles/bmatznerleaflet/js/leaflet.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}"></script>
+    {% elseif classActive == "areas_create" %}
+    <script type="text/javascript" src="{{ asset('assets/js/area.js') }}"></script>
     {% endif %}
     {% endblock %}
 </body>

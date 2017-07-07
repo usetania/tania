@@ -24,7 +24,9 @@ class TaskType extends AbstractType
                     'Reservoir' => 'reservoir'
                 )
             ))
-            ->add('dueDate', DateTimeType::class)
+            ->add('dueDate', DateTimeType::class, array(
+                'years' => range(date('Y'), date('Y') + 1)
+            ))
             ->add('urgencyLevel', ChoiceType::class, array(
                 'choices' => array(
                     'Low' => 'low',

@@ -78,6 +78,6 @@ class SeedType extends AbstractType
                 'image_uri' => TRUE,
                 'download_uri' => TRUE
             ))
-            ->add('save', SubmitType::class, array('label' => 'Add Seed'));
+            ->add('save', SubmitType::class, array('label' => 'Save'));
     }
 }

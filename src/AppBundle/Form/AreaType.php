@@ -43,6 +43,6 @@ class AreaType extends AbstractType
                 'image_uri' => TRUE,
                 'download_uri' => TRUE
             ))
-            ->add('save', SubmitType::class, array('label' => 'Add'));
+            ->add('save', SubmitType::class, array('label' => 'Save'));
     }
 }

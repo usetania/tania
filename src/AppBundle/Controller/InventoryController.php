@@ -47,4 +47,31 @@ class InventoryController extends Controller
             'classActive' => $_route
         ));
     }
+
+    public function seedEditAction($id, $_route, Request $request, EntityManagerInterface $em)
+    {
+        $seed = $em->getRepository('AppBundle:Seed')->find($id);
+
+        $form = $this->createForm(SeedType::class, $seed);
+        
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $seed = $form->getData();
+
+            // save to database here
+            $seed->setUpdatedAt(new \DateTime('now'));
+
+            $em->persist($seed);
+            $em->flush();
+
+            return $this->redirectToRoute('inventories');
+        }
+
+        return $this->render('seed/edit.html.twig', array(
+            'form' => $form->createView(),
+            'seed' => $seed,
+            'classActive' => $_route
+        ));
+    }
 }

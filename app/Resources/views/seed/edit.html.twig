@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+  {% include 'navbar.html.twig' %} 
+  {% include 'sidebar.html.twig' %}
+
+  <div class="be-content">
+    <div class="page-head">
+      <h2 class="page-head-title">Edit Seed: {{ seed.name }}</h2>
+    </div>
+    <div class="main-content container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              {{ form_start(form) }}
+                {{ form_errors(form) }}
+                <div class="form-group">
+                  {{ form_label(form.name) }}
+                  {{ form_errors(form.name) }}
+                  {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.seedCategory) }}
+                  {{ form_errors(form.seedCategory) }}
+                  {{ form_widget(form.seedCategory, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-6">
+                      {{ form_label(form.quantity) }}
+                      {{ form_errors(form.quantity) }}
+                      {{ form_widget(form.quantity, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                      {{ form_label(form.measurementUnit) }}
+                      {{ form_errors(form.measurementUnit) }}
+                      {{ form_widget(form.measurementUnit, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.producerName) }}
+                  {{ form_errors(form.producerName) }}
+                  {{ form_widget(form.producerName, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.originCountry) }}
+                  {{ form_errors(form.originCountry) }}
+                  {{ form_widget(form.originCountry, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.note) }}
+                  {{ form_errors(form.note) }}
+                  {{ form_widget(form.note, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-6">
+                      {{ form_label(form.expirationMonth) }}
+                      {{ form_errors(form.expirationMonth) }}
+                      {{ form_widget(form.expirationMonth, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="col-md-6">
+                      {{ form_label(form.expirationYear) }}
+                      {{ form_errors(form.expirationYear) }}
+                      {{ form_widget(form.expirationYear, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.germinationRate, 'Germination Rate (%)') }}
+                  {{ form_errors(form.germinationRate) }}
+                  {{ form_widget(form.germinationRate, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                  {{ form_label(form.imageFile, 'Upload Photo') }}
+                  {{ form_errors(form.imageFile) }}
+                  {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 text-center">
+                    {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+                    <button class="btn btn-default btn-lg">Cancel</button>
+                  </div>
+                </div>
+              {{ form_end(form) }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

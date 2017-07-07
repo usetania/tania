@@ -45,7 +45,9 @@
                                                 Disposed
                                                 {% endif %}
                                             </td>
-                                            <td><a href="{{ path('plants_harvest', {'id': plant.id }) }}">harvest/dispose</a></td>
+                                            <td>
+                                                <a href="{{ path('plants_harvest', {'id': plant.id }) }}">Harvest/Dispose</a> | <a href="{{ path('plants_edit', {'id': plant.id }) }}">Edit</a>
+                                            </td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

@@ -7,6 +7,7 @@
 
     <div class="be-content">
         <div class="page-head">
+            <a href="{{ path('areas_edit', {'id': area.id}) }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-layers"></span> Edit Area</a>
             <h2 class="page-head-title">{{ area.name }}</h2>
         </div>
         
@@ -75,7 +76,7 @@
                                                 {% if vich_uploader_asset(plant['seed'], 'imageFile', 'AppBundle\\Entity\\Seed') %}
                                                 <img src="{{ vich_uploader_asset(plant['seed'], 'imageFile', 'AppBundle\\Entity\\Seed') }}" alt="{{ plant['seed'].name }}">
                                                 {% else %}
-                                                <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="{{ plant['seed'].name }}">
+                                                <img src="{{ asset('assets/img/favicon.png') }}" alt="{{ plant['seed'].name }}">
                                                 {% endif %}
                                                 {{ plant['seed'].name }}
                                             </td>

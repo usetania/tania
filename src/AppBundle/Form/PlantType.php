@@ -60,6 +60,6 @@ class PlantType extends AbstractType
             ))
             ->add('seedlingAmount', IntegerType::class)
             ->add('areaCapacity', IntegerType::class)
-            ->add('save', SubmitType::class, array('label' => 'Add plant'));
+            ->add('save', SubmitType::class, array('label' => 'Save'));
     }
 }

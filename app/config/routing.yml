@@ -43,11 +43,23 @@ areas_create:
     methods: [GET, POST]
     requirements: { trailingSlash : "[/]{0,1}" }
 
+areas_edit:
+    path: /areas/{id}/edit{trailingSlash}
+    defaults: { _controller: AppBundle:Area:edit, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
+    methods: [GET, POST]
+
 reservoirs:
     path: /reservoirs{trailingSlash}
     defaults: { _controller: AppBundle:Reservoir:index, trailingSlash : "/" }
     methods: [GET, POST]
     requirements: { trailingSlash : "[/]{0,1}" }
+
+reservoirs_show:
+    path: /reservoirs/{id}{trailingSlash}
+    defaults: { _controller: AppBundle:Reservoir:show, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
+    methods: [GET, POST]
 
 inventories:
     path: /inventories{trailingSlash}
@@ -58,6 +70,12 @@ inventories:
 seeds_create:
     path: /seeds/create{trailingSlash}
     defaults: { _controller: AppBundle:Inventory:seedCreate, trailingSlash : "/" }
+    methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+seeds_show:
+    path: /seeds/{id}{trailingSlash}
+    defaults: { _controller: AppBundle:Inventory:seedEdit, trailingSlash : "/" }
     methods: [GET, POST]
     requirements: { trailingSlash : "[/]{0,1}" }
 
@@ -100,6 +118,12 @@ plants_show:
 plants_harvest:
     path: /plants/{id}/harvest{trailingSlash}
     defaults: { _controller: AppBundle:Plant:harvest, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
+    methods: [GET, POST]
+
+plants_edit:
+    path: /plants/{id}/edit{trailingSlash}
+    defaults: { _controller: AppBundle:Plant:edit, trailingSlash : "/" }
     requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET, POST]
 

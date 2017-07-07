@@ -10,11 +10,11 @@
                     <p>This impressive and modern farm management application will help you to manage the operations of your farm in a more intuitive, collaborative, and efficient way.</p>
                 </div>
                 <div class="col-md-6 col-xs-12 loginform">
-                    {% if error %}
-                        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-                    {% endif %}
                     <form action="{{ path("fos_user_security_check") }}" method="post">
                         <span class="splash-title xs-pb-20">Sign In to start working.</span>
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                        {% endif %}
                         {% if csrf_token %}
                             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
                         {% endif %}

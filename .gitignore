@@ -14,6 +14,7 @@
 !var/sessions/.gitkeep
 !var/SymfonyRequirements.php
 /vendor/
+/web/bundles/
 /web/uploads/areas/*.png
 /web/uploads/areas/*.jpg
 /web/uploads/areas/*.gif

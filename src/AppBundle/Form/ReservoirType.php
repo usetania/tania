@@ -26,6 +26,6 @@ class ReservoirType extends AbstractType
                     'Gallon' => 2
                 )
             ))
-            ->add('save', SubmitType::class, array('label' => 'Add'));
+            ->add('save', SubmitType::class, array('label' => 'Save'));
     }
 }

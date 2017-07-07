@@ -103,4 +103,33 @@ class AreaController extends Controller
             'classActive' => $_route
         ));
     }
+
+    /**
+        Editing the detail of the area
+    */
+    public function editAction($id, $_route, EntityManagerInterface $em, Request $request)
+    {
+        $area = $em->getRepository('AppBundle:Area')->find($id);
+        
+        $form = $this->createForm(AreaType::class, $area);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $area = $form->getData();
+
+            // save to database here
+            $area->setUpdatedAt(new \DateTime('now'));
+
+            $em->persist($area);
+            $em->flush();
+
+            return $this->redirectToRoute('areas_show', array('id' => $id));
+        }
+
+        return $this->render('area/edit.html.twig', array(
+            'form' => $form->createView(),
+            'area' => $area,
+            'classActive' => $_route
+        ));
+    }
 }

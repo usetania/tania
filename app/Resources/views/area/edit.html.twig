@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %} 
+    {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <h2 class="page-head-title">Edit Area: {{ area.name }}</h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_start(form) }}
+                                {{ form_errors(form) }}
+                                <div class="form-group">
+                                    {{ form_label(form.name, 'Name (0/50 chars)', {'label_attr': {'id': 'label_area_name'}}) }}
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.reservoir) }}
+                                    {{ form_errors(form.reservoir) }}
+                                    {{ form_widget(form.reservoir, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.growingMethod) }}
+                                    {{ form_errors(form.growingMethod) }}
+                                    {{ form_widget(form.growingMethod, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            {{ form_label(form.capacity) }}
+                                            {{ form_errors(form.capacity) }}
+                                            {{ form_widget(form.capacity, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                        <div class="col-md-6">
+                                            {{ form_label(form.measurementUnit) }}
+                                            {{ form_errors(form.measurementUnit) }}
+                                            {{ form_widget(form.measurementUnit, {'attr': {'class': 'form-control'}}) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.imageFile) }}
+                                    {{ form_errors(form.imageFile) }}
+                                    {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+                                        <a href="{{ path('areas') }}" class="btn btn-default btn-lg">Cancel</a>
+                                    </div>
+                                </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

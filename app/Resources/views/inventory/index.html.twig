@@ -29,6 +29,7 @@
                                         <th>Expired In</th>
                                         <th>Stock</th>
                                         <th>Country of Origin</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +39,7 @@
                                             {% if vich_uploader_asset(seed, 'imageFile') %}
                                             <img src="{{ vich_uploader_asset(seed, 'imageFile') }}" alt="{{ seed.name }}">
                                             {% else %}
-                                            <img src="{{ asset('assets/img/plant-basil.jpg') }}" alt="{{ seed.name }}"> 
+                                            <img src="{{ asset('assets/img/favicon.png') }}" alt="{{ seed.name }}"> 
                                             {% endif %}
                                             {{ seed.name }}
                                             <span class="cell-detail-description">{{ seed.producerName }}</span>
@@ -62,6 +63,9 @@
                                         </td>
                                         <td>
                                             {{ seed.originCountry }}
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('seeds_show', {'id': seed.id }) }}">Edit</a>
                                         </td>
                                     </tr>
                                     {% endfor %}

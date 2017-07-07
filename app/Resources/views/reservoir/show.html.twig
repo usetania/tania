@@ -7,51 +7,13 @@
 
     <div class="be-content">
         <div class="page-head">
-            <h2 class="page-head-title">Reservoirs</h2>
+            <h2 class="page-head-title">Edit Reservoir: {{ reservoir.name }}</h2>
         </div>
+
         <div class="main-content container-fluid">
-          
-            <!-- Nutrient Reservoir -->
             <div class="row">
                 <div class="col-md-6">
-                    <div class="panel panel-default panel-table">
-                        <div class="panel-heading">You have {{ reservoirs|length }} reservoir{% if reservoirs|length > 1 %}s {% endif %}</div>
-                        <div class="panel-body">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Capacity</th>
-                                        <th>Used In</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for reservoir in reservoirs %}
-                                        {% if reservoir.measurementUnit == 1 %}
-                                            {% set unit = "Litre" %}
-                                        {% elseif reservoir.measurementUnit == 2 %}
-                                            {% set unit = "Gallon" %}
-                                        {% endif %}
-                                    <tr>
-                                        <td class="cell-detail">{{ reservoir.name }}</td>
-                                        <td class="cell-detail">{{ reservoir.capacity }} {{ unit }}</td>
-                                        <td class="cell-detail">
-                                            {{ reservoir.areas|length }} areas
-                                        </td>
-                                        <td><a href="{{ path('reservoirs_show', {'id': reservoir.id }) }}">Edit</a></td>
-                                    </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading panel-heading-dividerd">
-                        Add Reservoir
-                        </div>
                         <div class="panel-body">
                             {{ form_start(form) }}
                                 {{ form_errors(form) }}
@@ -86,6 +48,7 @@
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+                                        <a href="{{ path('reservoirs') }}" class="btn btn-default btn-lg">Cancel</a>
                                     </div>
                                 </div>
                             {{ form_end(form) }}

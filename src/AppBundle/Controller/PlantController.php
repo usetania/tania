@@ -29,7 +29,7 @@ class PlantController extends Controller
             ->groupBy('p.seed')
             ->getQuery();
         $plants = $plantQ->getResult();
-
+        
         return $this->render('plant/index.html.twig', array(
             'plants' => $plants,
             'classActive' => $_route

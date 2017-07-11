@@ -1,10 +1,14 @@
-![Tania](project-logo.png "Tania Logo")
+![Tania](readme-assets/project-logo.png "Tania Logo")
 
 Tania is a free and open source farming management system for everyone. You can manage your growing areas, reservoirs, farm tasks, inventories, and the crop growing progress.
 
 It is developed on top of Symfony PHP web framework.
 
 This project is under active development. You can checkout the `development` branch to get the latest development progress.
+
+## Screenshots
+
+![Tania Dashboard](readme-assets/project-dashboard.jpg "Tania Dashboard")
 
 ## Requirements
 

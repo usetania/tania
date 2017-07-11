@@ -18,9 +18,9 @@ class PlantController extends Controller
     {
         $qb = $em->createQueryBuilder('p');
         $plantQ = $qb->addSelect('SUM(p.areaCapacity) AS seedling_total')
-            ->addSelect('ANY_VALUE(p.id) AS id')
+            ->addSelect('p.id AS id')
             ->addSelect('COUNT(p.area) AS area_count')
-            ->addSelect('ANY_VALUE(sc.name) AS seed_category')
+            ->addSelect('sc.name AS seed_category')
             ->addSelect('s AS seed')
             ->from('AppBundle:Plant', 'p')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')

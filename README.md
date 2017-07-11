@@ -6,6 +6,8 @@ It is developed on top of Symfony PHP web framework.
 
 This project is under active development. You can checkout the `development` branch to get the latest development progress.
 
+## Screenshots
+
 ![Tania Dashboard](readme-assets/project-dashboard.jpg "Tania Dashboard")
 
 ## Requirements

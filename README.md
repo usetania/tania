@@ -27,20 +27,31 @@ cd tania
 
 Second, setup your database and mailer parameters in `app/config/parameters.yml`. You can duplicate and rename the `app/config/parameters.yml.dist` file.
 
-Third, setup the web application:
+Third, don't forget to go back to the application root directory before following these steps to setup the web application:
 
 ```
 curl -sS https://getcomposer.org/installer | php
 php composer.phar install
 ```
 
-The last, setup the database tables:
+Fourth, setup the database tables:
 
 ```
 php bin/console --no-interaction doctrine:migrations:migrate
 ```
 
+The last, you can run Tania in development mode (on your PC or laptop) by using this command:
+
+```
+php bin/console server:run
+``` 
+
+Tania will run on `http://localhost:8000`.
+
+You can also run Tania in production mode (on your server) by referring to this [Symfony documentation](http://symfony.com/doc/current/setup/web_server_configuration.html).
+
 Done! You can start to use Tania.
+
 
 ## Installation notes
 

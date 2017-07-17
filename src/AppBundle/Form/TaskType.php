@@ -25,7 +25,8 @@ class TaskType extends AbstractType
                 )
             ))
             ->add('dueDate', DateTimeType::class, array(
-                'years' => range(date('Y'), date('Y') + 1)
+                'years' => range(date('Y'), date('Y') + 1),
+                'widget' => 'single_text'
             ))
             ->add('urgencyLevel', ChoiceType::class, array(
                 'choices' => array(

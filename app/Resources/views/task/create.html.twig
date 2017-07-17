@@ -82,10 +82,5 @@
 {% block javascripts %}
 {{ parent() }}
     <script src="{{ asset('vendor/datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
-    <script>
-        jQuery.datetimepicker.setLocale('id');
-        $(".date-time-picker").datetimepicker({
-            format: 'd/m/Y H:i'
-        });
-    </script>
+    <script src="{{ asset('assets/js/task.js') }}"></script>
 {% endblock %}

@@ -52,11 +52,6 @@ You can also run Tania in production mode (on your server) by referring to this 
 
 Done! You can start to use Tania.
 
-
-## Installation notes
-
-If you use MySQL 5.7, you should disable `ONLY_FULL_GROUP_BY`. You can refer to this [StackOverflow discussion](https://stackoverflow.com/questions/23921117/disable-only-full-group-by).
-
 ## Questions and issues
 
 You can use [the issue tracker of Tania](https://github.com/tanibox/tania/issues) for bug reporting, feature request, and general feedback.

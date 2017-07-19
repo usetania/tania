@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="be-wrapper">
-  {% include 'navbar.html.twig' %} 
+  {% include 'navbar.html.twig' %}
   {% include 'sidebar.html.twig' %}
 
     <div class="be-content">
@@ -34,11 +34,11 @@
                                         <td class="cell-detail">{{ task.category }}</td>
                                         <td class="cell-detail"><a href="{{ path('tasks_show', {'id': task.id }) }}">{{ task.name }}</a></td>
                                         <td class="cell-detail">{{ task.notes }}</td>
-                                        <td class="cell-detail">{{ task.dueDate|date('d M Y h:m')}}</td>
+                                        <td class="cell-detail">{{ task.dueDate|date('d F Y h:i')}}</td>
                                         <td class="cell-detail">
                                             <span class="label {% if task.urgencyLevel == 'low' %} label-success {% elseif task.urgencyLevel == 'medium' %} label-warning {% elseif task.urgencyLevel == 'high' %} label-danger {% endif %}">{{ task.urgencyLevel }}</span>
                                         </td>
-                                        <td class="cell-detail">{% if task.isDone == 0 %} No {% elseif task.isDone == 1 %} Yes {% endif %}</td>                        
+                                        <td class="cell-detail">{% if task.isDone == 0 %} No {% elseif task.isDone == 1 %} Yes {% endif %}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

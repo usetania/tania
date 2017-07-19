@@ -33,3 +33,4 @@
 /web/uploads/seeds/*.PNG
 /web/uploads/seeds/*.JPG
 /web/uploads/seeds/*.GIF
+/web/vendor/*

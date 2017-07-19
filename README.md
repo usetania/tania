@@ -1,5 +1,7 @@
 ![Tania](readme-assets/project-logo.png "Tania Logo")
 
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/taniafarm/Lobby)
+
 Tania is a free and open source farming management system for everyone. You can manage your growing areas, reservoirs, farm tasks, inventories, and the crop growing progress.
 
 It is developed on top of Symfony PHP web framework.

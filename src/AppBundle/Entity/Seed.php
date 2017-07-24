@@ -1,11 +1,12 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -18,7 +19,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Seed
 {
     /**
-     * Many Seeds have One seedCategory
+     * Many Seeds have One seedCategory.
+     *
      * @ORM\ManyToOne(targetEntity="SeedCategory", inversedBy="seeds")
      * @ORM\JoinColumn(name="seedcategory_id", referencedColumnName="id")
      */
@@ -41,7 +43,7 @@ class Seed
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
@@ -59,7 +61,7 @@ class Seed
      * @Assert\NotBlank()
      */
     private $measurementUnit;
-    
+
     /**
      * @ORM\Column(type="string", length=150)
      * @Assert\NotBlank()
@@ -96,10 +98,10 @@ class Seed
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
+     *
      * @Assert\File(maxSize="2M")
      * @Vich\UploadableField(mapping="seed_image", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName")
-     * 
+     *
      * @var File
      */
     private $imageFile;
@@ -124,9 +126,9 @@ class Seed
     private $createdAt;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -134,7 +136,7 @@ class Seed
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -148,7 +150,7 @@ class Seed
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -158,9 +160,9 @@ class Seed
     }
 
     /**
-     * Set quantity
+     * Set quantity.
      *
-     * @param integer $quantity
+     * @param int $quantity
      *
      * @return Seed
      */
@@ -172,9 +174,9 @@ class Seed
     }
 
     /**
-     * Get quantity
+     * Get quantity.
      *
-     * @return integer
+     * @return int
      */
     public function getQuantity()
     {
@@ -182,9 +184,9 @@ class Seed
     }
 
     /**
-     * Set measurementUnit
+     * Set measurementUnit.
      *
-     * @param integer $measurementUnit
+     * @param int $measurementUnit
      *
      * @return Seed
      */
@@ -196,9 +198,9 @@ class Seed
     }
 
     /**
-     * Get measurementUnit
+     * Get measurementUnit.
      *
-     * @return integer
+     * @return int
      */
     public function getMeasurementUnit()
     {
@@ -206,7 +208,7 @@ class Seed
     }
 
     /**
-     * Set producerName
+     * Set producerName.
      *
      * @param string $producerName
      *
@@ -220,7 +222,7 @@ class Seed
     }
 
     /**
-     * Get producerName
+     * Get producerName.
      *
      * @return string
      */
@@ -230,7 +232,7 @@ class Seed
     }
 
     /**
-     * Set originContry
+     * Set originContry.
      *
      * @param string $originContry
      *
@@ -244,7 +246,7 @@ class Seed
     }
 
     /**
-     * Get originContry
+     * Get originContry.
      *
      * @return string
      */
@@ -254,7 +256,7 @@ class Seed
     }
 
     /**
-     * Set note
+     * Set note.
      *
      * @param string $note
      *
@@ -268,7 +270,7 @@ class Seed
     }
 
     /**
-     * Get note
+     * Get note.
      *
      * @return string
      */
@@ -278,7 +280,7 @@ class Seed
     }
 
     /**
-     * Set expirationMonth
+     * Set expirationMonth.
      *
      * @param string $expirationMonth
      *
@@ -292,7 +294,7 @@ class Seed
     }
 
     /**
-     * Get expirationMonth
+     * Get expirationMonth.
      *
      * @return string
      */
@@ -302,9 +304,9 @@ class Seed
     }
 
     /**
-     * Set expirationYear
+     * Set expirationYear.
      *
-     * @param integer $expirationYear
+     * @param int $expirationYear
      *
      * @return Seed
      */
@@ -316,9 +318,9 @@ class Seed
     }
 
     /**
-     * Get expirationYear
+     * Get expirationYear.
      *
-     * @return integer
+     * @return int
      */
     public function getExpirationYear()
     {
@@ -326,7 +328,7 @@ class Seed
     }
 
     /**
-     * Set germinationRate
+     * Set germinationRate.
      *
      * @param string $germinationRate
      *
@@ -340,7 +342,7 @@ class Seed
     }
 
     /**
-     * Get germinationRate
+     * Get germinationRate.
      *
      * @return string
      */
@@ -350,7 +352,7 @@ class Seed
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -364,7 +366,7 @@ class Seed
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -374,7 +376,7 @@ class Seed
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -388,7 +390,7 @@ class Seed
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -398,7 +400,7 @@ class Seed
     }
 
     /**
-     * Add plant
+     * Add plant.
      *
      * @param \AppBundle\Entity\Plant $plant
      *
@@ -412,7 +414,7 @@ class Seed
     }
 
     /**
-     * Remove plant
+     * Remove plant.
      *
      * @param \AppBundle\Entity\Plant $plant
      */
@@ -422,7 +424,7 @@ class Seed
     }
 
     /**
-     * Get plants
+     * Get plants.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -432,7 +434,7 @@ class Seed
     }
 
     /**
-     * Set seedCategory
+     * Set seedCategory.
      *
      * @param \AppBundle\Entity\SeedCategory $seedCategory
      *
@@ -446,7 +448,7 @@ class Seed
     }
 
     /**
-     * Get seedCategory
+     * Get seedCategory.
      *
      * @return \AppBundle\Entity\SeedCategory
      */
@@ -501,16 +503,17 @@ class Seed
 
     /**
      * @Assert\Callback
+     *
      * @param ExecutionContextInterface $context
      */
     public function validate(ExecutionContextInterface $context, $payload)
     {
         // check only when not null
-        if($this->imageFile != null) {
-            if (! in_array($this->imageFile->getMimeType(), array(
+        if ($this->imageFile != null) {
+            if (!in_array($this->imageFile->getMimeType(), array(
                 'image/jpeg',
                 'image/gif',
-                'image/png'
+                'image/png',
             ))) {
                 $context
                     ->buildViolation('Wrong file type (only jpg,gif,png allowed)')

@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Data;
 
 class CategoryMaster
@@ -9,7 +10,7 @@ class CategoryMaster
             1 => 'NFT',
             2 => 'Drip Irrigation',
             3 => 'Ebb and Flow',
-            4 => 'Soil/Organic'
+            4 => 'Soil/Organic',
         );
     }
 
@@ -17,7 +18,7 @@ class CategoryMaster
     {
         return array(
             1 => 'Holes',
-            2 => 'Trays'
+            2 => 'Trays',
         );
     }
 
@@ -28,7 +29,7 @@ class CategoryMaster
             2 => 'gr',
             3 => 'kg',
             4 => 'lbs',
-            5 => 'oz'
+            5 => 'oz',
         );
     }
 }

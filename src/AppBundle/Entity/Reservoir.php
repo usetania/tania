@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -12,14 +13,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Reservoir
 {
     /**
-     * Many Reservoirs have One Field
+     * Many Reservoirs have One Field.
+     *
      * @ORM\ManyToOne(targetEntity="Field", inversedBy="reservoirs")
      * @ORM\JoinColumn(name="field_id", referencedColumnName="id")
      */
     private $field;
 
     /**
-     * One Reservoir has Many areas
+     * One Reservoir has Many areas.
+     *
      * @ORM\OneToMany(targetEntity="Area", mappedBy="reservoir")
      */
     private $areas;
@@ -67,9 +70,9 @@ class Reservoir
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -77,7 +80,7 @@ class Reservoir
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -91,7 +94,7 @@ class Reservoir
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -101,7 +104,7 @@ class Reservoir
     }
 
     /**
-     * Set capacity
+     * Set capacity.
      *
      * @param string $capacity
      *
@@ -115,7 +118,7 @@ class Reservoir
     }
 
     /**
-     * Get capacity
+     * Get capacity.
      *
      * @return string
      */
@@ -125,7 +128,7 @@ class Reservoir
     }
 
     /**
-     * Set measurementUnit
+     * Set measurementUnit.
      *
      * @param string $measurementUnit
      *
@@ -139,7 +142,7 @@ class Reservoir
     }
 
     /**
-     * Get measurementUnit
+     * Get measurementUnit.
      *
      * @return string
      */
@@ -149,7 +152,7 @@ class Reservoir
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -163,7 +166,7 @@ class Reservoir
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -173,7 +176,7 @@ class Reservoir
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -187,7 +190,7 @@ class Reservoir
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -197,7 +200,7 @@ class Reservoir
     }
 
     /**
-     * Set field
+     * Set field.
      *
      * @param \AppBundle\Entity\Field $field
      *
@@ -211,7 +214,7 @@ class Reservoir
     }
 
     /**
-     * Get field
+     * Get field.
      *
      * @return \AppBundle\Entity\Field
      */
@@ -221,7 +224,7 @@ class Reservoir
     }
 
     /**
-     * Add area
+     * Add area.
      *
      * @param \AppBundle\Entity\Area $area
      *
@@ -235,7 +238,7 @@ class Reservoir
     }
 
     /**
-     * Remove area
+     * Remove area.
      *
      * @param \AppBundle\Entity\Area $area
      */
@@ -245,7 +248,7 @@ class Reservoir
     }
 
     /**
-     * Get areas
+     * Get areas.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

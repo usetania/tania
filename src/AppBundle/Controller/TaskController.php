@@ -1,14 +1,12 @@
 <?php
+
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Task;
 use AppBundle\Form\TaskType;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class TaskController extends Controller
 {
@@ -18,7 +16,7 @@ class TaskController extends Controller
 
         return $this->render('task/index.html.twig', array(
             'tasks' => $tasks,
-            'classActive' => $_route
+            'classActive' => $_route,
         ));
     }
 
@@ -27,10 +25,10 @@ class TaskController extends Controller
         $task = new Task();
 
         $form = $this->createForm(TaskType::class, $task);
-        
+
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
 
             // save to database here
@@ -44,7 +42,7 @@ class TaskController extends Controller
 
         return $this->render('task/create.html.twig', array(
             'form' => $form->createView(),
-            'classActive' => $_route
+            'classActive' => $_route,
         ));
     }
 
@@ -56,7 +54,7 @@ class TaskController extends Controller
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $task = $form->getData();
 
             // save to database here
@@ -69,7 +67,7 @@ class TaskController extends Controller
 
         return $this->render('task/show.html.twig', array(
             'form' => $form->createView(),
-            'classActive' => $_route
+            'classActive' => $_route,
         ));
     }
 }

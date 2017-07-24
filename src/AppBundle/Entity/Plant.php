@@ -1,7 +1,7 @@
 <?php
+
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,7 +17,7 @@ class Plant
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Area", inversedBy="plants")
      * @ORM\JoinColumn(name="area_id", referencedColumnName="id", nullable=FALSE)
@@ -83,7 +83,7 @@ class Plant
     private $createdAt;
 
     /**
-     * Set seedlingDate
+     * Set seedlingDate.
      *
      * @param \DateTime $seedlingDate
      *
@@ -97,7 +97,7 @@ class Plant
     }
 
     /**
-     * Get seedlingDate
+     * Get seedlingDate.
      *
      * @return \Date
      */
@@ -107,9 +107,9 @@ class Plant
     }
 
     /**
-     * Set seedlingAmount
+     * Set seedlingAmount.
      *
-     * @param integer $seedlingAmount
+     * @param int $seedlingAmount
      *
      * @return Plant
      */
@@ -121,9 +121,9 @@ class Plant
     }
 
     /**
-     * Get seedlingAmount
+     * Get seedlingAmount.
      *
-     * @return integer
+     * @return int
      */
     public function getSeedlingAmount()
     {
@@ -131,7 +131,7 @@ class Plant
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -145,7 +145,7 @@ class Plant
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -155,7 +155,7 @@ class Plant
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -169,7 +169,7 @@ class Plant
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -179,7 +179,7 @@ class Plant
     }
 
     /**
-     * Set area
+     * Set area.
      *
      * @param \AppBundle\Entity\Area $area
      *
@@ -193,7 +193,7 @@ class Plant
     }
 
     /**
-     * Get area
+     * Get area.
      *
      * @return \AppBundle\Entity\Area
      */
@@ -203,7 +203,7 @@ class Plant
     }
 
     /**
-     * Set seed
+     * Set seed.
      *
      * @param \AppBundle\Entity\Seed $seed
      *
@@ -217,7 +217,7 @@ class Plant
     }
 
     /**
-     * Get seed
+     * Get seed.
      *
      * @return \AppBundle\Entity\Seed
      */
@@ -227,9 +227,9 @@ class Plant
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -237,9 +237,9 @@ class Plant
     }
 
     /**
-     * Set areaCapacity
+     * Set areaCapacity.
      *
-     * @param integer $areaCapacity
+     * @param int $areaCapacity
      *
      * @return Plant
      */
@@ -251,9 +251,9 @@ class Plant
     }
 
     /**
-     * Get areaCapacity
+     * Get areaCapacity.
      *
-     * @return integer
+     * @return int
      */
     public function getAreaCapacity()
     {
@@ -261,7 +261,7 @@ class Plant
     }
 
     /**
-     * Set harvestingDate
+     * Set harvestingDate.
      *
      * @param \DateTime $harvestingDate
      *
@@ -275,7 +275,7 @@ class Plant
     }
 
     /**
-     * Get harvestingDate
+     * Get harvestingDate.
      *
      * @return \DateTime
      */
@@ -285,7 +285,7 @@ class Plant
     }
 
     /**
-     * Set disposingDate
+     * Set disposingDate.
      *
      * @param \DateTime $disposingDate
      *
@@ -299,7 +299,7 @@ class Plant
     }
 
     /**
-     * Get disposingDate
+     * Get disposingDate.
      *
      * @return \DateTime
      */
@@ -309,7 +309,7 @@ class Plant
     }
 
     /**
-     * Set note
+     * Set note.
      *
      * @param string $note
      *
@@ -323,7 +323,7 @@ class Plant
     }
 
     /**
-     * Get note
+     * Get note.
      *
      * @return string
      */
@@ -333,7 +333,7 @@ class Plant
     }
 
     /**
-     * Set action
+     * Set action.
      *
      * @param string $action
      *
@@ -347,7 +347,7 @@ class Plant
     }
 
     /**
-     * Get action
+     * Get action.
      *
      * @return string
      */

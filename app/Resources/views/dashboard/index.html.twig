@@ -77,7 +77,7 @@
                                 {% for task in tasks %}
                                 <tr>
                                     <td>{{ task.name }}</td>
-                                    <td>{{ task.dueDate }}</td>
+                                    <td>{{ task.dueDate.format('d-m-Y H:i') }}</td>
                                     <td class="text-danger">
                                         <span class="label {% if task.urgencyLevel == 'low' %} label-success {% elseif task.urgencyLevel == 'medium' %} label-warning {% elseif task.urgencyLevel == 'high' %} label-danger {% endif %}">{{ task.urgencyLevel }}</span>
                                     </td>

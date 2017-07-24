@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Form;
 
 use FOS\UserBundle\Util\LegacyFormHelper;

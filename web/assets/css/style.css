@@ -8218,7 +8218,6 @@ canvas {
 */
 .be-wrapper {
   min-height: 100%;
-  padding-top: 61px;
 }
 @media (max-width: 767px) {
   .be-wrapper {

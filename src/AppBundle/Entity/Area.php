@@ -29,12 +29,6 @@ class Area
      */
     private $plants;
 
-    public function __construct()
-    {
-        $this->plants = new ArrayCollection();
-        $this->image = new EmbeddedFile();
-    }
-
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -94,6 +88,12 @@ class Area
      * @Assert\Type("\DateTime")
      */
     private $createdAt;
+
+    public function __construct()
+    {
+        $this->plants = new ArrayCollection();
+        $this->image = new EmbeddedFile();
+    }
 
     /**
      * Get id

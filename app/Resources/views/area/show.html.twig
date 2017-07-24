@@ -47,7 +47,7 @@
                                         <tr>
                                             <td class="icon"><span class="mdi mdi-drink"></span></td>
                                             <td class="item">Nutrient Reservoir</td>
-                                            <td>{{ area.reservoir.name }}</td>
+                                            <td>{% if area.reservoir is not null %}{{ area.reservoir.name }}{% else %}&nbsp;{% endif %}</td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -22,7 +22,9 @@
                         <div class="user-display-bottom">
                             <div class="user-display-info">
                                 <div class="name"><a href="{{ path('areas_show', {'id': area.id}) }}">{{area.name}}</a></div>
-                                <div class="nick">{{ area.reservoir.field.name }}</div>
+                                {% if area.reservoir is not null %}
+                                    <div class="nick">{{ area.reservoir.field.name }}</div>
+                                {% endif %}
                             </div>
                             <div class="row user-display-details">
                                 <div class="col-xs-6">

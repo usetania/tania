@@ -20,7 +20,8 @@ class AreaType extends AbstractType
                 'attr' => array('maxlength' => 50)))
             ->add('reservoir', EntityType::class, array(
                 'class' => 'AppBundle:Reservoir',
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'required' => false,
             ))
             ->add('growingMethod', ChoiceType::class, array(
                 'choices' => array(

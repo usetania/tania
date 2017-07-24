@@ -85,7 +85,7 @@ class Plant
     /**
      * Set seedlingDate
      *
-     * @param \Date $seedlingDate
+     * @param \DateTime $seedlingDate
      *
      * @return Plant
      */

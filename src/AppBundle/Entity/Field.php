@@ -57,7 +57,7 @@ class Field
      * @Assert\File(maxSize="2M")
      * @Vich\UploadableField(mapping="field_image", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName")
      * 
-     * @var File
+     * @var \Vich\UploaderBundle\Entity\File
      */
     private $imageFile;
 

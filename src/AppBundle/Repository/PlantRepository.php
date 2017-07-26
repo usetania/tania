@@ -19,10 +19,13 @@ class PlantRepository extends AbstractRepository
     {
         $qb = $this->getRepository()->createQueryBuilder('p');
 
-        $query = $qb->addSelect('SUM(p.seedlingAmount) AS seedling_total')
-            ->addSelect('SUM(p.areaCapacity) AS area_capacity')
-            ->addSelect('sc.name AS seed_category')
-            ->addSelect('s AS seed')
+        $query = $qb
+            ->select('
+                   SUM(p.seedlingAmount) AS seedling_total,
+                   SUM(p.areaCapacity) AS area_capacity,
+                   sc.name AS seed_category,
+                   s AS seed
+            ')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
             ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')
             ->where('p.area = :area_id')
@@ -41,11 +44,14 @@ class PlantRepository extends AbstractRepository
     {
         $qb = $this->getRepository()->createQueryBuilder('p');
 
-        $query = $qb->addSelect('SUM(p.areaCapacity) AS seedling_total')
-            ->addSelect('p.id AS id')
-            ->addSelect('COUNT(p.area) AS area_count')
-            ->addSelect('sc.name AS seed_category')
-            ->addSelect('s AS seed')
+        $query = $qb
+            ->select('
+                SUM(p.areaCapacity) AS seedling_total,
+                p.id AS id,
+                COUNT(p.area) AS area_count,
+                sc.name AS seed_category,
+                s AS seed
+            ')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
             ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')
             ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')
@@ -65,9 +71,12 @@ class PlantRepository extends AbstractRepository
     {
         $qb = $this->getRepository()->createQueryBuilder('p');
 
-        $query = $qb->addSelect('s.name AS seed_name')
-            ->addSelect('a.name AS area_name')
-            ->addSelect('p.seedlingDate AS seedling_date')
+        $query = $qb
+            ->select('
+                s.name AS seed_name,
+                a.name AS area_name,
+                p.seedlingDate AS seedling_date
+            ')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
             ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')
             ->where('p.action is null')

@@ -18,7 +18,8 @@ class TaskRepository extends AbstractRepository
     {
         $qb = $this->getRepository()->createQueryBuilder('t');
 
-        $query = $qb->select('t')
+        $query = $qb
+            ->select('t')
             ->orderBy('t.dueDate', 'ASC')
             ->where('t.isDone = 0')
             ->setMaxResults(5)

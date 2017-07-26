@@ -1,15 +1,12 @@
 <?php
+
 namespace AppBundle\Form;
 
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class PlantHarvestType extends AbstractType
 {
@@ -18,9 +15,9 @@ class PlantHarvestType extends AbstractType
         $builder
             ->add('action', ChoiceType::class, array(
                 'choices' => array('Harvest' => 'harvest', 'Dispose' => 'dispose'),
-                'expanded' => true
+                'expanded' => true,
             ))
-            ->add('note', TextareaType::class, array('required' => FALSE))
+            ->add('note', TextareaType::class, array('required' => false))
             ->add('save', SubmitType::class, array('label' => 'Update'));
     }
 }

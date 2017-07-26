@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -11,7 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class SeedCategory
 {
     /**
-     * One SeedCategory has Many seeds
+     * One SeedCategory has Many seeds.
+     *
      * @ORM\OneToMany(targetEntity="Seed", mappedBy="seedCategory")
      */
     private $seeds;
@@ -27,24 +29,24 @@ class SeedCategory
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
      */
     private $name;
-    
+
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
      */
     private $slug;
-    
+
     /**
      * @ORM\Column(type="text", nullable=TRUE)
      */
     private $description;
-    
+
     /**
      * @ORM\Column(type="datetime", nullable=TRUE)
      * @Assert\Type("\DateTime")
@@ -58,9 +60,9 @@ class SeedCategory
     private $createdAt;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -68,7 +70,7 @@ class SeedCategory
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -82,7 +84,7 @@ class SeedCategory
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -92,7 +94,7 @@ class SeedCategory
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
      *
@@ -106,7 +108,7 @@ class SeedCategory
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
      * @return string
      */
@@ -116,7 +118,7 @@ class SeedCategory
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      *
@@ -130,7 +132,7 @@ class SeedCategory
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -140,7 +142,7 @@ class SeedCategory
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -154,7 +156,7 @@ class SeedCategory
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -164,7 +166,7 @@ class SeedCategory
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -178,7 +180,7 @@ class SeedCategory
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -188,7 +190,7 @@ class SeedCategory
     }
 
     /**
-     * Add seed
+     * Add seed.
      *
      * @param \AppBundle\Entity\Seed $seed
      *
@@ -202,7 +204,7 @@ class SeedCategory
     }
 
     /**
-     * Remove seed
+     * Remove seed.
      *
      * @param \AppBundle\Entity\Seed $seed
      */
@@ -212,7 +214,7 @@ class SeedCategory
     }
 
     /**
-     * Get seeds
+     * Get seeds.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

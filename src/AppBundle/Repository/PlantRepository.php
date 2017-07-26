@@ -35,6 +35,29 @@ class PlantRepository extends AbstractRepository
     }
 
     /**
+     * @return Plant[]
+     */
+    public function findAllPlants()
+    {
+        $qb = $this->getRepository()->createQueryBuilder('p');
+
+        $query = $qb->addSelect('SUM(p.areaCapacity) AS seedling_total')
+            ->addSelect('p.id AS id')
+            ->addSelect('COUNT(p.area) AS area_count')
+            ->addSelect('sc.name AS seed_category')
+            ->addSelect('s AS seed')
+            ->from('AppBundle:Plant', 'p')
+            ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
+            ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')
+            ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')
+            ->groupBy('p.seed')
+            ->getQuery()
+        ;
+
+        return $query->getResult();
+    }
+
+    /**
      * @param int $limit
      *
      * @return Plant[]

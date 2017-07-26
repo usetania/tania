@@ -14,19 +14,7 @@ class PlantController extends Controller
 {
     public function indexAction(EntityManagerInterface $em, $_route)
     {
-        $qb = $em->createQueryBuilder('p');
-        $plantQ = $qb->addSelect('SUM(p.areaCapacity) AS seedling_total')
-            ->addSelect('p.id AS id')
-            ->addSelect('COUNT(p.area) AS area_count')
-            ->addSelect('sc.name AS seed_category')
-            ->addSelect('s AS seed')
-            ->from('AppBundle:Plant', 'p')
-            ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
-            ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')
-            ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')
-            ->groupBy('p.seed')
-            ->getQuery();
-        $plants = $plantQ->getResult();
+        $plants = $this->container->get('app.repository.plant_repository')->findAllPlants();
 
         return $this->render('plant/index.html.twig', array(
             'plants' => $plants,

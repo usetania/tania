@@ -79,12 +79,8 @@ class PlantController extends Controller
     public function showAction($id, EntityManagerInterface $em, Request $request, $_route)
     {
         $plants = $em->getRepository('AppBundle:Plant')->findBy(array('seed' => $id));
-
-        $plantsWithMeasurementAndDaysAgo = array_map(function ($plant) {
-            // translate the measurement
-            $unit = CategoryMaster::areaUnits()[$plant->getArea()->getMeasurementUnit()];
-            $plant->getArea()->setMeasurementUnit($unit);
-
+        
+        $plantsWithMeasurementAndDaysAgo = array_map(function($plant) {
             // translate the date time object to "days ago" string
             $seedlingDate = date_create($plant->getSeedlingDate()->format('Y-m-d'));
             $currentDate = date_create(date('Y-m-d'));

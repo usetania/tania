@@ -46,7 +46,6 @@ class PlantRepository extends AbstractRepository
             ->addSelect('COUNT(p.area) AS area_count')
             ->addSelect('sc.name AS seed_category')
             ->addSelect('s AS seed')
-            ->from('AppBundle:Plant', 'p')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
             ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')
             ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')

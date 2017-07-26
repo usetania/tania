@@ -1,11 +1,12 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -18,7 +19,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Field
 {
     /**
-     * One Field has Many Reservoirs
+     * One Field has Many Reservoirs.
+     *
      * @ORM\OneToMany(targetEntity="Reservoir", mappedBy="field")
      */
     private $reservoirs;
@@ -56,8 +58,8 @@ class Field
      *
      * @Assert\File(maxSize="2M")
      * @Vich\UploadableField(mapping="field_image", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName")
-     * 
-     * @var File
+     *
+     * @var \Vich\UploaderBundle\Entity\File
      */
     private $imageFile;
 
@@ -87,9 +89,9 @@ class Field
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -97,7 +99,7 @@ class Field
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -111,7 +113,7 @@ class Field
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -121,7 +123,7 @@ class Field
     }
 
     /**
-     * Set lat
+     * Set lat.
      *
      * @param string $lat
      *
@@ -135,7 +137,7 @@ class Field
     }
 
     /**
-     * Get lat
+     * Get lat.
      *
      * @return string
      */
@@ -145,7 +147,7 @@ class Field
     }
 
     /**
-     * Set lng
+     * Set lng.
      *
      * @param string $lng
      *
@@ -159,7 +161,7 @@ class Field
     }
 
     /**
-     * Get lng
+     * Get lng.
      *
      * @return string
      */
@@ -169,7 +171,7 @@ class Field
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
      *
@@ -183,7 +185,7 @@ class Field
     }
 
     /**
-     * Get description
+     * Get description.
      *
      * @return string
      */
@@ -193,7 +195,7 @@ class Field
     }
 
     /**
-     * Set updated datetime
+     * Set updated datetime.
      *
      * @param string $updatedAt
      *
@@ -207,7 +209,7 @@ class Field
     }
 
     /**
-     * Get updated datetime
+     * Get updated datetime.
      *
      * @return string
      */
@@ -217,7 +219,7 @@ class Field
     }
 
     /**
-     * Set created datetime
+     * Set created datetime.
      *
      * @param string $createdAt
      *
@@ -231,7 +233,7 @@ class Field
     }
 
     /**
-     * Get created datetime
+     * Get created datetime.
      *
      * @return string
      */
@@ -241,7 +243,7 @@ class Field
     }
 
     /**
-     * Add reservoir
+     * Add reservoir.
      *
      * @param \AppBundle\Entity\Reservoir $reservoir
      *
@@ -255,7 +257,7 @@ class Field
     }
 
     /**
-     * Remove reservoir
+     * Remove reservoir.
      *
      * @param \AppBundle\Entity\Reservoir $reservoir
      */
@@ -265,7 +267,7 @@ class Field
     }
 
     /**
-     * Get reservoirs
+     * Get reservoirs.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -320,16 +322,17 @@ class Field
 
     /**
      * @Assert\Callback
+     *
      * @param ExecutionContextInterface $context
      */
     public function validate(ExecutionContextInterface $context, $payload)
     {
         // check only when not null
-        if($this->imageFile != null) {
+        if ($this->imageFile != null) {
             if (!in_array($this->imageFile->getMimeType(), array(
                 'image/jpeg',
                 'image/gif',
-                'image/png'
+                'image/png',
             ))) {
                 $context
                     ->buildViolation('Wrong file type (only jpg,gif,png allowed)')

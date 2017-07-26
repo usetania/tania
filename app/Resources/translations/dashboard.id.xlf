@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="overview">
+                <source>Overview</source>
+                <target>Ikhtisar</target>
+            </trans-unit>
+            <trans-unit id="farms">
+                <source>Farms</source>
+                <target>Kebun</target>
+            </trans-unit>
+            <trans-unit id="see_more_details">
+                <source>See more details</source>
+                <target>Lihat perincian</target>
+            </trans-unit>
+            <trans-unit id="current_seedling">
+                <source>Current Seedling</source>
+                <target>Penanaman Saat Ini</target>
+            </trans-unit>
+            <trans-unit id="seed_name">
+                <source>Seed Name</source>
+                <target>Nama Tanaman</target>
+            </trans-unit>
+            <trans-unit id="area">
+                <source>Area</source>
+                <target>Area</target>
+            </trans-unit>
+            <trans-unit id="age_days">
+                <source>Age (days)</source>
+                <target>Umur (hari)</target>
+            </trans-unit>
+            <trans-unit id="tasks_list">
+                <source>Tasks List</source>
+                <target>Seranai Tugas</target>
+            </trans-unit>
+            <trans-unit id="due_date">
+                <source>Due Date</source>
+                <target>Jatuh Tempo</target>
+            </trans-unit>
+            <trans-unit id="see_all">
+                <source>See all</source>
+                <target>Lihat semua</target>
+            </trans-unit>
+            <trans-unit id="status">
+                <source>Status</source>
+                <target>Status</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

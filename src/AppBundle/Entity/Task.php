@@ -1,7 +1,7 @@
 <?php
+
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -17,7 +17,7 @@ class Task
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
@@ -34,7 +34,7 @@ class Task
      * @Assert\NotBlank()
      */
     private $category;
-    
+
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Type("\DateTime")
@@ -66,9 +66,9 @@ class Task
     private $createdAt;
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -76,7 +76,7 @@ class Task
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -90,7 +90,7 @@ class Task
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -100,7 +100,7 @@ class Task
     }
 
     /**
-     * Set notes
+     * Set notes.
      *
      * @param string $notes
      *
@@ -114,7 +114,7 @@ class Task
     }
 
     /**
-     * Get notes
+     * Get notes.
      *
      * @return string
      */
@@ -124,9 +124,9 @@ class Task
     }
 
     /**
-     * Set category
+     * Set category.
      *
-     * @param integer $category
+     * @param int $category
      *
      * @return Task
      */
@@ -138,9 +138,9 @@ class Task
     }
 
     /**
-     * Get category
+     * Get category.
      *
-     * @return integer
+     * @return int
      */
     public function getCategory()
     {
@@ -148,7 +148,7 @@ class Task
     }
 
     /**
-     * Set dueDate
+     * Set dueDate.
      *
      * @param \DateTime $dueDate
      *
@@ -162,7 +162,7 @@ class Task
     }
 
     /**
-     * Get dueDate
+     * Get dueDate.
      *
      * @return \DateTime
      */
@@ -172,7 +172,7 @@ class Task
     }
 
     /**
-     * Set urgencyLevel
+     * Set urgencyLevel.
      *
      * @param string $urgencyLevel
      *
@@ -186,7 +186,7 @@ class Task
     }
 
     /**
-     * Get urgencyLevel
+     * Get urgencyLevel.
      *
      * @return string
      */
@@ -196,7 +196,7 @@ class Task
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -210,7 +210,7 @@ class Task
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -220,7 +220,7 @@ class Task
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -234,7 +234,7 @@ class Task
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -244,9 +244,9 @@ class Task
     }
 
     /**
-     * Set isDone
+     * Set isDone.
      *
-     * @param integer $isDone
+     * @param int $isDone
      *
      * @return Task
      */
@@ -258,9 +258,9 @@ class Task
     }
 
     /**
-     * Get isDone
+     * Get isDone.
      *
-     * @return integer
+     * @return int
      */
     public function getIsDone()
     {

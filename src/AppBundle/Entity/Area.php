@@ -1,11 +1,12 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -18,7 +19,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Area
 {
     /**
-     * Many Areas have One Reservoirs
+     * Many Areas have One Reservoirs.
+     *
      * @ORM\ManyToOne(targetEntity="Reservoir", inversedBy="areas")
      * @ORM\JoinColumn(name="reservoir_id", referencedColumnName="id")
      */
@@ -29,25 +31,19 @@ class Area
      */
     private $plants;
 
-    public function __construct()
-    {
-        $this->plants = new ArrayCollection();
-        $this->image = new EmbeddedFile();
-    }
-
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
      */
     private $name;
-    
+
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
@@ -59,7 +55,7 @@ class Area
      * @Assert\NotBlank()
      */
     private $capacity;
-    
+
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
@@ -68,10 +64,10 @@ class Area
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     * 
+     *
      * @Assert\File(maxSize="2M")
      * @Vich\UploadableField(mapping="area_image", fileNameProperty="image.name", size="image.size", mimeType="image.mimeType", originalName="image.originalName")
-     * 
+     *
      * @var File
      */
     private $imageFile;
@@ -95,10 +91,16 @@ class Area
      */
     private $createdAt;
 
+    public function __construct()
+    {
+        $this->plants = new ArrayCollection();
+        $this->image = new EmbeddedFile();
+    }
+
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -106,7 +108,7 @@ class Area
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -120,7 +122,7 @@ class Area
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -130,9 +132,9 @@ class Area
     }
 
     /**
-     * Set growingMethod
+     * Set growingMethod.
      *
-     * @param integer $growingMethod
+     * @param int $growingMethod
      *
      * @return Area
      */
@@ -144,9 +146,9 @@ class Area
     }
 
     /**
-     * Get growingMethod
+     * Get growingMethod.
      *
-     * @return integer
+     * @return int
      */
     public function getGrowingMethod()
     {
@@ -154,9 +156,9 @@ class Area
     }
 
     /**
-     * Set capacity
+     * Set capacity.
      *
-     * @param integer $capacity
+     * @param int $capacity
      *
      * @return Area
      */
@@ -168,9 +170,9 @@ class Area
     }
 
     /**
-     * Get capacity
+     * Get capacity.
      *
-     * @return integer
+     * @return int
      */
     public function getCapacity()
     {
@@ -178,9 +180,9 @@ class Area
     }
 
     /**
-     * Set measurementUnit
+     * Set measurementUnit.
      *
-     * @param integer $measurementUnit
+     * @param int $measurementUnit
      *
      * @return Area
      */
@@ -192,9 +194,9 @@ class Area
     }
 
     /**
-     * Get measurementUnit
+     * Get measurementUnit.
      *
-     * @return integer
+     * @return int
      */
     public function getMeasurementUnit()
     {
@@ -202,7 +204,7 @@ class Area
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -216,7 +218,7 @@ class Area
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -226,7 +228,7 @@ class Area
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -240,7 +242,7 @@ class Area
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -250,7 +252,7 @@ class Area
     }
 
     /**
-     * Set reservoir
+     * Set reservoir.
      *
      * @param \AppBundle\Entity\Reservoir $reservoir
      *
@@ -264,7 +266,7 @@ class Area
     }
 
     /**
-     * Get reservoir
+     * Get reservoir.
      *
      * @return \AppBundle\Entity\Reservoir
      */
@@ -274,7 +276,7 @@ class Area
     }
 
     /**
-     * Add plant
+     * Add plant.
      *
      * @param \AppBundle\Entity\Plant $plant
      *
@@ -288,7 +290,7 @@ class Area
     }
 
     /**
-     * Remove plant
+     * Remove plant.
      *
      * @param \AppBundle\Entity\Plant $plant
      */
@@ -298,7 +300,7 @@ class Area
     }
 
     /**
-     * Get plants
+     * Get plants.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -353,16 +355,17 @@ class Area
 
     /**
      * @Assert\Callback
+     *
      * @param ExecutionContextInterface $context
      */
     public function validate(ExecutionContextInterface $context, $payload)
     {
         // check only when not null
-        if($this->imageFile != null) {
-            if (! in_array($this->imageFile->getMimeType(), array(
+        if ($this->imageFile != null) {
+            if (!in_array($this->imageFile->getMimeType(), array(
                 'image/jpeg',
                 'image/gif',
-                'image/png'
+                'image/png',
             ))) {
                 $context
                     ->buildViolation('Wrong file type (only jpg,gif,png allowed)')

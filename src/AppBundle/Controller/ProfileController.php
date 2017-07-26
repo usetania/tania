@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Controller;
 
 use FOS\UserBundle\Controller\ProfileController as BaseController;
@@ -9,11 +10,9 @@ use FOS\UserBundle\Form\Factory\FactoryInterface;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Model\UserInterface;
 use FOS\UserBundle\Model\UserManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class ProfileController extends BaseController
@@ -64,7 +63,7 @@ class ProfileController extends BaseController
 
         return $this->render('@FOSUser/Profile/edit.html.twig', array(
             'form' => $form->createView(),
-            'classActive' => 'fos_user_profile_edit'
+            'classActive' => 'fos_user_profile_edit',
         ));
     }
 }

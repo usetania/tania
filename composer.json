@@ -33,11 +33,13 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.3.*",
+        "symfony/translation": "^3.3",
         "symfony/var-dumper": "^3.3",
         "twig/twig": "^1.0||^2.0",
         "vich/uploader-bundle": "^1.4"
     },
     "require-dev": {
+        "behat/behat": "^3.3",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^3.0"
     },
@@ -70,6 +72,6 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         },
-        "branch-alias": null
+        "branch-alias": "NULL"
     }
 }

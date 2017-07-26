@@ -33,6 +33,7 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.3.*",
+        "symfony/translation": "^3.3",
         "symfony/var-dumper": "^3.3",
         "twig/twig": "^1.0||^2.0",
         "vich/uploader-bundle": "^1.4"

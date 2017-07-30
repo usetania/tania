@@ -1,0 +1,28 @@
+language: php
+
+sudo: false
+
+cache:
+    directories:
+        - vendor
+        - $HOME/.composer/cache/files
+
+matrix:
+    include:
+        - php: 7.0
+        - php: 7.1
+        - php: nightly
+    fast_finish: true
+
+before_install:
+    - phpenv config-rm xdebug.ini
+
+install:
+    - travis_retry composer install
+
+script: |
+    if [[ $TRAVIS_PHP_VERSION = 7.* || $TRAVIS_PHP_VERSION = nightly ]]; then
+        SYMFONY_PHPUNIT_VERSION=6.1 ./vendor/bin/simple-phpunit
+    else
+        ./vendor/bin/simple-phpunit
+    fi

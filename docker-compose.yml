@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mairoot
+      MYSQL_DATABASE: tania 
+      MYSQL_USER: tania
+      MYSQL_PASSWORD: taniapass
+
+  php:
+    build: .
+    depends_on:
+      - db
+    env_file:
+      - tania-env.list
+
+  nginx:
+    build: docker/nginx
+    volumes_from:
+      - php
+    depends_on:
+      - php
+    ports:
+      - 80:80

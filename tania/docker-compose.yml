@@ -1,0 +1,26 @@
+version: "2"
+
+services: 
+  php:
+    image: php:fpm
+    volumes:
+        - ./:/tania
+    networks:
+        - code-network
+  web:
+    image: "nginx:latest"
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/tania
+      - ./conf/site.conf:/etc/nginx/conf.d/site.conf
+    links:
+      - php
+    depends_on:
+      - php
+
+networks:
+    code-network:
+        driver: bridge
+
+    

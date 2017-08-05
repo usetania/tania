@@ -34,3 +34,18 @@
 /web/uploads/seeds/*.JPG
 /web/uploads/seeds/*.GIF
 /web/vendor/*
+# Swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+
+# Session
+Session.vim
+
+# Temporary
+.netrwhist
+*~
+# Auto-generated tag files
+tags
+.DS_Store

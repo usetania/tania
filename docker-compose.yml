@@ -3,25 +3,24 @@ version: '2'
 services:
   db:
     image: mysql
-    volumes:
-      - "./.data/db:/var/lib/mysql"
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: mairoot
+      MYSQL_DATABASE: tania 
+      MYSQL_USER: tania
+      MYSQL_PASSWORD: taniapass
 
   php:
-    build: docker/php7-fpm
-    volumes:
-      - ./tania:/var/www/symfony
-      - ./logs/symfony:/var/www/symfony/app/logs
+    build: .
+    depends_on:
+      - db
+    env_file:
+      - tania-env.list
 
   nginx:
     build: docker/nginx
+    depends_on:
+      - php
     ports:
       - 80:80
-    volumes_from:
-      - php
     volumes:
       - ./logs/nginx/:/var/log/nginx

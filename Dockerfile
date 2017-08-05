@@ -43,3 +43,9 @@ WORKDIR /var/www/symfony
 ADD tania /var/www/symfony
 RUN /setup.sh  
 RUN apk del git unzip build-base autoconf
+
+EXPOSE 9000
+
+ADD /scripts/docker-entrypoint.sh /
+ENTRYPOINT "/docker-entrypoint.sh"
+

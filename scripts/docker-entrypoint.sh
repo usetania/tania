@@ -17,6 +17,8 @@ fi
 echo "Generated parameters:"
 cat $PARAMFILE 
 
+sleep 15
+
 php bin/console --no-interaction doctrine:migrations:migrate
 
 touch /tania-setup.lock

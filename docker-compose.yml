@@ -18,9 +18,9 @@ services:
 
   nginx:
     build: docker/nginx
+    volumes_from:
+      - php
     depends_on:
       - php
     ports:
       - 80:80
-    volumes:
-      - ./logs/nginx/:/var/log/nginx

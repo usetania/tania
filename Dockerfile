@@ -47,5 +47,6 @@ RUN apk del git unzip build-base autoconf
 EXPOSE 9000
 
 ADD /scripts/docker-entrypoint.sh /
+VOLUME /var/www/symfony
 ENTRYPOINT "/docker-entrypoint.sh"
 

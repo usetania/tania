@@ -15,6 +15,7 @@ RUN echo "upstream php-upstream { server php:9000; }" > /etc/nginx/conf.d/upstre
 
 RUN usermod -u 1000 www-data
 
+
 CMD ["nginx"]
 
 EXPOSE 80

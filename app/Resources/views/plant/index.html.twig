@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
     {% include 'navbar.html.twig' %} 
     {% include 'sidebar.html.twig' %}
 
     <div class="be-content">
         <div class="page-head">
-            <a href="{{ path('plants_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-flower-alt"></span> Add plant</a>
-            <h2 class="page-head-title">Plant Varieties</h2>
+            <a href="{{ path('plants_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-flower-alt"></span> {% trans %}Add plant{% endtrans %}</a>
+            <h2 class="page-head-title">{% trans %}Plant Varieties{% endtrans %}</h2>
         </div>
         
         <div class="main-content container-fluid">
@@ -26,11 +27,11 @@
                             </div>
                             <div class="row user-display-details">
                                 <div class="col-xs-5">
-                                    <div class="title">Amount</div>
+                                    <div class="title">{% trans %}Amount{% endtrans %}</div>
                                     <div class="counter">{{ plant['seedling_total'] }}</div>
                                 </div>
                                 <div class="col-xs-7">
-                                    <div class="title">Total Seedling Area</div>
+                                    <div class="title">{% trans %}Total Seedling Area{% endtrans %}</div>
                                     <div class="counter">{{ plant['area_count'] }}</div>
                                 </div>
                             </div>

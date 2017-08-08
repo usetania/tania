@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
     {% include 'navbar.html.twig' %} 
     {% include 'sidebar.html.twig' %}
 
     <div class="be-content">
         <div class="page-head">
-            <h2 class="page-head-title">Add New Area</h2>
+            <h2 class="page-head-title">{% trans %}Add New Area{% endtrans %}</h2>
         </div>
         <div class="main-content container-fluid">
             <div class="row">
@@ -53,7 +54,7 @@
                                 <div class="row">
                                     <div class="col-md-12 text-center">
                                         {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
-                                        <a href="{{ path('areas') }}" class="btn btn-default btn-lg">Cancel</a>
+                                        <a href="{{ path('areas') }}" class="btn btn-default btn-lg">{% trans %}Cancel{% endtrans %}</a>
                                     </div>
                                 </div>
                             {{ form_end(form) }}

@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
     {% include 'navbar.html.twig' %} 
     {% include 'sidebar.html.twig' %}
 
     <div class="be-content">
         <div class="page-head">
-            <a href="{{ path('areas_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-layers"></span> Add Area</a>
-            <h2 class="page-head-title">All Areas</h2>
+            <a href="{{ path('areas_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-layers"></span> {% trans %}Add Area{% endtrans %}</a>
+            <h2 class="page-head-title">{% trans %}All Areas{% endtrans %}</h2>
         </div>
         <div class="main-content container-fluid">
             <div class="row">
@@ -28,13 +29,13 @@
                             </div>
                             <div class="row user-display-details">
                                 <div class="col-xs-6">
-                                    <div class="title">System</div>
+                                    <div class="title">{% trans %}System{% endtrans %}</div>
                                     <div class="counter">
                                         {{ growingMethods[index] }}
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
-                                    <div class="title">Capacity</div>
+                                    <div class="title">{% trans %}Capacity{% endtrans %}</div>
                                     <div class="counter">
                                         {{ area.capacity }}&nbsp;{{ measurementUnits[index] }}
                                     </div>

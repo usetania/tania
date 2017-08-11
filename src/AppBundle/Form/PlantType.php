@@ -38,6 +38,8 @@ class PlantType extends AbstractType
 
                     return $area->getName().' (Capacities: '.$areaLeft.' '.$unit.' remaining)';
                 },
+                'label' => 'Area',
+                'translation_domain' => 'dashboard'
             ))
             ->add('seed', EntityType::class, array(
                 'class' => 'AppBundle:Seed',
@@ -54,12 +56,24 @@ class PlantType extends AbstractType
 
                     return $seed->getName().' (Quantities: '.$seedLeft.' '.$unit.' remaining)';
                 },
+                'label' => 'Seed',
+                'translation_domain' => 'dashboard'
             ))
             ->add('seedlingDate', DateType::class, array(
                 'years' => range(date('Y'), date('Y') - 1),
+                'label' => 'Seedling date',
+                'translation_domain' => 'dashboard'
             ))
-            ->add('seedlingAmount', IntegerType::class)
-            ->add('areaCapacity', IntegerType::class)
-            ->add('save', SubmitType::class, array('label' => 'Save'));
+            ->add('seedlingAmount', IntegerType::class, array(
+                'label' => 'Seedling amount',
+                'translation_domain' => 'dashboard'
+            ))
+            ->add('areaCapacity', IntegerType::class, array(
+                'label' => 'Area capacity',
+                'translation_domain' => 'dashboard'
+            ))
+            ->add('save', SubmitType::class, array(
+                'label' => 'Save',
+                'translation_domain' => 'dashboard'));
     }
 }

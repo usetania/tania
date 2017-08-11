@@ -16,8 +16,15 @@ class PlantHarvestType extends AbstractType
             ->add('action', ChoiceType::class, array(
                 'choices' => array('Harvest' => 'harvest', 'Dispose' => 'dispose'),
                 'expanded' => true,
+                'label' => 'Action',
+                'translation_domain' => 'dashboard'
             ))
-            ->add('note', TextareaType::class, array('required' => false))
-            ->add('save', SubmitType::class, array('label' => 'Update'));
+            ->add('note', TextareaType::class, array(
+                'required' => false,
+                'label' => 'Note',
+                'translation_domain' => 'dashboard'))
+            ->add('save', SubmitType::class, array(
+                'label' => 'Update',
+                'translation_domain' => 'dashboard'));
     }
 }

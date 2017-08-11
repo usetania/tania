@@ -66,10 +66,6 @@
                 <source>Farm Management</source>
                 <target>Manajemen Kebun</target>
             </trans-unit>
-            <trans-unit id="farms">
-                <source>Farms</source>
-                <target>Kebun</target>
-            </trans-unit>
             <trans-unit id="reservoirs">
                 <source>Reservoirs</source>
                 <target>Penampungan Air</target>
@@ -106,10 +102,6 @@
                 <source>Logout</source>
                 <target>Keluar</target>
             </trans-unit>
-            <trans-unit id="reservoirs">
-                <source>Reservoirs</source>
-                <target>Penampungan Air</target>
-            </trans-unit>
             <trans-unit id="you_have">
                 <source>You have</source>
                 <target>Anda memiliki</target>
@@ -138,9 +130,17 @@
                 <source>Add Reservoir</source>
                 <target>Tambah Penampungan Air</target>
             </trans-unit>
-            <trans-unit id="areas">
-                <source>areas</source>
-                <target>area</target>
+            <trans-unit id="sign_in_to_start_working">
+                <source>Sign In to start working.</source>
+                <target>Masuk untuk mulai bekerja.</target>
+            </trans-unit>
+            <trans-unit id="reservoir">
+                <source>Reservoir</source>
+                <target>Penampungan Air</target>
+            </trans-unit>
+            <trans-unit id="growing_method">
+                <source>Growing method</source>
+                <target>Metode tanam</target>
             </trans-unit>
         </body>
     </file>

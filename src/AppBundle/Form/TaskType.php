@@ -15,8 +15,15 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
-            ->add('notes', TextareaType::class, array('required' => false))
+            ->add('name', TextType::class, array(
+                'label' => 'Name',
+                'translation_domain' => 'dashboard'
+            ))
+            ->add('notes', TextareaType::class, array(
+                'required' => false,
+                'label' => 'Note',
+                'translation_domain' => 'dashboard'
+            ))
             ->add('category', ChoiceType::class, array(
                 'choices' => array(
                     'Area' => 'area',
@@ -24,11 +31,15 @@ class TaskType extends AbstractType
                     'Seed' => 'seed',
                     'Reservoir' => 'reservoir',
                 ),
+                'label' => 'Category',
+                'translation_domain' => 'dashboard'
             ))
             ->add('dueDate', DateTimeType::class, array(
                 'years' => range(date('Y'), date('Y') + 1),
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd hh:mm',
+                'label' => 'Due date',
+                'translation_domain' => 'dashboard'
             ))
             ->add('urgencyLevel', ChoiceType::class, array(
                 'choices' => array(
@@ -36,13 +47,20 @@ class TaskType extends AbstractType
                     'Medium' => 'medium',
                     'High' => 'high',
                 ),
+                'label' => 'Level of urgency',
+                'translation_domain' => 'dashboard'
             ))
             ->add('isDone', ChoiceType::class, array(
                 'choices' => array(
                     'No' => 0,
                     'Yes' => 1,
                 ),
+                'label' => 'Is it done?',
+                'translation_domain' => 'dashboard'
             ))
-            ->add('save', SubmitType::class, array('label' => 'Save'));
+            ->add('save', SubmitType::class, array(
+                'label' => 'Save',
+                'translation_domain' => 'dashboard'
+            ));
     }
 }

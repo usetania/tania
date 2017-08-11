@@ -35,12 +35,20 @@ class SeedType extends AbstractType
         }, array());
 
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, array(
+                'label' => 'Name',
+                'translation_domain' => 'dashboard'
+            ))
             ->add('seedCategory', EntityType::class, array(
                 'class' => 'AppBundle:SeedCategory',
                 'choice_label' => 'name',
+                'label' => 'Seed category',
+                'translation_domain' => 'dashboard'
             ))
-            ->add('quantity', IntegerType::class)
+            ->add('quantity', IntegerType::class, array(
+                'label' => 'Quantity',
+                'translation_domain' => 'dashboard'
+            ))
             ->add('measurementUnit', ChoiceType::class, array(
                 'choices' => array(
                     'Seeds' => 1,
@@ -49,12 +57,23 @@ class SeedType extends AbstractType
                     'Lbs' => 4,
                     'Oz' => 5,
                 ),
+                'label' => 'Measurement unit',
+                'translation_domain' => 'dashboard'
             ))
-            ->add('producerName', TextType::class)
+            ->add('producerName', TextType::class, array(
+                'label' => 'Producer name',
+                'translation_domain' => 'dashboard'
+            ))
             ->add('originCountry', ChoiceType::class, array(
                 'choices' => $countryArray,
+                'label' => 'Country of origin',
+                'translation_domain' => 'dashboard'
             ))
-            ->add('note', TextareaType::class, array('required' => false))
+            ->add('note', TextareaType::class, array(
+                'required' => false,
+                'label' => 'Note',
+                'translation_domain' => 'dashboard'
+            ))
             ->add('expirationMonth', ChoiceType::class, array(
                 'choices' => array(
                     'January' => 'January',
@@ -70,17 +89,30 @@ class SeedType extends AbstractType
                     'November' => 'November',
                     'December' => 'December',
                 ),
+                'label' => 'Expiration month',
+                'translation_domain' => 'dashboard'
             ))
             ->add('expirationYear', ChoiceType::class, array(
                 'choices' => $yearChoice,
+                'label' => 'Expiration year',
+                'translation_domain' => 'dashboard'
             ))
-            ->add('germinationRate', NumberType::class, array('scale' => 2))
+            ->add('germinationRate', NumberType::class, array(
+                'scale' => 2,
+                'label' => 'Germination rate',
+                'translation_domain' => 'dashboard'
+            ))
             ->add('imageFile', VichImageType::class, array(
                 'required' => false,
                 'allow_delete' => true,
                 'image_uri' => true,
                 'download_uri' => true,
+                'label' => 'Image file',
+                'translation_domain' => 'dashboard'
             ))
-            ->add('save', SubmitType::class, array('label' => 'Save'));
+            ->add('save', SubmitType::class, array(
+                'label' => 'Save',
+                'translation_domain' => 'dashboard'
+            ));
     }
 }

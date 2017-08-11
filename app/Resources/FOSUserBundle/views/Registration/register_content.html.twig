@@ -6,12 +6,12 @@
             <div class="row tania">
                 <div class="col-md-6 col-xs-12">
                     <img src="{{ asset('assets/img/tania.png') }}" class="tania-img">
-                    <h2>MANAGE FARMS EASIER &amp; SMARTER</h2>
-                    <p>This impressive and modern farm management application will help you to manage the operations of your farm in a more intuitive, collaborative, and efficient way.</p>
+                    <h2>{% trans from "dashboard" %}MANAGE FARMS EASIER &amp; SMARTER{% endtrans %}</h2>
+                    <p>{% trans from "dashboard" %}This impressive and modern farm management application will help you to manage the operations of your farm in a more intuitive, collaborative, and efficient way.{% endtrans %}</p>
                 </div>
                 <div class="col-md-6 col-xs-12 loginform">
                     {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-                        <span class="splash-title xs-pb-20">Register New User</span>
+                        <span class="splash-title xs-pb-20">{% trans from "dashboard" %}Register New User{% endtrans %}</span>
                         <div class="form-group">
                             {{ form_label(form.email, 'Email') }}
                             {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="tania-footer">&copy; 2017 Tania. Build for the ♥︎ of plants.</div>
+                <div class="tania-footer">&copy; 2017 Tania. {% trans from "dashboard" %}Build for the ♥︎ of plants.{% endtrans %}</div>
             </div>
         </div>
     </div>

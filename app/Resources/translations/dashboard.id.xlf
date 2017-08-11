@@ -142,6 +142,22 @@
                 <source>Growing method</source>
                 <target>Metode tanam</target>
             </trans-unit>
+            <trans-unit id="measurement_unit">
+                <source>Measurement unit</source>
+                <target>Satuan pengukuran</target>
+            </trans-unit>
+            <trans-unit id="image_file">
+                <source>Image file</source>
+                <target>Berkas gambar</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>Save</source>
+                <target>Simpan</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>Cancel</source>
+                <target>Batal</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -37,7 +37,7 @@ class Task
 
     /**
      * @ORM\Column(type="datetime")
-     * @Assert\Type("\DateTime")
+     * @Assert\DateTime(format="Y-m-d H:i")
      */
     private $dueDate;
 

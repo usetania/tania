@@ -38,7 +38,10 @@ class AreaType extends AbstractType
                 'label' => 'Growing method',
                 'translation_domain' => 'dashboard'
             ))
-            ->add('capacity', IntegerType::class)
+            ->add('capacity', IntegerType::class, array(
+                'label' => 'Capacity',
+                'translation_domain' => 'dashboard'
+            ))
             ->add('measurementUnit', ChoiceType::class, array(
                 'choices' => array(
                     CategoryMaster::areaUnits()[1] => 1,

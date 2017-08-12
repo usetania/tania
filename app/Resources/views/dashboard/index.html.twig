@@ -23,7 +23,11 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <div id="map" style="height: 400px" data-locations="{{ farmLocations }}"></div>
+                        {% if farms is not empty %}
+                        <div id="map" style="height: 400px" data-locations="{{ farmsJSON }}"></div>
+                        {% else %}
+                        <p>{% trans %}You don't have any farms. Please{% endtrans %}, <a href="{{ path('fields_create') }}">{% trans %}create one{% endtrans %}</a>.</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>

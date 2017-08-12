@@ -153,3 +153,8 @@
 	height: 40px;
 	margin-top: 8px;
 }
+
+/* panel */
+.panel-body p {
+	padding: 8px 20px 20px;
+}

@@ -1,0 +1,63 @@
+version: '2.2'
+
+services:
+  app:
+    build:
+      dockerfile: docker/app/Dockerfile
+      context: .
+    environment:
+      COMPOSER_ALLOW_SUPERUSER: 1
+      SYMFONY_ENV: dev
+      SYMFONY_LOCALE: en
+      SYMFONY_DB_HOST: mysql
+      SYMFONY_DB_PORT: 3306
+      SYMFONY_DB_NAME: tania
+      SYMFONY_DB_USERNAME: tania
+      SYMFONY_DB_PASSWORD: tania
+      SYMFONY_MAILER_TRANSPORT: smtp
+      SYMFONY_MAILER_HOST: ~
+      SYMFONY_MAILER_PORT: ~
+      SYMFONY_MAILER_USERNAME: ~
+      SYMFONY_MAILER_PASSWORD: ~
+      SYMFONY_SECRET: ThisTokenIsNotSoSecretChangeIt
+    volumes:
+    - '.:/var/www'
+    - '$HOME/.composer:/var/www/.composer'
+
+  nginx:
+    build:
+      dockerfile: ./docker/nginx/Dockerfile
+      context: .
+    environment:
+      VIRTUAL_HOST: tania.docker.local
+    networks:
+      - default
+      - gateway
+    volumes:
+      - '.:/var/www'
+      - './docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro'
+
+  mysql:
+    image: 'mysql:5.6'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tania
+      MYSQL_USER: tania
+      MYSQL_PASSWORD: tania
+
+  phpmyadmin:
+    image: 'phpmyadmin/phpmyadmin:4.7'
+    environment:
+      PMA_HOST: mysql
+      PMA_ABSOLUTE_URI: http://pma.tania.docker.local
+      MYSQL_ROOT_PASSWORD: root
+      VIRTUAL_HOST: pma.tania.docker.local
+    networks:
+      - default
+      - gateway
+
+networks:
+  default:
+  gateway:
+    external:
+      name: 'docker_public'

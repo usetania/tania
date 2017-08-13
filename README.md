@@ -68,7 +68,7 @@ Current maintainers:
 - Didiet Noor - [Linkedin](https://www.linkedin.com/in/didiet/)
 - Aftri Marriska - [Linkedin](https://www.linkedin.com/in/aftrimarriska/)
 
-If you are interested in being a core contributor to this project, please drop me an email at __asep@asep.co__.
+If you are interested in being a core contributor to this project, please drop me an email at __asep@tanibox.com__.
 
 ## License
 

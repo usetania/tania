@@ -1,0 +1,9 @@
+version: '2.2'
+
+services:
+  app:
+    image: tanibox/tania:latest
+  nginx:
+    image: tanibox/tania-nginx:latest
+    depends_on:
+      - app

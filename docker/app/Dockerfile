@@ -18,6 +18,7 @@ ADD . /var/www
 VOLUME /var/www/var/cache
 WORKDIR /var/www
 
-RUN  COMPOSER_ALLOW_SUPERUSER=1 composer install --no-autoloader --no-scripts --no-dev 
+RUN  touch /var/www/.env \
+      && COMPOSER_ALLOW_SUPERUSER=1 composer install --no-autoloader --no-scripts --no-dev 
 COPY docker/app/tania-entrypoint /usr/local/bin/
 ENTRYPOINT [ "/usr/local/bin/tania-entrypoint" ]

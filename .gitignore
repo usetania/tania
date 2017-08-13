@@ -35,3 +35,4 @@
 /web/uploads/seeds/*.GIF
 /web/vendor/*
 .env
+composer.phar

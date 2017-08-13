@@ -1,0 +1,23 @@
+#!/bin/sh
+set -e
+
+composer install 
+
+chown www-data:www-data -R /var/www/var/cache
+chown www-data:www-data -R /var/www/var/logs
+chown www-data:www-data -R /var/www/var/sessions
+
+
+if [ ! -d /tmp ]; then
+    mkdir -p /tmp
+fi
+
+if [ ! -e /tmp/stdout ]; then
+    mkfifo -m 666 /tmp/stdout
+fi
+
+cat <> /tmp/stdout 1>&2 &
+
+# Needed for Alpine
+exec env LD_PRELOAD=/usr/lib/preloadable_libiconv.so php-fpm
+

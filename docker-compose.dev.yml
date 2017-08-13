@@ -1,0 +1,49 @@
+
+version: '2.2'
+
+services:
+
+  app:
+    image: tanibox/tania:latest
+    build:
+      dockerfile: docker/app/Dockerfile 
+      context: .
+    environment:
+      SYMFONY_LOCALE: en
+      SYMFONY_SECRET: AugIVKlefKLzqJwlwY5S5YaW8Ui66fi8
+      SYMFONY_ENV: dev
+      SYMFONY_DB_HOST: db
+      SYMFONY_DB_PORT: 3306
+      SYMFONY_DB_NAME: tania
+      SYMFONY_DB_USERNAME: tania
+      SYMFONY_DB_PASSWORD: taniapass
+      SYMFONY_MAILER_TRANSPORT: smtp
+      SYMFONY_MAILER_HOST: 127.0.0.1
+      SYMFONY_MAILER_USERNAME: admin
+      SYMFONY_MAILER_PASSWORD: admin
+      SYMFONY_MAILER_FROM_ADDRESS: youremail@yourdomain.com
+      SYMFONY_MAILER_SENDER_NAME: yourname
+      COMPOSER_ALLOW_SUPERUSER: 1
+    volumes:
+      - '.:/var/www'
+      - '$HOME/.composer:/var/www/.composer'
+
+  nginx:
+    image: tanibox/tania-nginx:latest
+    build:
+      dockerfile: docker/nginx/Dockerfile
+      context: .
+    volumes:
+      - '.:/var/www'
+      - './docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro'
+    
+    ports:
+      - "80:80"
+
+  db:
+    image: 'mysql:5.6'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tania
+      MYSQL_USER: tania
+      MYSQL_PASSWORD: taniapass

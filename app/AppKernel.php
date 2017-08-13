@@ -2,11 +2,16 @@
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Dotenv\Dotenv;
 
 class AppKernel extends Kernel
 {
     public function registerBundles()
     {
+        // load the environment variables
+        $dotenv = new Dotenv();
+        $dotenv->load(dirname(__DIR__).'/.env');
+
         $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),

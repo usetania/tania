@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('vendor/datetimepicker/jquery.datetimepicker.css') }}">
+{% endblock %}
+
 {% block body %}
 {% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
@@ -46,9 +51,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="datetime-group">
-                                    {{ form_label(form.seedlingDate, 'Choose seedling date', { 'label_attr': {'class': 'control-label'}}) }}
-                                    {{ form_widget(form.seedlingDate) }}
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            {{ form_label(form.seedlingDate, 'Choose seedling date', { 'label_attr': {'class': 'control-label'}}) }}
+                                            {{ form_widget(form.seedlingDate, {'attr': {'class': 'form-control date-picker'}}) }}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 text-center">
@@ -64,4 +73,10 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script src="{{ asset('vendor/datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plant.js') }}"></script>
 {% endblock %}

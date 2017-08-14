@@ -61,6 +61,7 @@ class PlantType extends AbstractType
             ))
             ->add('seedlingDate', DateType::class, array(
                 'years' => range(date('Y'), date('Y') - 1),
+                'widget' => 'single_text',
                 'label' => 'Seedling date',
                 'translation_domain' => 'dashboard'
             ))

@@ -27,9 +27,9 @@ git clone git@github.com:Tanibox/tania.git
 cd tania
 ```
 
-Second, setup your database and mailer parameters in `app/config/parameters.yml`. You can duplicate and rename the `app/config/parameters.yml.dist` file.
+Second, setup your database and mailer parameters in `/.env`. You can duplicate and rename the `/.env-example` file.
 
-Third, don't forget to go back to the application root directory before following these steps to setup the web application:
+Third, setup the web application:
 
 ```
 curl -sS https://getcomposer.org/installer | php
@@ -66,7 +66,6 @@ Current maintainers:
 - Retno Ika Safitri - [Linkedin](https://www.linkedin.com/in/retnoika/)
 - M. Surya Iksanudin - [Linkedin](https://www.linkedin.com/in/ihsanuddin/)
 - Didiet Noor - [Linkedin](https://www.linkedin.com/in/didiet/)
-- Aftri Marriska - [Linkedin](https://www.linkedin.com/in/aftrimarriska/)
 
 If you are interested in being a core contributor to this project, please drop me an email at __asep@tanibox.com__.
 

@@ -15,7 +15,7 @@ monolog:
     handlers:
         main:
             type: stream
-            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            path: '/tmp/stdout'
             level: debug
             channels: ['!event']
         console:

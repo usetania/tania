@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Data;
 
 class CountryList
@@ -261,7 +262,7 @@ class CountryList
 
     public static function currency()
     {
-        return array (
+        return array(
             'ALL' => 'Albania Lek',
             'AFN' => 'Afghanistan Afghani',
             'ARS' => 'Argentina Peso',
@@ -376,7 +377,7 @@ class CountryList
             'VEF' => 'Venezuela Bolivar',
             'VND' => 'Viet Nam Dong',
             'YER' => 'Yemen Rial',
-            'ZWD' => 'Zimbabwe Dollar'
+            'ZWD' => 'Zimbabwe Dollar',
         );
     }
 }

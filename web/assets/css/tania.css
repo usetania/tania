@@ -1,7 +1,3 @@
-body {
-	
-}
-
 .img-area {
 	width: 100%;
 }
@@ -156,4 +152,9 @@ body {
 .be-top-header .navbar-header .navbar-brand img {
 	height: 40px;
 	margin-top: 8px;
+}
+
+/* panel */
+.panel-body p {
+	padding: 8px 20px 20px;
 }

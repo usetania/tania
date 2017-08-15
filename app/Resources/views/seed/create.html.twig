@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
   {% include 'navbar.html.twig' %} 
   {% include 'sidebar.html.twig' %}
 
   <div class="be-content">
     <div class="page-head">
-      <h2 class="page-head-title">Add New Seed Collection</h2>
+      <h2 class="page-head-title">{% trans %}Add New Seed Collection{% endtrans %}</h2>
     </div>
     <div class="main-content container-fluid">
       <div class="row">
@@ -82,7 +83,7 @@
                 <div class="row">
                   <div class="col-xs-12 text-center">
                     {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
-                    <button class="btn btn-default btn-lg">Cancel</button>
+                    <button class="btn btn-default btn-lg">{% trans %}Cancel{% endtrans %}</button>
                   </div>
                 </div>
               {{ form_end(form) }}

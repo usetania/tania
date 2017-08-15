@@ -1,0 +1,17 @@
+{
+  "name": "tania",
+  "homepage": "https://github.com/Tanibox/tania",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "datetimepicker": "^2.5.4"
+  }
+}

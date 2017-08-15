@@ -1,18 +1,18 @@
 imports:
-    - { resource: parameters.yml }
+    #- { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: repository.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
-parameters:
-    locale: en
+#parameters:
+#    locale: en
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
-    translator: ~
-    secret: '%secret%'
+    translator: { fallbacks: ['%env(SYMFONY_LOCALE)%'] }
+    secret: '%env(SYMFONY_SECRET)%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
         strict_requirements: ~
@@ -22,7 +22,7 @@ framework:
     #serializer: { enable_annotations: true }
     templating:
         engines: ['twig']
-    default_locale: '%locale%'
+    default_locale: '%env(SYMFONY_LOCALE)%'
     trusted_hosts: ~
     session:
         # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
@@ -43,11 +43,11 @@ twig:
 doctrine:
     dbal:
         driver: pdo_mysql
-        host: '%database_host%'
-        port: '%database_port%'
-        dbname: '%database_name%'
-        user: '%database_user%'
-        password: '%database_password%'
+        host: '%env(SYMFONY_DB_HOST)%'
+        port: '%env(SYMFONY_DB_PORT)%'
+        dbname: '%env(SYMFONY_DB_NAME)%'
+        user: '%env(SYMFONY_DB_USERNAME)%'
+        password: '%env(SYMFONY_DB_PASSWORD)%'
         charset: utf8mb4
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
@@ -77,10 +77,10 @@ doctrine_migrations:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
+    transport: '%env(SYMFONY_MAILER_TRANSPORT)%'
+    host: '%env(SYMFONY_MAILER_HOST)%'
+    username: '%env(SYMFONY_MAILER_USERNAME)%'
+    password: '%env(SYMFONY_MAILER_PASSWORD)%'
     spool: { type: memory }
 
 fos_user:
@@ -88,8 +88,8 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-        address: "%mailer_user%"
-        sender_name: "%mailer_user%"
+        address: "%env(SYMFONY_MAILER_FROM_ADDRESS)%"
+        sender_name: "%env(SYMFONY_MAILER_SENDER_NAME)%"
     registration:
         form:
             type: AppBundle\Form\RegistrationFormType

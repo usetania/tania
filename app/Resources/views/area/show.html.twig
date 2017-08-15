@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
     {% include 'navbar.html.twig' %} 
     {% include 'sidebar.html.twig' %}
 
     <div class="be-content">
         <div class="page-head">
-            <a href="{{ path('areas_edit', {'id': area.id}) }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-layers"></span> Edit Area</a>
+            <a href="{{ path('areas_edit', {'id': area.id}) }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-layers"></span> {% trans %}Edit Area{% endtrans %}</a>
             <h2 class="page-head-title">{{ area.name }}</h2>
         </div>
         
@@ -26,12 +27,12 @@
                                     <tbody class="no-border-x no-border-y">
                                         <tr>
                                             <td class="icon"><span class="mdi mdi-toys"></span></td>
-                                            <td class="item">System<span class="icon s7-portfolio"></span></td>
+                                            <td class="item">{% trans %}System{% endtrans %}<span class="icon s7-portfolio"></span></td>
                                             <td>{{ growingMethod }}</td>
                                         </tr>
                                         <tr>
                                             <td class="icon"><span class="mdi mdi-gradient"></span></td>
-                                            <td class="item">Capacity<span class="icon s7-gift"></span></td>
+                                            <td class="item">{% trans %}Capacity{% endtrans %}<span class="icon s7-gift"></span></td>
                                             <td>
                                             <div class="progress">
                                                 {% set percentage = current_capacities / area.capacity * 100 %}
@@ -41,13 +42,13 @@
                                         </tr>
                                         <tr>
                                             <td class="icon"><span class="mdi mdi-flower-alt"></span></td>
-                                            <td class="item">Plant Variety</td>
+                                            <td class="item">{% trans %}Plant Variety{% endtrans %}</td>
                                             <td>{{ total_varieties }}</td>
                                         </tr>
                                         <tr>
                                             <td class="icon"><span class="mdi mdi-drink"></span></td>
-                                            <td class="item">Nutrient Reservoir</td>
-                                            <td>{{ area.reservoir.name }}</td>
+                                            <td class="item">{% trans %}Nutrient Reservoir{% endtrans %}</td>
+                                            <td>{% if area.reservoir is not null %}{{ area.reservoir.name }}{% else %}&nbsp;{% endif %}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -56,17 +57,17 @@
                     </div>
                     <div class="col-md-7">
                         <div class="panel panel-default panel-table">
-                            <div class="panel-heading">Plants in {{ area.name }}
-                            <div class="tools"><a href="{{ path('plants_create') }}" class="btn btn-default btn-xs"><span class="icon mdi mdi-plus"> </span> Add plants</a></div>
+                            <div class="panel-heading">{% trans %}Plants in{% endtrans %} {{ area.name }}
+                            <div class="tools"><a href="{{ path('plants_create') }}" class="btn btn-default btn-xs"><span class="icon mdi mdi-plus"> </span> {% trans %}Add plants{% endtrans %}</a></div>
                             </div>
 
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th style="width:47%;">Variety Name</th>
-                                            <th style="width:38%;">Type</th>
-                                            <th>Amount</th>
+                                            <th style="width:47%;">{% trans %}Variety Name{% endtrans %}</th>
+                                            <th style="width:38%;">{% trans %}Type{% endtrans %}</th>
+                                            <th>{% trans %}Amount{% endtrans %}</th>
                                         </tr>
                                     </thead>
                                     <tbody>

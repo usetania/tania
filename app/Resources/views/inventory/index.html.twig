@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
     {% include 'navbar.html.twig' %} 
     {% include 'sidebar.html.twig' %}
@@ -8,28 +9,28 @@
     <div class="be-content">
         <div class="page-head">
             <div class="pull-right">
-                <a href="{{ path('seeds_create') }}" class="btn btn-space btn-success btn-lg"><i class="icon mdi mdi-plus"></i> Add Seed</a>
+                <a href="{{ path('seeds_create') }}" class="btn btn-space btn-success btn-lg"><i class="icon mdi mdi-plus"></i> {% trans %}Add Seed{% endtrans %}</a>
             </div>
-            <h2 class="page-head-title">Inventories</h2>
+            <h2 class="page-head-title">{% trans %}Inventories{% endtrans %}</h2>
         </div>
         
         <div class="main-content container-fluid">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default panel-table">
-                        <div class="panel-heading">Seeds Collection
+                        <div class="panel-heading">{% trans %}Seeds Collection{% endtrans %}
                             <div class="tools"></div>
                         </div>
                         <div class="panel-body">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Name of Plant Variety</th>
-                                        <th>Category</th>
-                                        <th>Expired In</th>
-                                        <th>Stock</th>
-                                        <th>Country of Origin</th>
-                                        <th>Action</th>
+                                        <th>{% trans %}Name of Plant Variety{% endtrans %}</th>
+                                        <th>{% trans %}Category{% endtrans %}</th>
+                                        <th>{% trans %}Expired In{% endtrans %}</th>
+                                        <th>{% trans %}Stock{% endtrans %}</th>
+                                        <th>{% trans %}Country of Origin{% endtrans %}</th>
+                                        <th>{% trans %}Action{% endtrans %}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -65,7 +66,7 @@
                                             {{ seed.originCountry }}
                                         </td>
                                         <td>
-                                            <a href="{{ path('seeds_show', {'id': seed.id }) }}">Edit</a>
+                                            <a href="{{ path('seeds_show', {'id': seed.id }) }}">{% trans %}Edit{% endtrans %}</a>
                                         </td>
                                     </tr>
                                     {% endfor %}

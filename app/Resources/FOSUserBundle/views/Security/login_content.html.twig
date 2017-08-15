@@ -6,12 +6,12 @@
             <div class="row tania">
                 <div class="col-md-6 col-xs-12">
                     <img src="{{ asset('assets/img/tania.png') }}" class="tania-img">
-                    <h2>MANAGE FARMS EASIER &amp; SMARTER</h2>
-                    <p>This impressive and modern farm management application will help you to manage the operations of your farm in a more intuitive, collaborative, and efficient way.</p>
+                    <h2>{% trans from "dashboard" %}MANAGE FARMS EASIER &amp; SMARTER{% endtrans %}</h2>
+                    <p>{% trans from "dashboard" %}This impressive and modern farm management application will help you to manage the operations of your farm in a more intuitive, collaborative, and efficient way.{% endtrans %}</p>
                 </div>
                 <div class="col-md-6 col-xs-12 loginform">
                     <form action="{{ path("fos_user_security_check") }}" method="post">
-                        <span class="splash-title xs-pb-20">Sign In to start working.</span>
+                        <span class="splash-title xs-pb-20">{% trans from "dashboard" %}Sign In to start working.{% endtrans %}</span>
                         {% if error %}
                             <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                         {% endif %}
@@ -34,16 +34,16 @@
                             <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn btn-block btn-primary btn-xl" />
                         </div>
                         <div class="form-group col-xs-12 forgot-link">
-                            <a href="{{ path('fos_user_resetting_request') }}">I forgot my password</a>
+                            <a href="{{ path('fos_user_resetting_request') }}">{% trans from "dashboard" %}I forgot my password{% endtrans %}</a>
                         </div>
                         <div class="form-group col-xs-12">
-                            <p>Have no account? <a href="{{ path('fos_user_registration_register') }}">Sign Up</a> here.</p>
+                            <p>{% trans from "dashboard" %}Have no account?{% endtrans %} <a href="{{ path('fos_user_registration_register') }}">{% trans from "dashboard" %}Sign Up{% endtrans %}</a> {% trans from "dashboard" %}here.{% endtrans %}</p>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="row">
-                <div class="tania-footer">&copy; 2017 Tania. Build for the ♥︎ of plants.</div>
+                <div class="tania-footer">&copy; 2017 Tania. {% trans from "dashboard" %}Build for the ♥︎ of plants.{% endtrans %}</div>
             </div>
         </div>
     </div>

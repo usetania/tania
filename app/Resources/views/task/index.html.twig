@@ -1,31 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
-  {% include 'navbar.html.twig' %} 
+  {% include 'navbar.html.twig' %}
   {% include 'sidebar.html.twig' %}
 
     <div class="be-content">
         <div class="page-head">
-            <a href="{{ path('tasks_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-plus"></span> Add New</a>
-            <h2 class="page-head-title">Farm Tasks</h2>
+            <a href="{{ path('tasks_create') }}" class="btn btn-space btn-primary btn-lg pull-right"><span class="icon mdi mdi-plus"></span> {% trans %}Add New{% endtrans %}</a>
+            <h2 class="page-head-title">{% trans %}Farm Tasks{% endtrans %}</h2>
         </div>
         <div class="main-content container-fluid">
             <!-- Area Task -->
             <div class="row">
                 <div class="col-sm-12">
                     <div class="panel panel-default panel-table">
-                        <div class="panel-heading">All Tasks</div>
+                        <div class="panel-heading">{% trans %}All Tasks{% endtrans %}</div>
                         <div class="panel-body">
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="width:15%;">Category</th>
-                                        <th style="width:15%;">Task</th>
-                                        <th style="width:35%;">Notes</th>
-                                        <th style="width:15%;">Due Date</th>
-                                        <th style="width:15%;">Level of Importance</th>
-                                        <th>Is it done?</th>
+                                        <th style="width:15%;">{% trans %}Category{% endtrans %}</th>
+                                        <th style="width:15%;">{% trans %}Task{% endtrans %}</th>
+                                        <th style="width:35%;">{% trans %}Notes{% endtrans %}</th>
+                                        <th style="width:15%;">{% trans %}Due Date{% endtrans %}</th>
+                                        <th style="width:15%;">{% trans %}Level of Importance{% endtrans %}</th>
+                                        <th>{% trans %}Is it done?{% endtrans %}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,11 +35,11 @@
                                         <td class="cell-detail">{{ task.category }}</td>
                                         <td class="cell-detail"><a href="{{ path('tasks_show', {'id': task.id }) }}">{{ task.name }}</a></td>
                                         <td class="cell-detail">{{ task.notes }}</td>
-                                        <td class="cell-detail">{{ task.dueDate|date('d M Y h:m')}}</td>
+                                        <td class="cell-detail">{{ task.dueDate|date('d F Y h:i')}}</td>
                                         <td class="cell-detail">
                                             <span class="label {% if task.urgencyLevel == 'low' %} label-success {% elseif task.urgencyLevel == 'medium' %} label-warning {% elseif task.urgencyLevel == 'high' %} label-danger {% endif %}">{{ task.urgencyLevel }}</span>
                                         </td>
-                                        <td class="cell-detail">{% if task.isDone == 0 %} No {% elseif task.isDone == 1 %} Yes {% endif %}</td>                        
+                                        <td class="cell-detail">{% if task.isDone == 0 %} {% trans %}No{% endtrans %} {% elseif task.isDone == 1 %} {% trans %}Yes{% endtrans %} {% endif %}</td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

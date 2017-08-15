@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
     {% include 'navbar.html.twig' %} 
     {% include 'sidebar.html.twig' %}
@@ -8,7 +9,7 @@
     <div class="be-content">
         <div class="page-head">
             <div class="pull-right">
-                <a href="{{ path('plants_create') }}" class="btn btn-space btn-success btn-lg"><i class="icon mdi mdi-plus"></i> Add Plant</a>
+                <a href="{{ path('plants_create') }}" class="btn btn-space btn-success btn-lg"><i class="icon mdi mdi-plus"></i> {% trans %}Add Plant{% endtrans %}</a>
             </div>
             <h2 class="page-head-title">{{ plants[0].seed.name }}</h2>
         </div>
@@ -19,17 +20,17 @@
                     <div class="col-sm-12">
                         <div class="panel panel-default panel-table">
                             <div class="panel-heading">
-                                Total area: {{ totalArea }}
+                                {% trans %}Total area{% endtrans %}: {{ totalArea }}
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="col-xs-3">Age (days)</th>
-                                            <th class="col-xs-3">Area</th>
-                                            <th class="col-xs-2">Amount</th>
-                                            <th class="col-xs-2">Status</th>
-                                            <th class="col-xs-2">Action</th>
+                                            <th class="col-xs-3">{% trans %}Age (days){% endtrans %}</th>
+                                            <th class="col-xs-3">{% trans %}Area{% endtrans %}</th>
+                                            <th class="col-xs-2">{% trans %}Amount{% endtrans %}</th>
+                                            <th class="col-xs-2">{% trans %}Status{% endtrans %}</th>
+                                            <th class="col-xs-2">{% trans %}Action{% endtrans %}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,16 +38,16 @@
                                         <tr>
                                             <td>{{ plant.seedlingDate }}</td>
                                             <td>{{ plant.area.name }}</td>
-                                            <td>{{ plant.areaCapacity }} {{ plant.area.measurementUnit }}</td>
+                                            <td>{{ plant.areaCapacity }}</td>
                                             <td>
                                                 {% if plant.action == 'harvest' %}
-                                                Harvested
+                                                {% trans %}Harvested{% endtrans %}
                                                 {% elseif plant.action == 'dispose' %}
-                                                Disposed
+                                                {% trans %}Disposed{% endtrans %}
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                <a href="{{ path('plants_harvest', {'id': plant.id }) }}">Harvest/Dispose</a> | <a href="{{ path('plants_edit', {'id': plant.id }) }}">Edit</a>
+                                                <a href="{{ path('plants_harvest', {'id': plant.id }) }}">{% trans %}Harvest{% endtrans %}/{% trans %}Dispose{% endtrans %}</a> | <a href="{{ path('plants_edit', {'id': plant.id }) }}">{% trans %}Edit{% endtrans %}</a>
                                             </td>
                                         </tr>
                                         {% endfor %}

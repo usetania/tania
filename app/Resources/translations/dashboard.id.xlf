@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="overview">
+                <source>Overview</source>
+                <target>Ikhtisar</target>
+            </trans-unit>
+            <trans-unit id="farms">
+                <source>Farms</source>
+                <target>Kebun</target>
+            </trans-unit>
+            <trans-unit id="see_more_details">
+                <source>See more details</source>
+                <target>Lihat perincian</target>
+            </trans-unit>
+            <trans-unit id="current_seedling">
+                <source>Current Seedling</source>
+                <target>Penanaman Saat Ini</target>
+            </trans-unit>
+            <trans-unit id="seed_name">
+                <source>Seed Name</source>
+                <target>Nama Tanaman</target>
+            </trans-unit>
+            <trans-unit id="area">
+                <source>Area</source>
+                <target>Area</target>
+            </trans-unit>
+            <trans-unit id="age_days">
+                <source>Age (days)</source>
+                <target>Umur (hari)</target>
+            </trans-unit>
+            <trans-unit id="tasks_list">
+                <source>Tasks List</source>
+                <target>Seranai Tugas</target>
+            </trans-unit>
+            <trans-unit id="due_date">
+                <source>Due Date</source>
+                <target>Jatuh Tempo</target>
+            </trans-unit>
+            <trans-unit id="see_all">
+                <source>See all</source>
+                <target>Lihat semua</target>
+            </trans-unit>
+            <trans-unit id="status">
+                <source>Status</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="all_farms_greenhouses">
+                <source>All Farms/Greenhouses</source>
+                <target>Semua Kebun/Rumah Tanam</target>
+            </trans-unit>
+            <trans-unit id="add_new_farm">
+                <source>Add New Farm</source>
+                <target>Tambah Kebun Baru</target>
+            </trans-unit>
+            <trans-unit id="home">
+                <source>Home</source>
+                <target>Beranda</target>
+            </trans-unit>
+            <trans-unit id="dashboard">
+                <source>Dashboard</source>
+                <target>Dasbor</target>
+            </trans-unit>
+            <trans-unit id="farm_management">
+                <source>Farm Management</source>
+                <target>Manajemen Kebun</target>
+            </trans-unit>
+            <trans-unit id="reservoirs">
+                <source>Reservoirs</source>
+                <target>Penampungan Air</target>
+            </trans-unit>
+            <trans-unit id="areas">
+                <source>Areas</source>
+                <target>Area</target>
+            </trans-unit>
+            <trans-unit id="inventories">
+                <source>Inventories</source>
+                <target>Persediaan</target>
+            </trans-unit>
+            <trans-unit id="operation">
+                <source>Operation</source>
+                <target>Operasi</target>
+            </trans-unit>
+            <trans-unit id="plant">
+                <source>Plant</source>
+                <target>Penanaman</target>
+            </trans-unit>
+            <trans-unit id="tasks">
+                <source>Tasks</source>
+                <target>Tugas</target>
+            </trans-unit>
+            <trans-unit id="settings">
+                <source>Settings</source>
+                <target>Pengaturan</target>
+            </trans-unit>
+            <trans-unit id="account">
+                <source>Account</source>
+                <target>Akun</target>
+            </trans-unit>
+            <trans-unit id="logout">
+                <source>Logout</source>
+                <target>Keluar</target>
+            </trans-unit>
+            <trans-unit id="you_have">
+                <source>You have</source>
+                <target>Anda memiliki</target>
+            </trans-unit>
+            <trans-unit id="name">
+                <source>Name</source>
+                <target>Nama</target>
+            </trans-unit>
+            <trans-unit id="capacity">
+                <source>Capacity</source>
+                <target>Kapasitas</target>
+            </trans-unit>
+            <trans-unit id="used_in">
+                <source>Used In</source>
+                <target>Digunakan di</target>
+            </trans-unit>
+            <trans-unit id="action">
+                <source>Action</source>
+                <target>Aksi</target>
+            </trans-unit>
+            <trans-unit id="edit">
+                <source>Edit</source>
+                <target>Ubah</target>
+            </trans-unit>
+            <trans-unit id="add_reservoir">
+                <source>Add Reservoir</source>
+                <target>Tambah Penampungan Air</target>
+            </trans-unit>
+            <trans-unit id="sign_in_to_start_working">
+                <source>Sign In to start working.</source>
+                <target>Masuk untuk mulai bekerja.</target>
+            </trans-unit>
+            <trans-unit id="reservoir">
+                <source>Reservoir</source>
+                <target>Penampungan Air</target>
+            </trans-unit>
+            <trans-unit id="growing_method">
+                <source>Growing method</source>
+                <target>Metode tanam</target>
+            </trans-unit>
+            <trans-unit id="measurement_unit">
+                <source>Measurement unit</source>
+                <target>Satuan pengukuran</target>
+            </trans-unit>
+            <trans-unit id="image_file">
+                <source>Image file</source>
+                <target>Berkas gambar</target>
+            </trans-unit>
+            <trans-unit id="save">
+                <source>Save</source>
+                <target>Simpan</target>
+            </trans-unit>
+            <trans-unit id="cancel">
+                <source>Cancel</source>
+                <target>Batal</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

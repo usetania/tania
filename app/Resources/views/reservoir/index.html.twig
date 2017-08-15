@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
     {% include 'navbar.html.twig' %} 
     {% include 'sidebar.html.twig' %}
 
     <div class="be-content">
         <div class="page-head">
-            <h2 class="page-head-title">Reservoirs</h2>
+            <h2 class="page-head-title">{% trans %}Reservoirs{% endtrans %}</h2>
         </div>
         <div class="main-content container-fluid">
           
@@ -15,15 +16,15 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-default panel-table">
-                        <div class="panel-heading">You have {{ reservoirs|length }} reservoir{% if reservoirs|length > 1 %}s {% endif %}</div>
+                        <div class="panel-heading">{% trans %}You have {% endtrans %}{{ reservoirs|length }} reservoir{% if reservoirs|length > 1 %}s {% endif %}</div>
                         <div class="panel-body">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Capacity</th>
-                                        <th>Used In</th>
-                                        <th>Action</th>
+                                        <th>{% trans %}Name{% endtrans %}</th>
+                                        <th>{% trans %}Capacity{% endtrans %}</th>
+                                        <th>{% trans %}Used In{% endtrans %}</th>
+                                        <th>{% trans %}Action{% endtrans %}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,9 +38,9 @@
                                         <td class="cell-detail">{{ reservoir.name }}</td>
                                         <td class="cell-detail">{{ reservoir.capacity }} {{ unit }}</td>
                                         <td class="cell-detail">
-                                            {{ reservoir.areas|length }} areas
+                                            {{ reservoir.areas|length }} {% trans %}areas{% endtrans %}
                                         </td>
-                                        <td><a href="{{ path('reservoirs_show', {'id': reservoir.id }) }}">Edit</a></td>
+                                        <td><a href="{{ path('reservoirs_show', {'id': reservoir.id }) }}">{% trans %}Edit{% endtrans %}</a></td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>
@@ -50,7 +51,7 @@
                 <div class="col-md-6">
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-dividerd">
-                        Add Reservoir
+                        {% trans %}Add Reservoir{% endtrans %}
                         </div>
                         <div class="panel-body">
                             {{ form_start(form) }}

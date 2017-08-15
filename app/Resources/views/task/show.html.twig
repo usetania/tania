@@ -1,13 +1,19 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('vendor/datetimepicker/jquery.datetimepicker.css') }}">
+{% endblock %}
+
 {% block body %}
+{% trans_default_domain "dashboard" %}
 <div class="be-wrapper">
-    {% include 'navbar.html.twig' %} 
+    {% include 'navbar.html.twig' %}
     {% include 'sidebar.html.twig' %}
 
     <div class="be-content">
         <div class="page-head">
-            <h2 class="page-head-title">Update Task</h2>
+            <h2 class="page-head-title">{% trans %}Update Task{% endtrans %}</h2>
         </div>
         <div class="main-content container-fluid">
             <div class="row">
@@ -41,7 +47,7 @@
                                     {{ form_label(form.dueDate, 'Due Date', { 'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                                     <div class="col-sm-6">
                                         {{ form_errors(form.dueDate) }}
-                                        {{ form_widget(form.dueDate) }}
+                                        {{ form_widget(form.dueDate, {'attr': {'class': 'form-control date-time-picker'}}) }}
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -61,7 +67,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 text-center">
                                         {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
-                                        <button class="btn btn-default btn-lg">Cancel</button>
+                                        <button class="btn btn-default btn-lg">{% trans %}Cancel{% endtrans %}</button>
                                     </div>
                                 </div>
                             {{ form_end(form) }}
@@ -72,4 +78,9 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+    <script src="{{ asset('vendor/datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
+    <script src="{{ asset('assets/js/task.js') }}"></script>
 {% endblock %}

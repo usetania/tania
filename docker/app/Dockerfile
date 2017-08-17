@@ -20,6 +20,8 @@ COPY ./docker/app/tania-entrypoint /usr/local/bin/
 VOLUME /var/www/var/cache
 WORKDIR /var/www
 
+EXPOSE 80
+
 RUN  touch /var/www/.env \
       && COMPOSER_ALLOW_SUPERUSER=1 composer install --no-autoloader --no-scripts --no-dev 
 

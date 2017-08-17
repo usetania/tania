@@ -24,22 +24,11 @@ services:
       SYMFONY_MAILER_FROM_ADDRESS: youremail@yourdomain.com
       SYMFONY_MAILER_SENDER_NAME: yourname
       COMPOSER_ALLOW_SUPERUSER: 1
-    volumes:
-      - '.:/var/www'
-      - '$HOME/.composer:/var/www/.composer'
-
-  nginx:
-    image: tanibox/tania-nginx:latest
-    build:
-      dockerfile: docker/nginx/Dockerfile
-      context: .
-    volumes:
-      - '.:/var/www'
-      - './docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro'
-    
     ports:
       - "80:80"
-
+    #volumes:
+      # - '.:/var/www'
+      #- '$HOME/.composer:/var/www/.composer' 
   db:
     image: 'mysql:5.6'
     environment:
@@ -47,3 +36,5 @@ services:
       MYSQL_DATABASE: tania
       MYSQL_USER: tania
       MYSQL_PASSWORD: taniapass
+    ports:
+      - "3306:3306"

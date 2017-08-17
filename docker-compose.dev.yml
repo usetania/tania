@@ -26,9 +26,9 @@ services:
       COMPOSER_ALLOW_SUPERUSER: 1
     ports:
       - "80:80"
-    #volumes:
-      # - '.:/var/www'
-      #- '$HOME/.composer:/var/www/.composer' 
+    volumes:
+       - '.:/var/www'
+      - '$HOME/.composer:/var/www/.composer' 
   db:
     image: 'mysql:5.6'
     environment:

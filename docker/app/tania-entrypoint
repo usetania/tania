@@ -18,6 +18,6 @@ fi
 
 cat <> /tmp/stdout 1>&2 &
 
-# Needed for Alpine
-exec env LD_PRELOAD=/usr/lib/preloadable_libiconv.so php-fpm
 
+# Needed for Alpine
+/usr/bin/supervisord -n -c /etc/supervisord.conf

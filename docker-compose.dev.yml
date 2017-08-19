@@ -27,7 +27,7 @@ services:
     ports:
       - "80:80"
     volumes:
-       - '.:/var/www'
+      - '.:/var/www'
       - '$HOME/.composer:/var/www/.composer' 
   db:
     image: 'mysql:5.6'

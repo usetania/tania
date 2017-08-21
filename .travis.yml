@@ -1,0 +1,22 @@
+language: php
+
+dist: trusty
+
+sudo: required
+
+php:
+  - '7.1'
+
+install:
+  - cp -a .env-example .env
+  - composer install --no-interaction
+
+script:
+  - ./vendor/bin/phpunit
+
+after_success:
+  - docker build -t tanibox/tania -f docker/app/Dockerfile --build-arg BUILD_DATE="$(date +%Y-%m-%d)" .
+ 
+branches:
+  only: 
+    - development

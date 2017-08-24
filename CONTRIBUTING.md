@@ -27,11 +27,11 @@ Always use English to communicate. Don't be shy with your English because nobody
 
 ### Reporting Bugs
 
-To report bugs, you can use [Github issue tracker](https://github.com/Tanibox/tania/issues). Explain the detail about how can you get the bug, your environment, or anything that can help the maintainers to reproduce it.
+To report bugs, you can use [our JIRA issue tracker](https://gettania.atlassian.net). Explain the detail about how can you get the bug, your environment, or anything that can help the maintainers to reproduce it.
 
 ### Suggesting Enhancements
 
-You can use [Github issue tracker](https://github.com/Tanibox/tania/issues) to suggest your enhancements proposal. We encourage you to join to our [Gitter](https://gitter.im/taniafarm/Lobby) also if you want to discuss your enhancements directly with the maintainers.
+You can use [our JIRA issue tracker](https://gettania.atlassian.net) to suggest your enhancements proposal. We encourage you to join to our [Gitter](https://gitter.im/taniafarm/Lobby) also if you want to discuss your enhancements directly with the maintainers.
 
 ### Pull Requests
 

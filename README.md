@@ -56,7 +56,7 @@ Done! You can start to use Tania.
 
 ## Questions and issues
 
-You can use [the issue tracker of Tania](https://github.com/tanibox/tania/issues) for bug reporting, feature request, and general feedback.
+You can use [our JIRA issue tracker](https://gettania.atlassian.net) for bug reporting, feature request, and general feedback.
 
 ## Maintainers
 

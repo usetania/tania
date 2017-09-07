@@ -4,12 +4,21 @@ dist: trusty
 
 sudo: required
 
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
 php:
   - '7.1'
+
+before_install:
+  - mysql -e 'CREATE DATABASE tania_test'
 
 install:
   - cp -a .env-example .env
   - composer install --no-interaction
+  - php bin/console --no-interaction doctrine:migrations:migrate
+  - php bin/console --no-interaction doctrine:fixtures:load
 
 script:
   - ./vendor/bin/phpunit
@@ -20,3 +29,6 @@ after_success:
 branches:
   only: 
     - development
+
+services:
+  - mysql

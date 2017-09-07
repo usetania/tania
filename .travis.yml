@@ -1,0 +1,50 @@
+language: php
+
+dist: trusty
+
+sudo: required
+
+env:
+  global:
+    SYMFONY_LOCALE=en
+    SYMFONY_SECRET=xCqnuwqgU7h151
+    SYMFONY_ENV=test
+    SYMFONY_DB_HOST=127.0.0.1
+    SYMFONY_DB_PORT=3306
+    SYMFONY_DB_NAME=tania_test
+    SYMFONY_DB_USERNAME=root
+    SYMFONY_DB_PASSWORD=''
+    SYMFONY_MAILER_TRANSPORT=smtp
+    SYMFONY_MAILER_HOST=127.0.0.1
+    SYMFONY_MAILER_USERNAME=admin
+    SYMFONY_MAILER_PASSWORD=admin
+    SYMFONY_MAILER_FROM_ADDRESS=youremail@yourdomain.com
+    SYMFONY_MAILER_SENDER_NAME=yourname
+
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+php:
+  - '7.1'
+
+before_install:
+  - mysql -e 'CREATE DATABASE tania_test'
+
+install:
+  - composer install --no-interaction
+  - php bin/console --no-interaction doctrine:migrations:migrate --env=test
+  - php bin/console --no-interaction doctrine:fixtures:load -n --env=test
+
+script:
+  - ./vendor/bin/phpunit
+
+after_success:
+  - docker build -t tanibox/tania -f docker/app/Dockerfile --build-arg BUILD_DATE="$(date +%Y-%m-%d)" .
+ 
+branches:
+  only: 
+    - development
+
+services:
+  - mysql

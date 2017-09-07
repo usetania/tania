@@ -1,6 +1,14 @@
 imports:
     - { resource: config_dev.yml }
 
+doctrine:
+    dbal:
+        host: '%env(SYMFONY_DB_HOST)%'
+        port: '%env(SYMFONY_DB_PORT)%'
+        dbname: '%env(SYMFONY_DB_NAME)%'
+        user: '%env(SYMFONY_DB_USERNAME)%'
+        password: '%env(SYMFONY_DB_PASSWORD)%'
+
 framework:
     test: ~
     session:

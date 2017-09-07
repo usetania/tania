@@ -9,8 +9,11 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         // load the environment variables
-        $dotenv = new Dotenv();
-        $dotenv->load(dirname(__DIR__).'/.env');
+        $envFile = dirname(__DIR__).'/.env';
+        if(file_exists($envFile)) {
+            $dotenv = new Dotenv();
+            $dotenv->load($envFile);
+        }
 
         $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
@@ -27,6 +30,7 @@ class AppKernel extends Kernel
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

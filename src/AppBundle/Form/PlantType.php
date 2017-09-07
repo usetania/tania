@@ -65,10 +65,6 @@ class PlantType extends AbstractType
                 'label' => 'Seedling date',
                 'translation_domain' => 'dashboard'
             ))
-            ->add('seedlingAmount', IntegerType::class, array(
-                'label' => 'Seedling amount',
-                'translation_domain' => 'dashboard'
-            ))
             ->add('areaCapacity', IntegerType::class, array(
                 'label' => 'Area capacity',
                 'translation_domain' => 'dashboard'

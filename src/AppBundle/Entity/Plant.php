@@ -40,12 +40,6 @@ class Plant
      * @ORM\Column(type="integer")
      * @Assert\NotBlank()
      */
-    private $seedlingAmount;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank()
-     */
     private $areaCapacity;
 
     /**
@@ -104,30 +98,6 @@ class Plant
     public function getSeedlingDate()
     {
         return $this->seedlingDate;
-    }
-
-    /**
-     * Set seedlingAmount.
-     *
-     * @param int $seedlingAmount
-     *
-     * @return Plant
-     */
-    public function setSeedlingAmount($seedlingAmount)
-    {
-        $this->seedlingAmount = $seedlingAmount;
-
-        return $this;
-    }
-
-    /**
-     * Get seedlingAmount.
-     *
-     * @return int
-     */
-    public function getSeedlingAmount()
-    {
-        return $this->seedlingAmount;
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-namespace Tests\AppBundle\Form;
+/*namespace Tests\AppBundle\Form;
 
 use AppBundle\Form\AreaType;
 use AppBundle\Entity\Area;
@@ -18,4 +18,4 @@ class AreaTypeTest extends TypeTestCase
             'imageFile' => null
         );
     }
-}
+}*/

@@ -15,10 +15,9 @@ before_install:
   - mysql -e 'CREATE DATABASE tania_test'
 
 install:
-  - cp -a .env-example .env
   - composer install --no-interaction
-  - php bin/console --no-interaction doctrine:migrations:migrate
-  - php bin/console --no-interaction doctrine:fixtures:load
+  - php bin/console --no-interaction doctrine:migrations:migrate --env=test
+  - php bin/console --no-interaction doctrine:fixtures:load -n --env=test
 
 script:
   - ./vendor/bin/phpunit

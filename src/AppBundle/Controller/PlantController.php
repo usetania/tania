@@ -47,10 +47,9 @@ class PlantController extends Controller
                 return $carry += $item->getAreaCapacity();
             });
 
-            $totalSeed = $usedSeed + $plant->getSeedlingAmount();
             $totalArea = $usedArea + $plant->getAreaCapacity();
 
-            if ($totalSeed <= $plant->getSeed()->getQuantity() && $totalArea <= $plant->getArea()->getCapacity()) {
+            if ($totalArea <= $plant->getArea()->getCapacity()) {
                 // save to database here
                 $plant = $form->getData();
                 $plant->setCreatedAt(new \DateTime('now'));

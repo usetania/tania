@@ -9,8 +9,8 @@ class DashboardControllerTest extends WebTestCase
     public function testIndex()
     {
         $client = static::createClient(array(), array(
-            'PHP_AUTH_USER' => 'test',
-            'PHP_AUTH_PW' => 'test'
+            'PHP_AUTH_USER' => 'testuser',
+            'PHP_AUTH_PW' => 'test123'
         ));
 
         $crawler = $client->request('GET', '/');

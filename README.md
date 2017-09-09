@@ -42,6 +42,12 @@ Fourth, setup the database tables:
 php bin/console --no-interaction doctrine:migrations:migrate
 ```
 
+Fifth, Create user:
+
+```
+php bin/console fos:user:create
+```
+
 The last, you can run Tania in development mode (on your PC or laptop) by using this command:
 
 ```

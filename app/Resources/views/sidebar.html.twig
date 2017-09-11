@@ -21,6 +21,7 @@
                         <li {% if classActive == 'inventories' or classActive == 'seeds_create' or classActive == 'seeds_show' %} class="active" {% endif %}>
                             <a href="{{ path('inventories') }}"><i class="icon mdi mdi-widgets"></i> {% trans %}Inventories{% endtrans %}</a>
                         </li>
+                        <li><a href=""><i class="icon mdi mdi-memory"></i> {% trans %}Devices{% endtrans %}</a></li>
                         <li class="divider">{% trans %}Operation{% endtrans %}</li>
                         <li {% if classActive == 'plants' or classActive == 'plants_create' or classActive == 'plants_show' or classActive == 'plants_harvest' or classActive == 'plants_edit' %} class="active" {% endif %}>
                             <a href="{{ path('plants') }}"><i class="icon mdi mdi-flower-alt"></i> {% trans %}Plant{% endtrans %}</a>

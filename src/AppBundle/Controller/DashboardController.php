@@ -12,9 +12,6 @@ class DashboardController extends Controller
     {
         // query all farms
         $fields = $em->getRepository('AppBundle:Field')->findAll();
-        $fieldLocations = array_map(function ($location) {
-            return array($location->getLat(), $location->getLng());
-        }, $fields);
         
         // query 5 oldest plants
         $plants = $this->container->get('app.repository.plant_repository')->findOldestPlants(5);
@@ -34,8 +31,7 @@ class DashboardController extends Controller
 
         return $this->render('dashboard/index.html.twig', array(
             'classActive' => $_route,
-            'farms' => $fieldLocations,
-            'farmsJSON' => json_encode($fieldLocations),
+            'farms' => $fields,
             'plants' => $plantsWithDaysAgo,
             'tasks' => $tasks,
         ));

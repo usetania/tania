@@ -28,6 +28,8 @@
 
     {% block javascripts %}
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/perfect-scrollbar/perfect-scrollbar.jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/main.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript">var global = { locale: '{{app.request.locale}}' }</script>
 
@@ -37,12 +39,15 @@
     {% elseif classActive == "fields_show" %}
     <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
     <script type="text/javascript" src="{{ asset('assets/js/field-map-show.js') }}"></script>
-    {% elseif classActive == "dashboard" %}
-    <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js" integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA==" crossorigin=""></script>
-    <script type="text/javascript" src="{{ asset('assets/js/dashboard.js') }}"></script>
     {% elseif classActive == "areas_create" or classActive == "areas_edit" %}
     <script type="text/javascript" src="{{ asset('assets/js/area.js') }}"></script>
     {% endif %}
+
+    <script>
+    $(document).ready(function() {
+        App.init();
+    });
+    </script>
     {% endblock %}
 </body>
 </html>

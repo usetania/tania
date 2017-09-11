@@ -75,7 +75,8 @@ class PlantRepository extends AbstractRepository
             ->select('
                 s.name AS seed_name,
                 a.name AS area_name,
-                p.seedlingDate AS seedling_date
+                p.seedlingDate AS seedling_date,
+                p.areaCapacity AS area_capacity
             ')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
             ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')

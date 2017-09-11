@@ -1,13 +1,13 @@
 ![Tania](readme-assets/project-logo.png "Tania Logo")
 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/taniafarm/Lobby)
-[![Build Status](https://travis-ci.org/Tanibox/tania.svg?branch=master)](https://travis-ci.org/Tanibox/tania)
+[![Build Status](https://travis-ci.org/Tanibox/tania.svg?branch=development)](https://travis-ci.org/Tanibox/tania)
 
 Tania is a free and open source farming management system for everyone. You can manage your growing areas, reservoirs, farm tasks, inventories, and the crop growing progress.
 
 It is developed on top of Symfony PHP web framework.
 
-This project is under active development. You can checkout the `development` branch to get the latest development progress.
+This project is under active development. The `development` branch is considered as a beta version. To get the stable release, you can checkout to the `master` branch or from the [release tab](https://github.com/Tanibox/tania/releases).
 
 ## Screenshots
 
@@ -41,6 +41,12 @@ Fourth, setup the database tables:
 
 ```
 php bin/console --no-interaction doctrine:migrations:migrate
+```
+
+Fifth, create user:
+
+```
+php bin/console fos:user:create {{user}} {{email}} {{password}}
 ```
 
 The last, you can run Tania in development mode (on your PC or laptop) by using this command:

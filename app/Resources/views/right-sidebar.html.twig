@@ -11,7 +11,7 @@
                                         {% for farm in farms %}
                                         <li>
                                             <div class="name">
-                                                <h3><a href="{{ path('fields_show', {'id': farm.id }) }}">{{ farm.name }}</a></h3>
+                                                <h3><a href="{{ path('fields_session', {'id': farm.id }) }}">{{ farm.name }}</a></h3>
                                                 <p>{{ farm.description }}</p>
                                             </div>
                                         </li>

@@ -10,8 +10,13 @@ class DashboardController extends Controller
 {
     public function indexAction(EntityManagerInterface $em, $_route)
     {
+        $activeFarmId = $this->get('session')->get('activeFarm');
+
         // query all farms
         $fields = $em->getRepository('AppBundle:Field')->findAll();
+
+        // query all areas under current farm
+        $areas = $em->getRepository('AppBundle:Area')->findByField($activeFarmId);
         
         // query 5 oldest plants
         $plants = $this->container->get('app.repository.plant_repository')->findOldestPlants(5);
@@ -34,6 +39,7 @@ class DashboardController extends Controller
             'farms' => $fields,
             'plants' => $plantsWithDaysAgo,
             'tasks' => $tasks,
+            'areas' => $areas
         ));
     }
 }

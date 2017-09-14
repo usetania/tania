@@ -19,6 +19,14 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Area
 {
     /**
+     * Many Areas have One Field.
+     *
+     * @ORM\ManyToOne(targetEntity="Field", inversedBy="areas")
+     * @ORM\JoinColumn(name="field_id", referencedColumnName="id")
+     */
+     private $field;
+
+    /**
      * Many Areas have One Reservoirs.
      *
      * @ORM\ManyToOne(targetEntity="Reservoir", inversedBy="areas")

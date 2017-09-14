@@ -26,6 +26,13 @@ class Field
     private $reservoirs;
 
     /**
+     * One Field has Many Areas.
+     *
+     * @ORM\OneToMany(targetEntity="Area", mappedBy="field")
+     */
+    private $areas;
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -84,6 +91,7 @@ class Field
 
     public function __construct()
     {
+        $this->areas = new ArrayCollection();
         $this->reservoirs = new ArrayCollection();
         $this->image = new EmbeddedFile();
     }
@@ -275,6 +283,40 @@ class Field
     {
         return $this->reservoirs;
     }
+
+    /**
+     * Add area.
+     *
+     * @param \AppBundle\Entity\Area $area
+     *
+     * @return Field
+     */
+     public function addArea(\AppBundle\Entity\Reservoir $area)
+     {
+         $this->areas[] = $area;
+ 
+         return $this;
+     }
+ 
+     /**
+      * Remove area.
+      *
+      * @param \AppBundle\Entity\Area $area
+      */
+     public function removeArea(\AppBundle\Entity\Area $area)
+     {
+         $this->areas->removeElement($area);
+     }
+ 
+     /**
+      * Get areas.
+      *
+      * @return \Doctrine\Common\Collections\Collection
+      */
+     public function getAreas()
+     {
+         return $this->areas;
+     }
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

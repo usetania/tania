@@ -81,4 +81,13 @@ class FieldController extends Controller
             'lng' => $field->getLng(),
         ));
     }
+
+    /**
+        Set the current active farm for this session
+    */
+    public function sessionAction($id)
+    {
+        $this->get('session')->set('activeFarm', $id);
+        return $this->redirectToRoute('dashboard');
+    }
 }

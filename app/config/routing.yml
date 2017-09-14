@@ -25,6 +25,12 @@ fields_show:
     requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET, POST]
 
+fields_session:
+    path: /farms/{id}/session{trailingSlash}
+    defaults: { _controller: AppBundle:Field:session, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
+    methods: [GET]
+
 areas:
     path: /areas{trailingSlash}
     defaults: { _controller: AppBundle:Area:index, trailingSlash : "/" }

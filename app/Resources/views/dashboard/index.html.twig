@@ -16,20 +16,14 @@
                     <div class="user-info-list panel panel-default">
                         <div class="panel-heading panel-heading-divider">{% trans %}At a Glance{% endtrans %}</div>
                         <div class="panel-body">
-                            <ul>
-                                <li>
-                                    <div class="col-md-6"><i class="mdi mdi-layers"></i> <a href="#">4 {% trans %}Areas{% endtrans %}</a></div>
-                                </li>
-                                <li>
-                                    <div class="col-md-6"><i class="mdi mdi-flower-alt"></i> <a href="#">12 {% trans %}Varieties{% endtrans %}</a></div>
-                                </li>
-                                <li>
-                                    <div class="col-md-6"><i class="mdi mdi-assignment-o"></i> <a href="#">7 {% trans %}Tasks{% endtrans %}</a></div>
-                                </li>
-                                <li>
-                                    <div class="col-md-6"><i class="mdi mdi-memory"></i> <a href="#">4 {% trans %}Devices{% endtrans %}</a></div>
-                                </li>
-                            </ul>
+                            <div class="row">
+                                <div class="col-md-6"><i class="mdi mdi-layers"></i> <a href="#">{{ areas|length }} {% trans %}Areas{% endtrans %}</a></div>
+                                <div class="col-md-6"><i class="mdi mdi-flower-alt"></i> <a href="#">12 {% trans %}Varieties{% endtrans %}</a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6"><i class="mdi mdi-assignment-o"></i> <a href="#">7 {% trans %}Tasks{% endtrans %}</a></div>
+                                <div class="col-md-6"><i class="mdi mdi-memory"></i> <a href="#">4 {% trans %}Devices{% endtrans %}</a></div>
+                            </div>
                         </div>
                         <div class="panel-body panel-body-contrast">
                             <p>Please, go to our <a href="https://gettania.atlassian.net" target="_blank">issue tracker</a> if you have feedbacks, issues, or feature requests.</p>
@@ -47,13 +41,13 @@
                                 <div class="btn-group btn-hspace">
                                     <button type="button" data-toggle="dropdown" class="btn btn-lg btn-default dropdown-toggle" aria-expanded="false">
                                         <i class="icon icon-left mdi mdi-layers"> </i>
-                                        Amaryllis
+                                        {{ areas[0].name }}
                                         <span class="icon-dropdown mdi mdi-chevron-down"></span>
                                     </button>
                                     <ul role="menu" class="dropdown-menu">
-                                        <li class="active"><a href="area-detail.html">Amaryllis</a></li>
-                                        <li><a href="area-detail.html">Chrysant</a></li>
-                                        <li><a href="area-detail.html">Jasmine</a></li>
+                                        {% for area in areas %}
+                                        <li><a href="">{{ area.name }}</a></li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                                 <div class="clearfix"></div>

@@ -13,7 +13,7 @@ class ReservoirControllerTest extends WebTestCase
             'PHP_AUTH_PW' => 'test123'
         ));
 
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/reservoirs');
         
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }

@@ -12,8 +12,10 @@ class ReservoirController extends Controller
 {
     public function indexAction(EntityManagerInterface $em, Request $request, $_route)
     {
+        $activeFarmId = $this->get('session')->get('activeFarm');
+
         $reservoir = new Reservoir();
-        $reservoirs = $em->getRepository('AppBundle:Reservoir')->findAll();
+        $reservoirs = $em->getRepository('AppBundle:Reservoir')->findByField($activeFarmId);
 
         $form = $this->createForm(ReservoirType::class, $reservoir);
         $form->handleRequest($request);

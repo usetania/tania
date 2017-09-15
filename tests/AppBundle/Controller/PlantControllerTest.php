@@ -4,7 +4,6 @@ namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 
 class PlantControllerTest extends WebTestCase
 {
@@ -16,10 +15,7 @@ class PlantControllerTest extends WebTestCase
         ));
 
         $container = $client->getContainer();
-        $session = new Session(new MockFileSessionStorage());
-
-        $session->set('activeFarm', 1);
-        $container->set('session', $session);
+        $container->get('session')->set('activeFarm', 1);
 
         $crawler = $client->request('GET', '/plants');
         

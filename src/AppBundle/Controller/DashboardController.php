@@ -21,7 +21,7 @@ class DashboardController extends Controller
         // query 5 oldest plants
         $plants = $this->container->get('app.repository.plant_repository')->findOldestPlants($activeFarmId, 5);
         $totalPlants = $this->container->get('app.repository.plant_repository')->countByFarm($activeFarmId);
-
+        
         $plantsWithDaysAgo = array_map(function ($plant) {
             // translate the date time to days ago
             $seedlingDate = date_create($plant['seedling_date']->format('Y-m-d'));

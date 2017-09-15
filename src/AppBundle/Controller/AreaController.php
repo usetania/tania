@@ -17,7 +17,9 @@ class AreaController extends Controller
      */
     public function indexAction(EntityManagerInterface $em, $_route)
     {
-        $areas = $em->getRepository('AppBundle:Area')->findAll();
+        $activeFarmId = $this->get('session')->get('activeFarm');
+
+        $areas = $em->getRepository('AppBundle:Area')->findByField($activeFarmId);
 
         $growingMethodNames = array_map(function ($item) {
             $growingMethodName = CategoryMaster::growingMethods();

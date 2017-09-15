@@ -13,7 +13,7 @@ class TaskControllerTest extends WebTestCase
             'PHP_AUTH_PW' => 'test123'
         ));
 
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/tasks');
         
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }

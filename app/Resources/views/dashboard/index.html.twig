@@ -41,7 +41,9 @@
                                 <div class="btn-group btn-hspace">
                                     <button type="button" data-toggle="dropdown" class="btn btn-lg btn-default dropdown-toggle" aria-expanded="false">
                                         <i class="icon icon-left mdi mdi-layers"> </i>
+                                        {% if areas|length > 0 %}
                                         {{ areas[0].name }}
+                                        {% endif %}
                                         <span class="icon-dropdown mdi mdi-chevron-down"></span>
                                     </button>
                                     <ul role="menu" class="dropdown-menu">

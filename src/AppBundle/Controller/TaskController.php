@@ -12,7 +12,9 @@ class TaskController extends Controller
 {
     public function indexAction(EntityManagerInterface $em, $_route)
     {
-        $tasks = $em->getRepository('AppBundle:Task')->findAll();
+        $activeFarmId = $this->get('session')->get('activeFarm');
+
+        $tasks = $em->getRepository('AppBundle:Task')->findByField($activeFarmId);
 
         return $this->render('task/index.html.twig', array(
             'tasks' => $tasks,

@@ -33,6 +33,13 @@ class Field
     private $areas;
 
     /**
+     * One Field has Many Tasks.
+     *
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="field")
+     */
+     private $tasks;
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -291,7 +298,7 @@ class Field
      *
      * @return Field
      */
-     public function addArea(\AppBundle\Entity\Reservoir $area)
+     public function addArea(\AppBundle\Entity\Area $area)
      {
          $this->areas[] = $area;
  
@@ -317,6 +324,40 @@ class Field
      {
          return $this->areas;
      }
+
+    /**
+     * Add task.
+     *
+     * @param \AppBundle\Entity\Task $task
+     *
+     * @return Field
+     */
+    public function addTask(\AppBundle\Entity\Task $task)
+    {
+        $this->tasks[] = $task;
+
+        return $this;
+    }
+ 
+    /**
+     * Remove area.
+     *
+     * @param \AppBundle\Entity\Task $task
+     */
+    public function removeTask(\AppBundle\Entity\Task $task)
+    {
+        $this->tasks->removeElement($task);
+    }
+ 
+    /**
+     * Get tasks.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

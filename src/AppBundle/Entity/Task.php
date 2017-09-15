@@ -12,6 +12,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Task
 {
     /**
+     * Many Tasks have One Field.
+     *
+     * @ORM\ManyToOne(targetEntity="Field", inversedBy="tasks")
+     * @ORM\JoinColumn(name="field_id", referencedColumnName="id")
+     */
+    private $field;
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")

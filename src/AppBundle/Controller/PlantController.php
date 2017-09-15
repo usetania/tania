@@ -14,7 +14,9 @@ class PlantController extends Controller
 {
     public function indexAction(EntityManagerInterface $em, $_route)
     {
-        $plants = $this->container->get('app.repository.plant_repository')->findAllPlants();
+        $activeFarmId = $this->get('session')->get('activeFarm');
+        
+        $plants = $this->container->get('app.repository.plant_repository')->findAllPlants($activeFarmId);
 
         return $this->render('plant/index.html.twig', array(
             'plants' => $plants,

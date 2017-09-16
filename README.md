@@ -11,7 +11,7 @@ This project is under active development. The `development` branch is considered
 
 ## Screenshots
 
-![Tania Dashboard](readme-assets/project-dashboard.jpg "Tania Dashboard")
+![Tania Dashboard](https://s3-ap-southeast-1.amazonaws.com/asepco/iot-dashboard.PNG "Tania Dashboard")
 
 ## Requirements
 
@@ -71,7 +71,6 @@ Current maintainers:
 
 - Asep Bagja Priandana - [Linkedin](https://www.linkedin.com/in/asepbagja/)
 - Retno Ika Safitri - [Linkedin](https://www.linkedin.com/in/retnoika/)
-- M. Surya Iksanudin - [Linkedin](https://www.linkedin.com/in/ihsanuddin/)
 - Didiet Noor - [Linkedin](https://www.linkedin.com/in/didiet/)
 
 If you are interested in being a core contributor to this project, please drop me an email at __asep@tanibox.com__.

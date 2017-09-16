@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% trans_default_domain "dashboard" %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %}
+    {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <h2 class="page-head-title">{% trans %}Add New Device{% endtrans %}</h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form action="#" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Name</label>
+                                    <div class="col-sm-5">
+                                    <input type="text" placeholder="e.g. AMA 1, VEG EC 01, etc." class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Description</label>
+                                    <div class="col-sm-5">
+                                    <textarea class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Device Type</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control">
+                                            <option>Raspberry Pi</option>
+                                            <option>ESP8266</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Location</label>
+                                    <div class="col-sm-5">
+                                        <select class="form-control">
+                                            <option>Amaryllis</option>
+                                            <option>Chrysant</option>
+                                            <option>Jasmine</option>
+                                            <option>Tulip</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">{% trans %}Add Device{% endtrans %}</button>
+                                        <a href="{{ path('devices') }}" class="btn btn-default btn-lg">{% trans %}Cancel{% endtrans %}</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'right-sidebar.html.twig' %}
+</div>
+{% endblock %}

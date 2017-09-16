@@ -16,11 +16,11 @@
             <div class="user-profile">
                 <div class="row">
                     <div class="col-md-5">
+                        {% if vich_uploader_asset(area, 'imageFile') %}
                         <div class="user-display">
-                            {% if vich_uploader_asset(area, 'imageFile') %}
                             <div class="user-display-bg" style="background-image: url('{{ vich_uploader_asset(area, 'imageFile') }}');"></div>
-                            {% endif %}
                         </div>
+                        {% endif %}
                         <div class="user-info-list panel panel-default">
                             <div class="panel-body">
                                 <table class="no-border no-strip skills">
@@ -81,8 +81,8 @@
                                                 {% endif %}
                                                 {{ plant['seed'].name }}
                                             </td>
-                                            <td>{{ plant['seed_category'] }}</td>
-                                            <td>{{ plant['seedling_total'] }}</td>
+                                            <td style="vertical-align: middle;">{{ plant['seed_category'] }}</td>
+                                            <td style="vertical-align: middle;">{{ plant['seedling_amount'] }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>

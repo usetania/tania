@@ -21,7 +21,7 @@ class PlantRepository extends AbstractRepository
 
         $query = $qb
             ->select('
-                   SUM(p.seedlingAmount) AS seedling_total,
+                   p.areaCapacity AS seedling_amount,
                    SUM(p.areaCapacity) AS area_capacity,
                    sc.name AS seed_category,
                    s AS seed

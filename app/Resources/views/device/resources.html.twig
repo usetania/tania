@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% trans_default_domain "dashboard" %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %}
+    {% include 'sidebar.html.twig' %}
+    <div class="be-content">
+        <div class="page-head">
+            <h2 class="page-head-title">{% trans %}Resources for{% endtrans %} <b>AMA 1-04</b></h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <form action="#" style="border-radius: 0px;" class="group-border-dashed">
+                                <div class="form-group">
+                                    <label class="control-label">Resource Name<span class="text-danger">*</span></label>
+                                    <input type="text" placeholder="Enter a name for this property" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Resource Description</label>
+                                    <textarea class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Resource ID<span class="text-danger">*</span></label>
+                                    <input type="text" placeholder="Enter a property ID. Example: airareatemperature" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Resource Type</label>
+                                    <select class="form-control">
+                                        <option>Temperature</option>
+                                        <option>Humidity</option>
+                                        <option>Light</option>
+                                        <option>Nutrition</option>
+                                        <option>Moisture</option>
+                                        <option>pH</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Data Type</label>
+                                    <select class="form-control">
+                                        <option>Float</option>
+                                        <option>Boolean</option>
+                                        <option>Integer</option>
+                                        <option>String</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label">Unit</label>
+                                    <select class="form-control">
+                                        <option>Celcius</option>
+                                        <option>Fahrenheit</option>
+                                        <option>us/cm</option>
+                                        <option>%</option>
+                                        <option>Lux</option>
+                                    </select>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">{% trans %}Add Resources{% endtrans %}</button>
+                                        <a href="{{ path('devices') }}" class="btn btn-default btn-lg">{% trans %}Cancel{% endtrans %}</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default panel-table">
+                        <div class="panel-body">
+                            <table id="table2" class="table table-fw-widget">
+                                <thead>
+                                    <tr>
+                                        <th class="col-sm-2">Resource Name</th>
+                                        <th>Resource ID</th>
+                                        <th>Resource Type</th>
+                                        <th>Data Type</th>
+                                        <th>Unit</th>
+                                        <th>Description</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>RGTemperature</td>
+                                        <td>rgairtemperature</td>
+                                        <td>Temperature</td>
+                                        <td>Float</td>
+                                        <td>Celcius</td>
+                                        <td>Measuring the air temperature</td>
+                                        <td><a href="">{% trans %}Edit{% endtrans %}</a> | <a href="">{% trans %}Delete{% endtrans %}</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'right-sidebar.html.twig' %}
+</div>
+{% endblock %}

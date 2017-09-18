@@ -40,6 +40,11 @@ class Area
     private $plants;
 
     /**
+     * @ORM\OneToMany(targetEntity="AreasDevices", mappedBy="area", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    private $areasdevices;
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -102,6 +107,7 @@ class Area
     public function __construct()
     {
         $this->plants = new ArrayCollection();
+        $this->areasdevices = new ArrayCollection();
         $this->image = new EmbeddedFile();
     }
 
@@ -316,6 +322,40 @@ class Area
     {
         return $this->plants;
     }
+
+    /**
+     * Add areasdevices.
+     *
+     * @param \AppBundle\Entity\AreasDevices $areadevice
+     *
+     * @return Area
+     */
+     public function addAreaDevice(\AppBundle\Entity\AreasDevices $areadevice)
+     {
+         $this->areasdevices[] = $areadevice;
+ 
+         return $this;
+     }
+ 
+     /**
+      * Remove areadevice.
+      *
+      * @param \AppBundle\Entity\AreasDevices $areadevice
+      */
+     public function removeAreaDevice(\AppBundle\Entity\AreasDevices $areadevice)
+     {
+         $this->areasdevices->removeElement($areadevice);
+     }
+ 
+     /**
+      * Get areasdevices.
+      *
+      * @return \Doctrine\Common\Collections\Collection
+      */
+     public function getAreasDevices()
+     {
+         return $this->areasdevices;
+     }
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

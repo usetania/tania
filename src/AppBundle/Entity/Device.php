@@ -21,6 +21,11 @@ class Device
     private $field;
 
     /**
+     * @ORM\OneToMany(targetEntity="AreasDevices", mappedBy="device", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+     private $areasdevices;
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -55,4 +60,199 @@ class Device
     * @Assert\Type("\DateTime")
     */
     private $createdAt;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->areasdevices = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Device
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Device
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set deviceType
+     *
+     * @param integer $deviceType
+     *
+     * @return Device
+     */
+    public function setDeviceType($deviceType)
+    {
+        $this->deviceType = $deviceType;
+
+        return $this;
+    }
+
+    /**
+     * Get deviceType
+     *
+     * @return integer
+     */
+    public function getDeviceType()
+    {
+        return $this->deviceType;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return Device
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Device
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set field
+     *
+     * @param \AppBundle\Entity\Field $field
+     *
+     * @return Device
+     */
+    public function setField(\AppBundle\Entity\Field $field = null)
+    {
+        $this->field = $field;
+
+        return $this;
+    }
+
+    /**
+     * Get field
+     *
+     * @return \AppBundle\Entity\Field
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
+
+    /**
+     * Add areasdevice
+     *
+     * @param \AppBundle\Entity\AreasDevices $areasdevice
+     *
+     * @return Device
+     */
+    public function addAreasdevice(\AppBundle\Entity\AreasDevices $areasdevice)
+    {
+        $this->areasdevices[] = $areasdevice;
+
+        return $this;
+    }
+
+    /**
+     * Remove areasdevice
+     *
+     * @param \AppBundle\Entity\AreasDevices $areasdevice
+     */
+    public function removeAreasdevice(\AppBundle\Entity\AreasDevices $areasdevice)
+    {
+        $this->areasdevices->removeElement($areasdevice);
+    }
+
+    /**
+     * Get areasdevices
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAreasdevices()
+    {
+        return $this->areasdevices;
+    }
 }

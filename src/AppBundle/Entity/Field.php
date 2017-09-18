@@ -37,8 +37,15 @@ class Field
      *
      * @ORM\OneToMany(targetEntity="Task", mappedBy="field")
      */
-     private $tasks;
+    private $tasks;
 
+    /**
+     * One Field has Many Devices.
+     *
+     * @ORM\OneToMany(targetEntity="Device", mappedBy="field")
+     */
+    private $devices;
+    
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id

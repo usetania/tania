@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% trans_default_domain "dashboard" %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %}
+    {% include 'sidebar.html.twig' %}
+    <div class="be-content">
+        <div class="page-head">
+            <h2 class="page-head-title">{% trans %}Areas for{% endtrans %} <b>{{ device.name }}</b></h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_start(form, {'attr': {'class': 'group-border-dashed', 'style': 'border-radius: 0px;'}}) }}
+                                {{ form_errors(form) }}
+                                <div class="form-group">
+                                    {{ form_label(form.area, 'Area', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.area) }}
+                                    {{ form_widget(form.area, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 text-center">
+                                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+                                        <a href="{{ path('devices') }}" class="btn btn-default btn-lg">{% trans %}Cancel{% endtrans %}</a>
+                                    </div>
+                                </div>
+                            {{form_end(form)}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default panel-table">
+                        <div class="panel-body">
+                            <table id="table2" class="table table-fw-widget">
+                                <thead>
+                                    <tr>
+                                        <th>Area Name</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for areaDevice in areasDevices %}
+                                    <tr>
+                                        <td>{{ areaDevice.area.name }}</td>
+                                        <td><a href="">{% trans %}Delete{% endtrans %}</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'right-sidebar.html.twig' %}
+</div>
+{% endblock %}

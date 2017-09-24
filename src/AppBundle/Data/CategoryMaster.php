@@ -32,4 +32,14 @@ class CategoryMaster
             5 => 'oz',
         );
     }
+
+    public static function deviceType()
+    {
+        return array(
+            1 => 'Raspberry Pi',
+            2 => 'Arduino',
+            3 => 'ESP8266',
+            4 => 'Other'
+        );
+    }
 }

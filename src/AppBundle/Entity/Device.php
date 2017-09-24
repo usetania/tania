@@ -23,7 +23,7 @@ class Device
     /**
      * @ORM\OneToMany(targetEntity="AreasDevices", mappedBy="device", cascade={"persist", "remove"}, orphanRemoval=TRUE)
      */
-     private $areasdevices;
+    private $areasdevices;
 
     /**
      * @ORM\Column(type="integer")
@@ -65,7 +65,7 @@ class Device
      */
     public function __construct()
     {
-        $this->areasdevices = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->areasdevices = new ArrayCollection();
     }
 
     /**
@@ -229,7 +229,7 @@ class Device
      *
      * @return Device
      */
-    public function addAreasdevice(\AppBundle\Entity\AreasDevices $areasdevice)
+    public function addAreasdevices(\AppBundle\Entity\AreasDevices $areasdevice)
     {
         $this->areasdevices[] = $areasdevice;
 
@@ -241,7 +241,7 @@ class Device
      *
      * @param \AppBundle\Entity\AreasDevices $areasdevice
      */
-    public function removeAreasdevice(\AppBundle\Entity\AreasDevices $areasdevice)
+    public function removeAreasdevices(\AppBundle\Entity\AreasDevices $areasdevice)
     {
         $this->areasdevices->removeElement($areasdevice);
     }

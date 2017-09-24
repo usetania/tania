@@ -73,6 +73,9 @@ class AreaController extends Controller
      */
     public function createAction(EntityManagerInterface $em, Request $request, $_route)
     {
+        $activeFarmId = $this->get('session')->get('activeFarm');
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         $area = new Area();
 
         $form = $this->createForm(AreaType::class, $area);
@@ -82,6 +85,8 @@ class AreaController extends Controller
             $area = $form->getData();
 
             // save to database here
+            $field = $em->getRepository('AppBundle:Field')->findOneById((int) $activeFarmId);
+            $area->setField($field);
             $area->setCreatedAt(new \DateTime('now'));
 
             $em->persist($area);
@@ -91,6 +96,7 @@ class AreaController extends Controller
         }
 
         return $this->render('area/create.html.twig', array(
+            'farms' => $fields,
             'form' => $form->createView(),
             'classActive' => $_route,
         ));

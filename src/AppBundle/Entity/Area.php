@@ -324,38 +324,62 @@ class Area
     }
 
     /**
-     * Add areasdevices.
+     * Add areasdevice
      *
-     * @param \AppBundle\Entity\AreasDevices $areadevice
+     * @param \AppBundle\Entity\AreasDevices $areasdevice
      *
      * @return Area
      */
-     public function addAreaDevice(\AppBundle\Entity\AreasDevices $areadevice)
+     public function addAreasdevices(\AppBundle\Entity\AreasDevices $areasdevice)
      {
-         $this->areasdevices[] = $areadevice;
+         $this->areasdevices[] = $areasdevice;
  
          return $this;
      }
  
      /**
-      * Remove areadevice.
+      * Remove areasdevice
       *
-      * @param \AppBundle\Entity\AreasDevices $areadevice
+      * @param \AppBundle\Entity\AreasDevices $areasdevice
       */
-     public function removeAreaDevice(\AppBundle\Entity\AreasDevices $areadevice)
+     public function removeAreasdevices(\AppBundle\Entity\AreasDevices $areasdevice)
      {
-         $this->areasdevices->removeElement($areadevice);
+         $this->areasdevices->removeElement($areasdevice);
      }
  
      /**
-      * Get areasdevices.
+      * Get areasdevices
       *
       * @return \Doctrine\Common\Collections\Collection
       */
-     public function getAreasDevices()
+     public function getAreasdevices()
      {
          return $this->areasdevices;
      }
+
+    /**
+     * Set field
+     *
+     * @param \AppBundle\Entity\Field $field
+     *
+     * @return Device
+     */
+    public function setField(\AppBundle\Entity\Field $field = null)
+    {
+        $this->field = $field;
+
+        return $this;
+    }
+
+    /**
+     * Get field
+     *
+     * @return \AppBundle\Entity\Field
+     */
+    public function getField()
+    {
+        return $this->field;
+    }
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

@@ -107,6 +107,8 @@ class Field
     {
         $this->areas = new ArrayCollection();
         $this->reservoirs = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
+        $this->devices = new ArrayCollection();
         $this->image = new EmbeddedFile();
     }
 
@@ -365,6 +367,40 @@ class Field
     {
         return $this->tasks;
     }
+
+    /**
+     * Add device.
+     *
+     * @param \AppBundle\Entity\Device $device
+     *
+     * @return Field
+     */
+     public function addDevice(\AppBundle\Entity\Device $device)
+     {
+         $this->devices[] = $device;
+ 
+         return $this;
+     }
+ 
+     /**
+      * Remove device.
+      *
+      * @param \AppBundle\Entity\Device $device
+      */
+     public function removeDevice(\AppBundle\Entity\Device $device)
+     {
+         $this->devices->removeElement($device);
+     }
+ 
+     /**
+      * Get devices.
+      *
+      * @return \Doctrine\Common\Collections\Collection
+      */
+     public function getDevices()
+     {
+         return $this->devices;
+     }
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

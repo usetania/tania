@@ -145,10 +145,16 @@ devices_create:
     methods: [GET, POST]
     requirements: { trailingSlash : "[/]{0,1}" }
 
-resources:
+devices_resources:
     path: /devices/{id}/resources{trailingSlash}
     defaults: { _controller: AppBundle:Device:resources, trailingSlash : "/" }
     methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+devices_areas:
+    path: /devices/{id}/areas{trailingSlash}
+    defaults: { _controller: AppBundle:Device:areas, trailingSlash : "/" }
+    methods: [GET, POST]
     requirements: { trailingSlash : "[/]{0,1}" }
 
 fos_user:

@@ -15,47 +15,36 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form action="#" style="border-radius: 0px;" class="form-horizontal group-border-dashed">
+                            {{ form_start(form, {'attr': {'class': 'form-horizontal group-border-dashed', 'style': 'border-radius: 0px;'}}) }}
+                                {{ form_errors(form) }}
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Name</label>
+                                    {{ form_label(form.name, 'Name', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                                     <div class="col-sm-5">
-                                    <input type="text" placeholder="e.g. AMA 1, VEG EC 01, etc." class="form-control">
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name, {'attr': {'class': 'form-control', 'placeholder': 'e.g. VEG EC01, etc'}}) }}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Description</label>
+                                    {{ form_label(form.description, 'Description', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                                     <div class="col-sm-5">
-                                    <textarea class="form-control"></textarea>
+                                    {{ form_errors(form.description) }}
+                                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">Device Type</label>
+                                    {{ form_label(form.deviceType, 'Device Type', {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
                                     <div class="col-sm-5">
-                                        <select class="form-control">
-                                            <option>Raspberry Pi</option>
-                                            <option>ESP8266</option>
-                                            <option>Other</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label">Location</label>
-                                    <div class="col-sm-5">
-                                        <select class="form-control">
-                                            <option>Amaryllis</option>
-                                            <option>Chrysant</option>
-                                            <option>Jasmine</option>
-                                            <option>Tulip</option>
-                                        </select>
+                                        {{ form_errors(form.deviceType) }}
+                                        {{ form_widget(form.deviceType, {'attr': {'class': 'form-control'}}) }}
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 text-center">
-                                        <button type="submit" class="btn btn-primary btn-lg">{% trans %}Add Device{% endtrans %}</button>
+                                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
                                         <a href="{{ path('devices') }}" class="btn btn-default btn-lg">{% trans %}Cancel{% endtrans %}</a>
                                     </div>
                                 </div>
-                            </form>
+                            {{form_end(form)}}
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,7 @@ class DeviceController extends Controller
         $activeFarmId = $this->get('session')->get('activeFarm');
         $fields = $em->getRepository('AppBundle:Field')->findAll();
         $devices = $em->getRepository('AppBundle:Device')->findByField($activeFarmId);
-        //dump($devices[0]->getAreasdevices()->count());exit;
+        
         return $this->render('device/index.html.twig', array(
             'farms' => $fields,
             'devices' => $devices,

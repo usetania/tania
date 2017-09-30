@@ -43,7 +43,8 @@ class FieldController extends Controller
             $em->persist($field);
             $em->flush();
 
-            return $this->redirectToRoute('fields');
+            // redirect to dashboard and set the session variable with the new id
+            return $this->redirectToRoute('fields_session', array('id' => $field->getId()));
         }
 
         return $this->render('field/add.html.twig', array(

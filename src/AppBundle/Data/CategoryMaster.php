@@ -36,10 +36,11 @@ class CategoryMaster
     public static function deviceType()
     {
         return array(
-            1 => 'Raspberry Pi',
-            2 => 'Arduino',
-            3 => 'ESP8266',
-            4 => 'Other'
+            1 => 'Xiaomi Flora',
+            2 => 'Raspberry Pi',
+            3 => 'Arduino',
+            4 => 'ESP8266',
+            5 => 'Other'
         );
     }
 }

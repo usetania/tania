@@ -10,10 +10,14 @@ class DashboardController extends Controller
 {
     public function indexAction(EntityManagerInterface $em, $_route)
     {
-        $activeFarmId = $this->get('session')->get('activeFarm');
-
         // query all farms
         $fields = $em->getRepository('AppBundle:Field')->findAll();
+
+        if(empty($fields)) {
+            return $this->redirectToRoute('fields_create');
+        }
+
+        $activeFarmId = $this->get('session')->get('activeFarm');
 
         // query all areas under current farm
         $areas = $em->getRepository('AppBundle:Area')->findByField($activeFarmId);

@@ -56,14 +56,18 @@ class DeviceController extends Controller
         ));
     }
 
-    public function resourcesAction(Request $request, EntityManagerInterface $em, $_route)
+    public function resourcesAction($id, Request $request, EntityManagerInterface $em, $_route)
     {
         $activeFarmId = $this->get('session')->get('activeFarm');
         $fields = $em->getRepository('AppBundle:Field')->findAll();
+        $device = $em->getRepository('AppBundle:Device')->findOneById($id);
+        $resourcesDevices = $em->getRepository('AppBundle:ResourcesDevices')->findByDevice($id);
 
         return $this->render('device/resources.html.twig', array(
             'farms' => $fields,
-            'classActive' => $_route
+            'classActive' => $_route,
+            'device' => $device,
+            'resourcesDevices' => $resourcesDevices
         ));
     }
 

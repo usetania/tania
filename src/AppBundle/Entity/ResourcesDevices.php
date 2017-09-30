@@ -52,6 +52,18 @@ class ResourcesDevices
     private $rid;
 
     /**
+     * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank()
+     */
+    private $dataType;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank()
+     */
+    private $unit;
+
+    /**
      * @ORM\Column(type="datetime", nullable=TRUE)
      * @Assert\DateTime()
      */
@@ -239,5 +251,53 @@ class ResourcesDevices
     public function getResource()
     {
         return $this->resource;
+    }
+
+    /**
+     * Set dataType
+     *
+     * @param string $dataType
+     *
+     * @return ResourcesDevices
+     */
+    public function setDataType($dataType)
+    {
+        $this->dataType = $dataType;
+
+        return $this;
+    }
+
+    /**
+     * Get dataType
+     *
+     * @return string
+     */
+    public function getDataType()
+    {
+        return $this->dataType;
+    }
+
+    /**
+     * Set unit
+     *
+     * @param string $unit
+     *
+     * @return ResourcesDevices
+     */
+    public function setUnit($unit)
+    {
+        $this->unit = $unit;
+
+        return $this;
+    }
+
+    /**
+     * Get unit
+     *
+     * @return string
+     */
+    public function getUnit()
+    {
+        return $this->unit;
     }
 }

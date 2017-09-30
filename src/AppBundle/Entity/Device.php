@@ -26,6 +26,11 @@ class Device
     private $areasdevices;
 
     /**
+     * @ORM\OneToMany(targetEntity="ResourcesDevices", mappedBy="device", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    private $resourcesdevices;
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -254,5 +259,63 @@ class Device
     public function getAreasdevices()
     {
         return $this->areasdevices;
+    }
+
+    /**
+     * Add areasdevice
+     *
+     * @param \AppBundle\Entity\AreasDevices $areasdevice
+     *
+     * @return Device
+     */
+    public function addAreasdevice(\AppBundle\Entity\AreasDevices $areasdevice)
+    {
+        $this->areasdevices[] = $areasdevice;
+
+        return $this;
+    }
+
+    /**
+     * Remove areasdevice
+     *
+     * @param \AppBundle\Entity\AreasDevices $areasdevice
+     */
+    public function removeAreasdevice(\AppBundle\Entity\AreasDevices $areasdevice)
+    {
+        $this->areasdevices->removeElement($areasdevice);
+    }
+
+    /**
+     * Add resourcesdevice
+     *
+     * @param \AppBundle\Entity\ResourcesDevices $resourcesdevice
+     *
+     * @return Device
+     */
+    public function addResourcesdevice(\AppBundle\Entity\ResourcesDevices $resourcesdevice)
+    {
+        $this->resourcesdevices[] = $resourcesdevice;
+
+        return $this;
+    }
+
+    /**
+     * Remove resourcesdevice
+     *
+     * @param \AppBundle\Entity\ResourcesDevices $resourcesdevice
+     */
+    public function removeResourcesdevice(\AppBundle\Entity\ResourcesDevices $resourcesdevice)
+    {
+        $this->resourcesdevices->removeElement($resourcesdevice);
+    }
+
+    /**
+     * Get resourcesdevices
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResourcesdevices()
+    {
+        return $this->resourcesdevices;
     }
 }

@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Task;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DashboardController extends Controller
 {
@@ -57,5 +58,31 @@ class DashboardController extends Controller
             'areas' => $areas,
             'devices' => $devices
         ));
+    }
+
+    /**
+     * This method will be accessed via ajax in dashboard
+     */
+    public function iotAction($id, EntityManagerInterface $em)
+    {
+        $areaDevice = $em->getRepository('AppBundle:AreasDevices')->findOneByArea($id);
+
+        if(empty($areaDevice)) {
+            return new JsonResponse('no data');
+        }
+
+        $deviceId = $areaDevice->getDevice()->getId();
+        $resourcesDevice = $em->getRepository('AppBundle:ResourcesDevices')->findByDevice($deviceId);
+        $resourceJson = array_map(function($resource) {
+            $item = array(
+                'id' => $resource->getId(),
+                'type' => $resource->getResource()->getType(),
+                'rid' => $resource->getRid(),
+                'unit' => $resource->getUnit()
+            );
+            return $item;
+        }, $resourcesDevice);
+        
+        return new JsonResponse($resourceJson);
     }
 }

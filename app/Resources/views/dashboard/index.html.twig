@@ -41,46 +41,23 @@
                                 <div class="btn-group btn-hspace">
                                     <button type="button" data-toggle="dropdown" class="btn btn-lg btn-default dropdown-toggle" aria-expanded="false">
                                         <i class="icon icon-left mdi mdi-layers"> </i>
+                                        <span id="area-name-btn">
                                         {% if areas|length > 0 %}
                                         {{ areas[0].name }}
                                         {% else %}
                                         No Area
                                         {% endif %}
+                                        </span>
                                         <span class="icon-dropdown mdi mdi-chevron-down"></span>
                                     </button>
                                     <ul role="menu" class="dropdown-menu">
                                         {% for area in areas %}
-                                        <li><a data-area="{{ area.id }}">{{ area.name }}</a></li>
+                                        <li><a class="area-click-btn" data-area="{{ area.id }}">{{ area.name }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </div>
                                 <div class="clearfix"></div>
-                                <div class="row statpanel">
-                                    <div class="col-md-4 block">
-                                        <div class="title">{% trans %}Area Temperature{% endtrans %} <span class="measurement">&#8451;</span></div>
-                                        <div class="counter text-danger">33.5 <span class="icon icon-danger mdi mdi-alert-triangle"></span></div>
-                                    </div>
-                                    <div class="col-md-4 block">
-                                        <div class="title">{% trans %}Area Humidity{% endtrans %} <span class="measurement">%</span></div>
-                                        <div class="counter text-warning">27 <span class="icon icon-warning mdi mdi-alert-triangle"></span></div>
-                                    </div>
-                                    <div class="col-md-4 block">
-                                        <div class="title">{% trans %}Light Level{% endtrans %} <span class="measurement">(lux)</span></div>
-                                        <div class="counter text-success">10172 <!--<span class="icon icon-success mdi mdi-info-outline"></span>--></div>
-                                    </div>
-                                    <div class="col-md-4 block">
-                                        <div class="title">{% trans %}Soil Nutrition{% endtrans %} <span class="measurement">us/cm</span></div>
-                                        <div class="counter text-success">532 <!--<span class="icon icon-success mdi mdi-info-outline"></span>--></div>
-                                    </div>
-                                    <div class="col-md-4 block">
-                                        <div class="title">{% trans %}Soil Moisture{% endtrans %} <span class="measurement">%</span></div>
-                                        <div class="counter text-success">21 <!--<span class="icon icon-success mdi mdi-info-outline"></span>--></div>
-                                    </div>
-                                    <div class="col-md-4 block">
-                                        <div class="title">{% trans %}Soil pH Level{% endtrans %}</div>
-                                        <div class="counter text-warning">6.1 <span class="icon icon-warning mdi mdi-alert-triangle"></span></div>
-                                    </div>
-                                </div>
+                                <div class="row statpanel"></div>
                             </div>
                         </div>
                     </div>
@@ -157,4 +134,69 @@
 
     {% include 'right-sidebar.html.twig' %}
 </div>
+
+<script src="{{ asset('assets/js/paho-mqtt.js') }}"></script>
+<script>
+function onConnectMQTT() {
+    // Once a connection has been made, make a subscription and send a message.
+    console.log("onConnect");
+}
+
+function onConnectionLostMQTT(responseObject) {
+    if (responseObject.errorCode !== 0) {
+        console.log("onConnectionLost:"+responseObject.errorMessage);
+    }
+}
+
+$(document).ready(function() {
+    // connect to mqtt broker
+    let client = new Paho.MQTT.Client("test.mosquitto.org", 80, "taniaDev");
+    client.connect({onSuccess: onConnectMQTT});
+    client.onConnectionLost = onConnectionLostMQTT;
+
+    // default dashboard
+    let areaClicked = $('.area-click-btn').data('area');
+    
+    $.get("/iot/area/"+areaClicked, function(response) {
+        response.forEach(function(item) {
+            let statsContent = "<div class=\"col-md-4 block\">";
+            statsContent += "<div class=\"title\">{% trans %}"+item.type+"{% endtrans %} <span class=\"measurement\">"+item.unit+"</span></div>";
+            statsContent += "<div class=\"counter\">0</div>";
+            statsContent += "</div>";
+            $('.statpanel').append(statsContent);
+
+            // subscribe to channel
+        });
+    });
+
+    // when clicked
+    $('.area-click-btn').click(function(e) {
+        e.preventDefault();
+        $('.statpanel').empty();
+
+        let areaClicked = $(this).data('area');
+
+        $('#area-name-btn').text($(this).text());
+        
+        $.get("/iot/area/"+areaClicked, function(response) {
+            if(response === 'no data') {
+                let statsContent = "<div class=\"col-md-4 block\">";
+                    statsContent += "<div class=\"title\">{% trans %}No sensors attached.{% endtrans %}</div>";
+                    statsContent += "</div>";
+                $('.statpanel').html(statsContent);
+            } else {
+                response.forEach(function(item) {
+                    let statsContent = "<div class=\"col-md-4 block\">";
+                    statsContent += "<div class=\"title\">{% trans %}"+item.type+"{% endtrans %} <span class=\"measurement\">"+item.unit+"</span></div>";
+                    statsContent += "<div id=\"counter-"+item.rid+"\" class=\"counter\">0</div>";
+                    statsContent += "</div>";
+                    $('.statpanel').append(statsContent);
+                });
+            }
+
+            // read from MQTT
+        });
+    });
+});
+</script>
 {% endblock %}

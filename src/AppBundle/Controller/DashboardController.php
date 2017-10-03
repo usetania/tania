@@ -44,6 +44,9 @@ class DashboardController extends Controller
         $tasks = $this->container->get('app.repository.task_repository')->deadlineTasks($activeFarmId, 5);
         $totalTask = $this->container->get('app.repository.task_repository')->countByFarm($activeFarmId);
 
+        // query all devices
+        $devices = $em->getRepository('AppBundle:Device')->findByField($activeFarmId);
+
         return $this->render('dashboard/index.html.twig', array(
             'classActive' => $_route,
             'farms' => $fields,
@@ -51,7 +54,8 @@ class DashboardController extends Controller
             'totalPlants' => $totalPlants,
             'tasks' => $tasks,
             'totalTask' => $totalTask,
-            'areas' => $areas
+            'areas' => $areas,
+            'devices' => $devices
         ));
     }
 }

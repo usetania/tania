@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Data\CategoryMaster;
 use AppBundle\Entity\Device;
 use AppBundle\Entity\AreasDevices;
 use AppBundle\Entity\ResourcesDevices;
@@ -25,6 +26,36 @@ class DeviceController extends Controller
             'devices' => $devices,
             'classActive' => $_route
         ));
+    }
+
+    public function showAction($id, EntityManagerInterface $em, $_route)
+    {
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+        $device = $em->getRepository('AppBundle:Device')->findOneById($id);
+        $areasDevices = $em->getRepository('AppBundle:AreasDevices')->findByDevice($id);
+        $resourcesDevices = $em->getRepository('AppBundle:ResourcesDevices')->findByDevice($id);
+        
+        // CHange the device type id with device type name for user displaying purpose
+        $deviceTypeNames = CategoryMaster::deviceType();
+        $device->setDeviceType($deviceTypeNames[$device->getDeviceType()]);
+        
+        return $this->render('device/show.html.twig', array(
+            'farms' => $fields,
+            'device' => $device,
+            'areasDevices' => $areasDevices,
+            'resourcesDevices' => $resourcesDevices,
+            'classActive' => $_route
+        ));
+    }
+
+    public function deleteAction($id, EntityManagerInterface $em)
+    {
+        $device = $em->getRepository('AppBundle:Device')->findOneById($id);
+        
+        $em->remove($device);
+        $em->flush();
+
+        return $this->redirectToRoute('devices');
     }
 
     public function createAction(Request $request, EntityManagerInterface $em, $_route)
@@ -93,6 +124,17 @@ class DeviceController extends Controller
         ));
     }
 
+    function resourcesDeleteAction($id, Request $request, EntityManagerInterface $em)
+    {
+        $resourceId = $request->get('resource_id');
+        $resourceDevices = $em->getRepository('AppBundle:ResourcesDevices')->findOneBy(array('device' => $id, 'resource' => $resourceId));
+        
+        $em->remove($resourceDevices);
+        $em->flush();
+
+        return $this->redirectToRoute('devices_resources', array('id' => $id));
+    }
+
     public function areasAction($id, Request $request, EntityManagerInterface $em, $_route)
     {
         $activeFarmId = $this->get('session')->get('activeFarm');
@@ -126,5 +168,16 @@ class DeviceController extends Controller
             'areasDevices' => $areasDevices,
             'classActive' => $_route
         ));
+    }
+
+    function areasDeleteAction($id, Request $request, EntityManagerInterface $em)
+    {
+        $areaId = $request->get('area_id');
+        $areaDevices = $em->getRepository('AppBundle:AreasDevices')->findOneBy(array('device' => $id, 'area' => $areaId));
+        
+        $em->remove($areaDevices);
+        $em->flush();
+
+        return $this->redirectToRoute('devices_areas', array('id' => $id));
     }
 }

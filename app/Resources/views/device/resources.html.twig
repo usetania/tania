@@ -80,7 +80,13 @@
                                         <td>{{ resourceDevice.dataType }}</td>
                                         <td>{{ resourceDevice.unit }}</td>
                                         <td>{{ resourceDevice.description }}</td>
-                                        <td><a href="">{% trans %}Edit{% endtrans %}</a> | <a href="">{% trans %}Delete{% endtrans %}</a></td>
+                                        <td>
+                                            <form action="{{ path('devices_resources_delete', {id: device.id}) }}" method="post">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="resource_id" value="{{resourceDevice.resource.id}}">
+                                                <button type="submit" class="btn btn-xs btn-danger">{% trans %}Delete{% endtrans %}</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

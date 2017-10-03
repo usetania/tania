@@ -30,18 +30,6 @@ class Resource
     private $type;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
-     */
-    private $dataType;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank()
-     */
-    private $unit;
-
-    /**
      * @ORM\Column(type="datetime", nullable=TRUE)
      * @Assert\DateTime()
      */
@@ -92,54 +80,6 @@ class Resource
     public function getType()
     {
         return $this->type;
-    }
-
-    /**
-     * Set dataType
-     *
-     * @param string $dataType
-     *
-     * @return Resource
-     */
-    public function setDataType($dataType)
-    {
-        $this->dataType = $dataType;
-
-        return $this;
-    }
-
-    /**
-     * Get dataType
-     *
-     * @return string
-     */
-    public function getDataType()
-    {
-        return $this->dataType;
-    }
-
-    /**
-     * Set unit
-     *
-     * @param string $unit
-     *
-     * @return Resource
-     */
-    public function setUnit($unit)
-    {
-        $this->unit = $unit;
-
-        return $this;
-    }
-
-    /**
-     * Get unit
-     *
-     * @return string
-     */
-    public function getUnit()
-    {
-        return $this->unit;
     }
 
     /**

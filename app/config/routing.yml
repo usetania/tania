@@ -148,7 +148,7 @@ devices_create:
 devices_resources:
     path: /devices/{id}/resources{trailingSlash}
     defaults: { _controller: AppBundle:Device:resources, trailingSlash : "/" }
-    methods: [GET]
+    methods: [GET, POST]
     requirements: { trailingSlash : "[/]{0,1}" }
 
 devices_areas:

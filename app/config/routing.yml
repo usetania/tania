@@ -7,6 +7,12 @@ dashboard:
     defaults: { _controller: AppBundle:Dashboard:index }
     methods: [GET]
 
+dashboard_iot_stats:
+    path: /iot/area/{id}
+    defaults: { _controller: AppBundle:Dashboard:iot}
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
+    methods: [GET]
+
 fields:
     path: /farms{trailingSlash}
     defaults: { _controller: AppBundle:Field:index, trailingSlash : "/" }

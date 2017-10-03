@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% trans_default_domain "dashboard" %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %}
+    {% include 'sidebar.html.twig' %}
+    <div class="be-content">
+        <div class="page-head">
+            <h2 class="page-head-title">{% trans %}Detail Information for{% endtrans %} <b>{{ device.name }}</b></h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p><strong>Device Type:</strong> {{ device.deviceType }}</p>
+                    <p><strong>Description:</strong> {{ device.description }}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Resources:</h3>
+                    <div class="list-info">
+                        {% for resourceDevice in resourcesDevices %}
+                        <p>
+                            <strong>Name: </strong>{{ resourceDevice.name }}<br>
+                            <strong>Description: </strong>{{ resourceDevice.description }}<br>
+                            <strong>MQTT Channel (RID): </strong>{{ resourceDevice.rid }}<br>
+                            <strong>Data Type: </strong>{{ resourceDevice.dataType }}<br>
+                            <strong>Unit: </strong>{{ resourceDevice.unit }}
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Areas:</h3>
+                    <div class="list-info">
+                        <ul>
+                        {% for areaDevice in areasDevices %}
+                        <li>
+                            {{ areaDevice.area.name }}
+                        </li>
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

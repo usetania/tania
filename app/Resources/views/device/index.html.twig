@@ -19,12 +19,13 @@
                             <table id="table2" class="table table-fw-widget">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Resources</th>
-                                        <th>Register Date</th>
-                                        <th>Located On</th>
-                                        <th>Last Connected</th>
-                                        <th>Actions</th>
+                                        <th>{% trans %}Name{% endtrans %}</th>
+                                        <th>{% trans %}Resources{% endtrans %}</th>
+                                        <th>{% trans %}Register Date{% endtrans %}</th>
+                                        <th>{% trans %}Located On{% endtrans %}</th>
+                                        <th>{% trans %}Last Connected{% endtrans %}</th>
+                                        <th>{% trans %}Actions{% endtrans %}</th>
+                                        <th>{% trans %}Delete?{% endtrans %}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,7 +36,15 @@
                                         <td>{{ device.createdAt|date('d-m-Y') }}</td>
                                         <td>{{ device.areasdevices|length }} {% trans %}areas{% endtrans %}</td>
                                         <td class="text-danger">None</td>
-                                        <td><a href="">{% trans %}Info{% endtrans %}</a> | <a href="{{ path('devices_resources', {id: device.id}) }}">{% trans %}Add Resources{% endtrans %}</a> | <a href="{{ path('devices_areas', {id: device.id}) }}">{% trans %}Add Areas{% endtrans %}</a> | <a href="">{% trans %}Delete{% endtrans %}</a></td>
+                                        <td>
+                                            <a href="{{ path('devices_show', {id: device.id}) }}">{% trans %}Info{% endtrans %}</a> | <a href="{{ path('devices_resources', {id: device.id}) }}">{% trans %}Add Resources{% endtrans %}</a> | <a href="{{ path('devices_areas', {id: device.id}) }}">{% trans %}Add Areas{% endtrans %}</a>
+                                        </td>
+                                        <td>
+                                            <form action="{{ path('devices_delete', {id: device.id}) }}" method="post">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-xs btn-danger">{% trans %}Delete{% endtrans %}</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

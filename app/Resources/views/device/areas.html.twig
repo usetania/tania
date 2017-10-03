@@ -45,7 +45,13 @@
                                     {% for areaDevice in areasDevices %}
                                     <tr>
                                         <td>{{ areaDevice.area.name }}</td>
-                                        <td><a href="">{% trans %}Delete{% endtrans %}</a></td>
+                                        <td>
+                                            <form action="{{ path('devices_areas_delete', {id: device.id}) }}" method="post">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="area_id" value="{{areaDevice.area.id}}">
+                                                <button type="submit" class="btn btn-xs btn-danger">{% trans %}Delete{% endtrans %}</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     {% endfor %}
                                 </tbody>

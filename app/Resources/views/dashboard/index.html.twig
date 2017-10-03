@@ -22,7 +22,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-6"><i class="mdi mdi-assignment-o"></i> <a href="#">{{ totalTask }} {% trans %}Tasks{% endtrans %}</a></div>
-                                <div class="col-md-6"><i class="mdi mdi-memory"></i> <a href="#">4 {% trans %}Devices{% endtrans %}</a></div>
+                                <div class="col-md-6"><i class="mdi mdi-memory"></i> <a href="#">{{ devices|length }} {% trans %}Devices{% endtrans %}</a></div>
                             </div>
                         </div>
                         <div class="panel-body panel-body-contrast">
@@ -43,12 +43,14 @@
                                         <i class="icon icon-left mdi mdi-layers"> </i>
                                         {% if areas|length > 0 %}
                                         {{ areas[0].name }}
+                                        {% else %}
+                                        No Area
                                         {% endif %}
                                         <span class="icon-dropdown mdi mdi-chevron-down"></span>
                                     </button>
                                     <ul role="menu" class="dropdown-menu">
                                         {% for area in areas %}
-                                        <li><a href="">{{ area.name }}</a></li>
+                                        <li><a data-area="{{ area.id }}">{{ area.name }}</a></li>
                                         {% endfor %}
                                     </ul>
                                 </div>

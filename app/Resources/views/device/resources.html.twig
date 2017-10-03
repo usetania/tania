@@ -14,57 +14,45 @@
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <form action="#" style="border-radius: 0px;" class="group-border-dashed">
+                            {{ form_start(form, {'attr': {'class': 'group-border-dashed', 'style': 'border-radius: 0px;'}}) }}
+                                {{ form_errors(form) }}
                                 <div class="form-group">
-                                    <label class="control-label">Resource Name<span class="text-danger">*</span></label>
-                                    <input type="text" placeholder="Enter a name for this property" class="form-control">
+                                    {{ form_label(form.name, 'Resource Name', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Resource Description</label>
-                                    <textarea class="form-control"></textarea>
+                                    {{ form_label(form.description, 'Resource Description', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.description) }}
+                                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Resource ID<span class="text-danger">*</span></label>
-                                    <input type="text" placeholder="Enter a property ID. Example: airareatemperature" class="form-control">
+                                    {{ form_label(form.rid, 'Resource ID', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.rid) }}
+                                    {{ form_widget(form.rid, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Resource Type</label>
-                                    <select class="form-control">
-                                        <option>Temperature</option>
-                                        <option>Humidity</option>
-                                        <option>Light</option>
-                                        <option>Nutrition</option>
-                                        <option>Moisture</option>
-                                        <option>pH</option>
-                                        <option>Custom</option>
-                                    </select>
+                                    {{ form_label(form.resource, 'Resource Type', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.resource) }}
+                                    {{ form_widget(form.resource, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Data Type</label>
-                                    <select class="form-control">
-                                        <option>Float</option>
-                                        <option>Boolean</option>
-                                        <option>Integer</option>
-                                        <option>String</option>
-                                    </select>
+                                    {{ form_label(form.dataType, 'Data Type', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.dataType) }}
+                                    {{ form_widget(form.dataType, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label">Unit</label>
-                                    <select class="form-control">
-                                        <option>Celcius</option>
-                                        <option>Fahrenheit</option>
-                                        <option>us/cm</option>
-                                        <option>%</option>
-                                        <option>Lux</option>
-                                    </select>
+                                    {{ form_label(form.unit, 'Unit', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.unit) }}
+                                    {{ form_widget(form.unit, {'attr': {'class': 'form-control'}}) }}
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-12 text-center">
-                                        <button type="submit" class="btn btn-primary btn-lg">{% trans %}Add Resources{% endtrans %}</button>
+                                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
                                         <a href="{{ path('devices') }}" class="btn btn-default btn-lg">{% trans %}Cancel{% endtrans %}</a>
                                     </div>
                                 </div>
-                            </form>
+                            {{form_end(form)}}
                         </div>
                     </div>
                 </div>
@@ -88,7 +76,7 @@
                                     <tr>
                                         <td>{{ resourceDevice.name }}</td>
                                         <td>{{ resourceDevice.rid }}</td>
-                                        <td>{{ resourceDevice.resource.name }}</td>
+                                        <td>{{ resourceDevice.resource.type }}</td>
                                         <td>{{ resourceDevice.dataType }}</td>
                                         <td>{{ resourceDevice.unit }}</td>
                                         <td>{{ resourceDevice.description }}</td>
@@ -105,4 +93,151 @@
     </div>
     {% include 'right-sidebar.html.twig' %}
 </div>
+
+<script>
+/**
+    Filtering the value of data type and unit based on the resource type.
+*/
+$(document).ready(function() {
+    // the default condition
+    let resourceType = $('#resource_device_resource option:selected').text();
+    let dataType = $('#resource_device_dataType > option');
+    let unit = $('#resource_device_unit > option');
+    
+    if('Temperature' === resourceType) {
+        let localDataType = dataType.slice(0);
+        let localUnit = unit.slice(0);
+
+        $('#resource_device_dataType').html(
+            localDataType.filter(function() {
+                return this.value === 'Float';
+            })
+        );
+
+        $('#resource_device_unit').html(
+            localUnit.filter(function() {
+                return this.value === 'Celcius' || this.value === 'Fahrenheit';
+            })
+        );
+    }
+
+    // condition when the dropdown of the resource type is changing
+    $('#resource_device_resource').on('change', function() {
+        let currentResource = $(this).children('option:selected').text();
+        
+        if('Temperature' === currentResource) {
+            let localDataType = dataType.slice(0);
+            let localUnit = unit.slice(0);
+
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Float';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'Celcius' || this.value === 'Fahrenheit';
+                })
+            );
+        } else if('Humidity' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Float';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === '%';
+                })
+            );
+        } else if('Light' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Integer';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'Lux';
+                })
+            );
+        } else if('Nutrition' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Integer';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'uS/cm';
+                })
+            );
+        } else if('Moisture' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Float';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === '%';
+                })
+            );
+        } else if('pH' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Float';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'None';
+                })
+            );
+        } else if('On/Off State' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Boolean';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'None';
+                })
+            );
+        } else if('Custom' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(localDataType);
+            $('#resource_device_unit').html(localUnit);
+        }
+    });
+});
+</script>
 {% endblock %}

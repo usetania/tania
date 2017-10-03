@@ -3,8 +3,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Device;
 use AppBundle\Entity\AreasDevices;
+use AppBundle\Entity\ResourcesDevices;
 use AppBundle\Form\DeviceType;
 use AppBundle\Form\AreaDeviceType;
+use AppBundle\Form\ResourceDeviceType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,8 +65,28 @@ class DeviceController extends Controller
         $device = $em->getRepository('AppBundle:Device')->findOneById($id);
         $resourcesDevices = $em->getRepository('AppBundle:ResourcesDevices')->findByDevice($id);
 
+        $resourceDevice = new ResourcesDevices();
+
+        $form = $this->createForm(ResourceDeviceType::class, $resourceDevice);
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $resourceDevice = $form->getData();
+            
+            // save to database here
+            $resourceDevice->setDevice($device);
+            $resourceDevice->setCreatedAt(new \DateTime('now'));
+            
+            $em->persist($resourceDevice);
+            $em->flush();
+
+            return $this->redirectToRoute('devices_resources', array('id' => $id));
+        }
+
         return $this->render('device/resources.html.twig', array(
             'farms' => $fields,
+            'form' => $form->createView(),
             'classActive' => $_route,
             'device' => $device,
             'resourcesDevices' => $resourcesDevices

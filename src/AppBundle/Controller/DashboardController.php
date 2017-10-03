@@ -19,6 +19,10 @@ class DashboardController extends Controller
 
         $activeFarmId = $this->get('session')->get('activeFarm');
 
+        if(empty($activeFarmId)) {
+            return $this->redirectToRoute('fields_session', array('id' => $fields[0]->getId()));
+        }
+
         // query all areas under current farm
         $areas = $em->getRepository('AppBundle:Area')->findByField($activeFarmId);
         

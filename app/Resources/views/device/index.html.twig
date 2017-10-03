@@ -31,7 +31,7 @@
                                     {% for device in devices %}
                                     <tr>
                                         <td>{{ device.name }}</td>
-                                        <td>None</td>
+                                        <td>{{ device.resourcesdevices|length }} {% trans %}resources{% endtrans %}</td>
                                         <td>{{ device.createdAt|date('d-m-Y') }}</td>
                                         <td>{{ device.areasdevices|length }} {% trans %}areas{% endtrans %}</td>
                                         <td class="text-danger">None</td>

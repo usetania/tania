@@ -29,7 +29,8 @@
                             <a href="{{ path('tasks') }}"><i class="icon mdi mdi-assignment-o"></i> {% trans %}Tasks{% endtrans %}</a>
                         </li>
                         <li class="divider">{% trans %}Settings{% endtrans %}</li>
-                        <li {% if classActive == 'fos_user_profile_edit' %} class="active" {% endif %}><a href="{{ path('fos_user_profile_edit') }}"><i class="icon mdi mdi-settings"></i> {% trans %}Account{% endtrans %}</a></li>
+                        <li {% if classActive == 'fos_user_profile_edit' %} class="active" {% endif %}><a href="{{ path('fos_user_profile_edit') }}"><i class="icon mdi mdi-account"></i> {% trans %}Account{% endtrans %}</a></li>
+                        <li {% if classActive == 'settings' %} class="active" {% endif %}><a href="{{ path('settings') }}"><i class="icon mdi mdi-settings"></i> {% trans %}Preferences{% endtrans %}</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon mdi mdi-power"></i> {% trans %}Logout{% endtrans %}</a></li>
                         <!--
                         <li class="divider">Business</li>

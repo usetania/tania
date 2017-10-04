@@ -48,6 +48,10 @@ class DashboardController extends Controller
         // query all devices
         $devices = $em->getRepository('AppBundle:Device')->findByField($activeFarmId);
 
+        // query the MQTT settings
+        $mqtt = $em->getRepository('AppBundle:Setting')->findBy(array('key' => array('mqtt_host', 'mqtt_port')));
+        $mqttSetting = array('mqttHost' => $mqtt[0]->getValue(), 'mqttPort' => $mqtt[1]->getValue());
+
         return $this->render('dashboard/index.html.twig', array(
             'classActive' => $_route,
             'farms' => $fields,
@@ -56,7 +60,8 @@ class DashboardController extends Controller
             'tasks' => $tasks,
             'totalTask' => $totalTask,
             'areas' => $areas,
-            'devices' => $devices
+            'devices' => $devices,
+            'mqtt' => $mqttSetting
         ));
     }
 

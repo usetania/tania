@@ -57,7 +57,7 @@
                                     </ul>
                                 </div>
                                 <div class="clearfix"></div>
-                                <div class="row statpanel"></div>
+                                <div class="row statpanel" data-mqtthost="{{ mqtt.mqttHost }}" data-mqttport="{{ mqtt.mqttPort }}"></div>
                             </div>
                         </div>
                     </div>
@@ -191,7 +191,7 @@ $(document).ready(function() {
         Cookies.set('channels', { rid: channels });
 
         // connect to mqtt broker
-        client = new Paho.MQTT.Client("broker.mqttdashboard.com", 8000, "tania"+String(Math.random()));
+        client = new Paho.MQTT.Client($('.statpanel').data('mqtthost'), Number($('.statpanel').data('mqttport')), "tania"+String(Math.random()));
         
         client.onConnectionLost = onConnectionLostMQTT;
         client.onMessageArrived = onMessageArrivedMQTT;
@@ -232,7 +232,7 @@ $(document).ready(function() {
                 Cookies.set('channels', { rid: channels });
 
                 // connect to mqtt broker
-                client = new Paho.MQTT.Client("broker.mqttdashboard.com", 8000, "tania"+String(Math.random()));
+                client = new Paho.MQTT.Client($('.statpanel').data('mqtthost'), Number($('.statpanel').data('mqttport')), "tania"+String(Math.random()));
                 
                 client.onConnectionLost = onConnectionLostMQTT;
                 client.onMessageArrived = onMessageArrivedMQTT;

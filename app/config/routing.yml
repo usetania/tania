@@ -187,5 +187,11 @@ devices_areas_delete:
     methods: [DELETE]
     requirements: { trailingSlash : "[/]{0,1}" }
 
+settings:
+    path: /settings{trailingSlash}
+    defaults: { _controller: AppBundle:Settings:index, trailingSlash : "/" }
+    methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

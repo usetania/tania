@@ -17,7 +17,9 @@ class AreaController extends Controller
      */
     public function indexAction(EntityManagerInterface $em, $_route)
     {
-        $areas = $em->getRepository('AppBundle:Area')->findAll();
+        $activeFarmId = $this->get('session')->get('activeFarm');
+
+        $areas = $em->getRepository('AppBundle:Area')->findByField($activeFarmId);
 
         $growingMethodNames = array_map(function ($item) {
             $growingMethodName = CategoryMaster::growingMethods();
@@ -31,11 +33,15 @@ class AreaController extends Controller
             return $unit[$item->getMeasurementUnit()];
         }, $areas);
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('area/index.html.twig', array(
             'areas' => $areas,
             'growingMethods' => $growingMethodNames,
             'measurementUnits' => $measurementUnits,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -54,6 +60,9 @@ class AreaController extends Controller
         // get growing method name from the master or categories
         $growingMethodName = CategoryMaster::growingMethods()[$area->getGrowingMethod()];
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('area/show.html.twig', array(
             'area' => $area,
             'growingMethod' => $growingMethodName,
@@ -63,6 +72,7 @@ class AreaController extends Controller
                 return $carry += $item['area_capacity'];
             }),
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -71,6 +81,9 @@ class AreaController extends Controller
      */
     public function createAction(EntityManagerInterface $em, Request $request, $_route)
     {
+        $activeFarmId = $this->get('session')->get('activeFarm');
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         $area = new Area();
 
         $form = $this->createForm(AreaType::class, $area);
@@ -80,6 +93,8 @@ class AreaController extends Controller
             $area = $form->getData();
 
             // save to database here
+            $field = $em->getRepository('AppBundle:Field')->findOneById((int) $activeFarmId);
+            $area->setField($field);
             $area->setCreatedAt(new \DateTime('now'));
 
             $em->persist($area);
@@ -89,6 +104,7 @@ class AreaController extends Controller
         }
 
         return $this->render('area/create.html.twig', array(
+            'farms' => $fields,
             'form' => $form->createView(),
             'classActive' => $_route,
         ));
@@ -116,10 +132,14 @@ class AreaController extends Controller
             return $this->redirectToRoute('areas_show', array('id' => $id));
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('area/edit.html.twig', array(
             'form' => $form->createView(),
             'area' => $area,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 }

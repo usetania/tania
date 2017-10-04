@@ -14,11 +14,17 @@ class PlantController extends Controller
 {
     public function indexAction(EntityManagerInterface $em, $_route)
     {
-        $plants = $this->container->get('app.repository.plant_repository')->findAllPlants();
+        $activeFarmId = $this->get('session')->get('activeFarm');
+        
+        $plants = $this->container->get('app.repository.plant_repository')->findAllPlants($activeFarmId);
+
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
 
         return $this->render('plant/index.html.twig', array(
             'plants' => $plants,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -66,9 +72,13 @@ class PlantController extends Controller
             }
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('plant/create.html.twig', array(
             'form' => $form->createView(),
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -89,10 +99,14 @@ class PlantController extends Controller
             return $plant;
         }, $plants);
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('plant/show.html.twig', array(
             'plants' => $plantsWithMeasurementAndDaysAgo,
             'totalArea' => count($plantsWithMeasurementAndDaysAgo),
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -134,11 +148,15 @@ class PlantController extends Controller
             return $this->redirectToRoute('plants_show', array('id' => $plant->getSeed()->getId()));
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('plant/harvest.html.twig', array(
             'classActive' => $_route,
             'form' => $form->createView(),
             'plant' => $plant,
             'seedlingDate' => $plant->getSeedlingDate()->format('d-M-Y'),
+            'farms' => $fields
         ));
     }
 
@@ -159,18 +177,18 @@ class PlantController extends Controller
             $seedsInfo = $em->getRepository('AppBundle:Plant')->findBy(array('seed' => $plant->getSeed()->getId()));
             $areasInfo = $em->getRepository('AppBundle:Plant')->findBy(array('area' => $plant->getArea()->getId()));
 
-            $usedSeed = array_reduce($seedsInfo, function ($carry, $item) {
+            /*$usedSeed = array_reduce($seedsInfo, function ($carry, $item) {
                 return $carry += $item->getSeedlingAmount();
-            });
+            });*/
 
             $usedArea = array_reduce($areasInfo, function ($carry, $item) {
                 return $carry += $item->getAreaCapacity();
             });
 
-            $totalSeed = $usedSeed + $plant->getSeedlingAmount();
+            //$totalSeed = $usedSeed + $plant->getSeedlingAmount();
             $totalArea = $usedArea + $plant->getAreaCapacity();
 
-            if ($totalSeed <= $plant->getSeed()->getQuantity() && $totalArea <= $plant->getArea()->getCapacity()) {
+            if ($totalArea <= $plant->getArea()->getCapacity()) {
                 // save to database here
                 $plant = $form->getData();
                 $plant->setUpdatedAt(new \DateTime('now'));
@@ -187,10 +205,14 @@ class PlantController extends Controller
             }
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('plant/edit.html.twig', array(
             'form' => $form->createView(),
             'plant' => $plant,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 }

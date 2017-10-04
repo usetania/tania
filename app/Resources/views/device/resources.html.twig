@@ -1,0 +1,249 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% trans_default_domain "dashboard" %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %}
+    {% include 'sidebar.html.twig' %}
+    <div class="be-content">
+        <div class="page-head">
+            <h2 class="page-head-title">{% trans %}Resources for{% endtrans %} <b>{{ device.name }}</b></h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_start(form, {'attr': {'class': 'group-border-dashed', 'style': 'border-radius: 0px;'}}) }}
+                                {{ form_errors(form) }}
+                                <div class="form-group">
+                                    {{ form_label(form.name, 'Resource Name', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.description, 'Resource Description', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.description) }}
+                                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.rid, 'Resource ID', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.rid) }}
+                                    {{ form_widget(form.rid, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.resource, 'Resource Type', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.resource) }}
+                                    {{ form_widget(form.resource, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.dataType, 'Data Type', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.dataType) }}
+                                    {{ form_widget(form.dataType, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.unit, 'Unit', {'label_attr': {'class': 'control-label'}}) }}
+                                    {{ form_errors(form.unit) }}
+                                    {{ form_widget(form.unit, {'attr': {'class': 'form-control'}}) }}
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 text-center">
+                                        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary btn-lg'}}) }}
+                                        <a href="{{ path('devices') }}" class="btn btn-default btn-lg">{% trans %}Cancel{% endtrans %}</a>
+                                    </div>
+                                </div>
+                            {{form_end(form)}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default panel-table">
+                        <div class="panel-body">
+                            <table id="table2" class="table table-fw-widget">
+                                <thead>
+                                    <tr>
+                                        <th class="col-sm-2">Resource Name</th>
+                                        <th>Resource ID</th>
+                                        <th>Resource Type</th>
+                                        <th>Data Type</th>
+                                        <th>Unit</th>
+                                        <th>Description</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for resourceDevice in resourcesDevices %}
+                                    <tr>
+                                        <td>{{ resourceDevice.name }}</td>
+                                        <td>{{ resourceDevice.rid }}</td>
+                                        <td>{{ resourceDevice.resource.type }}</td>
+                                        <td>{{ resourceDevice.dataType }}</td>
+                                        <td>{{ resourceDevice.unit }}</td>
+                                        <td>{{ resourceDevice.description }}</td>
+                                        <td>
+                                            <form action="{{ path('devices_resources_delete', {id: device.id}) }}" method="post">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <input type="hidden" name="resource_id" value="{{resourceDevice.resource.id}}">
+                                                <button type="submit" class="btn btn-xs btn-danger">{% trans %}Delete{% endtrans %}</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'right-sidebar.html.twig' %}
+</div>
+
+<script>
+/**
+    Filtering the value of data type and unit based on the resource type.
+*/
+$(document).ready(function() {
+    // the default condition
+    let resourceType = $('#resource_device_resource option:selected').text();
+    let dataType = $('#resource_device_dataType > option');
+    let unit = $('#resource_device_unit > option');
+    
+    if('Temperature' === resourceType) {
+        let localDataType = dataType.slice(0);
+        let localUnit = unit.slice(0);
+
+        $('#resource_device_dataType').html(
+            localDataType.filter(function() {
+                return this.value === 'Float';
+            })
+        );
+
+        $('#resource_device_unit').html(
+            localUnit.filter(function() {
+                return this.value === 'Celcius' || this.value === 'Fahrenheit';
+            })
+        );
+    }
+
+    // condition when the dropdown of the resource type is changing
+    $('#resource_device_resource').on('change', function() {
+        let currentResource = $(this).children('option:selected').text();
+        
+        if('Temperature' === currentResource) {
+            let localDataType = dataType.slice(0);
+            let localUnit = unit.slice(0);
+
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Float';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'Celcius' || this.value === 'Fahrenheit';
+                })
+            );
+        } else if('Humidity' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Float';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === '%';
+                })
+            );
+        } else if('Light' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Integer';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'Lux';
+                })
+            );
+        } else if('Nutrition' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Integer';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'uS/cm';
+                })
+            );
+        } else if('Moisture' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Float';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === '%';
+                })
+            );
+        } else if('pH' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Float';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'None';
+                })
+            );
+        } else if('On/Off State' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(
+                localDataType.filter(function() {
+                    return this.value === 'Boolean';
+                })
+            );
+
+            $('#resource_device_unit').html(
+                localUnit.filter(function() {
+                    return this.value === 'None';
+                })
+            );
+        } else if('Custom' === currentResource) {
+            let localDataType = dataType.slice();
+            let localUnit = unit.slice();
+            
+            $('#resource_device_dataType').html(localDataType);
+            $('#resource_device_unit').html(localUnit);
+        }
+    });
+});
+</script>
+{% endblock %}

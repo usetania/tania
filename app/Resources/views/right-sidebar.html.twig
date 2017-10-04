@@ -1,0 +1,28 @@
+<nav class="be-right-sidebar">
+    <div class="sb-content">
+        <div class="tab-panel">
+            <div class="tab-content">
+                <div id="tab1" role="tabpanel" class="tab-pane tab-todo active">
+                    <div class="todo-container">
+                        <div class="todo-wrapper">
+                            <div class="be-scroller">
+                                <div class="todo-content"><span class="category-title">{% trans %}Manage Farms{% endtrans %}</span>
+                                    <ul class="todo-list managefarm">
+                                        {% for farm in farms %}
+                                        <li>
+                                            <div class="name">
+                                                <h3><a href="{{ path('fields_session', {'id': farm.id }) }}">{{ farm.name }}</a></h3>
+                                                <p>{{ farm.description }}</p>
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

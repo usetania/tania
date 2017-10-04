@@ -19,6 +19,14 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Area
 {
     /**
+     * Many Areas have One Field.
+     *
+     * @ORM\ManyToOne(targetEntity="Field", inversedBy="areas")
+     * @ORM\JoinColumn(name="field_id", referencedColumnName="id")
+     */
+     private $field;
+
+    /**
      * Many Areas have One Reservoirs.
      *
      * @ORM\ManyToOne(targetEntity="Reservoir", inversedBy="areas")
@@ -30,6 +38,11 @@ class Area
      * @ORM\OneToMany(targetEntity="Plant", mappedBy="area", cascade={"persist", "remove"}, orphanRemoval=TRUE)
      */
     private $plants;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AreasDevices", mappedBy="area", cascade={"persist", "remove"}, orphanRemoval=TRUE)
+     */
+    private $areasdevices;
 
     /**
      * @ORM\Column(type="integer")
@@ -94,6 +107,7 @@ class Area
     public function __construct()
     {
         $this->plants = new ArrayCollection();
+        $this->areasdevices = new ArrayCollection();
         $this->image = new EmbeddedFile();
     }
 
@@ -307,6 +321,64 @@ class Area
     public function getPlants()
     {
         return $this->plants;
+    }
+
+    /**
+     * Add areasdevice
+     *
+     * @param \AppBundle\Entity\AreasDevices $areasdevice
+     *
+     * @return Area
+     */
+     public function addAreasdevices(\AppBundle\Entity\AreasDevices $areasdevice)
+     {
+         $this->areasdevices[] = $areasdevice;
+ 
+         return $this;
+     }
+ 
+     /**
+      * Remove areasdevice
+      *
+      * @param \AppBundle\Entity\AreasDevices $areasdevice
+      */
+     public function removeAreasdevices(\AppBundle\Entity\AreasDevices $areasdevice)
+     {
+         $this->areasdevices->removeElement($areasdevice);
+     }
+ 
+     /**
+      * Get areasdevices
+      *
+      * @return \Doctrine\Common\Collections\Collection
+      */
+     public function getAreasdevices()
+     {
+         return $this->areasdevices;
+     }
+
+    /**
+     * Set field
+     *
+     * @param \AppBundle\Entity\Field $field
+     *
+     * @return Device
+     */
+    public function setField(\AppBundle\Entity\Field $field = null)
+    {
+        $this->field = $field;
+
+        return $this;
+    }
+
+    /**
+     * Get field
+     *
+     * @return \AppBundle\Entity\Field
+     */
+    public function getField()
+    {
+        return $this->field;
     }
 
     /**

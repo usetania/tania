@@ -7,94 +7,240 @@
     {% include 'navbar.html.twig' %} 
     {% include 'sidebar.html.twig' %}
 
-<div class="be-content">
-    <div class="page-head">
-        <h2 class="page-head-title">{% trans %}Overview{% endtrans %}</h2>
-    </div>
-    <div class="main-content container-fluid">
-
-        <!-- Plantation Area -->
-        <div class="row">
-            <div class="col-xs-12 col-md-12">
-                <div class="panel panel-default panel-table">
-                    <div class="panel-heading">{% trans %}Farms{% endtrans %}
-                        <div class="tools">
-                            <a href="{{ path('fields') }}" class="btn btn-default btn-xs">{% trans %}See more details{% endtrans %}</a>
+    <div class="be-content">
+        <div class="page-head"></div>
+        <div class="main-content container-fluid">
+            <!-- Overview -->
+            <div class="row">
+                <div class="col-md-4 ataglance">
+                    <div class="user-info-list panel panel-default">
+                        <div class="panel-heading panel-heading-divider">{% trans %}At a Glance{% endtrans %}</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6"><i class="mdi mdi-layers"></i> <a href="#">{{ areas|length }} {% trans %}Areas{% endtrans %}</a></div>
+                                <div class="col-md-6"><i class="mdi mdi-flower-alt"></i> <a href="#">{{ totalPlants }} {% trans %}Varieties{% endtrans %}</a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6"><i class="mdi mdi-assignment-o"></i> <a href="#">{{ totalTask }} {% trans %}Tasks{% endtrans %}</a></div>
+                                <div class="col-md-6"><i class="mdi mdi-memory"></i> <a href="#">{{ devices|length }} {% trans %}Devices{% endtrans %}</a></div>
+                            </div>
+                        </div>
+                        <div class="panel-body panel-body-contrast">
+                            <p>Please, go to our <a href="https://gettania.atlassian.net" target="_blank">issue tracker</a> if you have feedbacks, issues, or feature requests.</p>
                         </div>
                     </div>
-                    <div class="panel-body">
-                        {% if farms is not empty %}
-                        <div id="map" style="height: 400px" data-locations="{{ farmsJSON }}"></div>
-                        {% else %}
-                        <p>{% trans %}You don't have any farms. Please{% endtrans %}, <a href="{{ path('fields_create') }}">{% trans %}create one{% endtrans %}</a>.</p>
-                        {% endif %}
+                </div>
+                <div class="col-md-8 areastatus">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-divider">{% trans %}Current Area Status{% endtrans %} 
+                            <div class="tools"><span class="icon mdi mdi-refresh-sync"></span></div>
+                        </div>
+                        <div class="panel-body">
+                            <div style="height: 220px;">
+                                <!--<div><p>Choose the area to see status</p></div>-->
+                                <div class="btn-group btn-hspace">
+                                    <button type="button" data-toggle="dropdown" class="btn btn-lg btn-default dropdown-toggle" aria-expanded="false">
+                                        <i class="icon icon-left mdi mdi-layers"> </i>
+                                        <span id="area-name-btn">
+                                        {% if areas|length > 0 %}
+                                        {{ areas[0].name }}
+                                        {% else %}
+                                        No Area
+                                        {% endif %}
+                                        </span>
+                                        <span class="icon-dropdown mdi mdi-chevron-down"></span>
+                                    </button>
+                                    <ul role="menu" class="dropdown-menu">
+                                        {% for area in areas %}
+                                        <li><a class="area-click-btn" data-area="{{ area.id }}">{{ area.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="row statpanel" data-mqtthost="{{ mqtt.mqttHost }}" data-mqttport="{{ mqtt.mqttPort }}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Task and Growth -->
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default panel-table">
+                        <div class="panel-heading"> 
+                            <div class="tools"><a href="{{ path('tasks') }}" class="btn btn-default btn-xs">{% trans %}See all{% endtrans %}</a></div>
+                            <div class="title">{% trans %}Tasks List{% endtrans %}</div>
+                        </div>
+                        <div class="panel-body table-responsive">
+                            <table class="table table-striped table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th style="width:50%;">{% trans %}Task Name{% endtrans %}</th>
+                                        <th style="width:30%;">{% trans %}Due Date{% endtrans %}</th>
+                                        <th style="width:20%;">{% trans %}Urgency{% endtrans %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="no-border-x">
+                                    {% for task in tasks %}
+                                    <tr>
+                                        <td>{{ task.name }}</td>
+                                        <td>{{ task.dueDate.format('d-m-Y H:i') }}</td>
+                                        <td class="text-danger">
+                                            <span class="urgency {% if task.urgencyLevel == 'low' %} low {% elseif task.urgencyLevel == 'medium' %} high {% elseif task.urgencyLevel == 'high' %} urgent {% endif %}">{{ task.urgencyLevel }}</span>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="panel panel-default panel-table">
+                        <div class="panel-heading"> 
+                            <div class="tools">
+                                <a href="{{ path('plants') }}" class="btn btn-default btn-xs">{% trans %}See more details{% endtrans %}</a>
+                            </div>
+                            <div class="title">{% trans %}Crops Status{% endtrans %}</div>
+                        </div>
+                        <div class="panel-body table-responsive">
+                            <table class="table table-striped table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th style="width:40%;">{% trans %}Variety{% endtrans %}</th>
+                                        <th style="width:40%;">{% trans %}Area{% endtrans %}</th>
+                                        <th style="width:20%;">{% trans %}Age (days){% endtrans %}</th>
+                                        <th style="width:20%;">{% trans %}Quantity{% endtrans %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="no-border-x">
+                                    <tr>
+                                    {% for plant in plants %}
+                                        <td>{{ plant['seed_name'] }}</td>
+                                        <td>{{ plant['area_name'] }}</td>
+                                        <td>{{ plant['seedling_date'] }}</td>
+                                        <td>{{ plant['area_capacity'] }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <div class="panel panel-default panel-table">
-                    <div class="panel-heading"> 
-                        <div class="tools">
-                            <a href="{{ path('plants') }}" class="btn btn-default btn-xs">{% trans %}See more details{% endtrans %}</a>
-                        </div>
-                        <div class="title">{% trans %}Current Seedling{% endtrans %}</div>
-                    </div>
-                    <div class="panel-body table-responsive">
-                        <table class="table table-striped table-borderless">
-                            <thead>
-                                <tr>
-                                <th style="width:40%;">{% trans %}Seed Name{% endtrans %}</th>
-                                <th style="width:40%;">{% trans %}Area{% endtrans %}</th>
-                                <th style="width:20%;">{% trans %}Age (days){% endtrans %}</th>
-                                </tr>
-                            </thead>
-                            <tbody class="no-border-x">
-                                <tr>
-                                {% for plant in plants %}
-                                    <td>{{ plant['seed_name'] }}</td>
-                                    <td>{{ plant['area_name'] }}</td>
-                                    <td>{{ plant['seedling_date'] }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="panel panel-default panel-table">
-                    <div class="panel-heading"> 
-                        <div class="tools"><a href="{{ path('tasks') }}" class="btn btn-default btn-xs">{% trans %}See all{% endtrans %}</a></div>
-                        <div class="title">{% trans %}Tasks List{% endtrans %}</div>
-                    </div>
-                    <div class="panel-body table-responsive">
-                        <table class="table table-striped table-borderless">
-                            <thead>
-                                <tr>
-                                    <th style="width:50%;">{% trans %}Tasks Name{% endtrans %}</th>
-                                    <th style="width:30%;">{% trans %}Due Date{% endtrans %}</th>
-                                    <th style="width:20%;">{% trans %}Status{% endtrans %}</th>
-                                </tr>
-                            </thead>
-                            <tbody class="no-border-x">
-                                {% for task in tasks %}
-                                <tr>
-                                    <td>{{ task.name }}</td>
-                                    <td>{{ task.dueDate.format('d-m-Y H:i') }}</td>
-                                    <td class="text-danger">
-                                        <span class="label {% if task.urgencyLevel == 'low' %} label-success {% elseif task.urgencyLevel == 'medium' %} label-warning {% elseif task.urgencyLevel == 'high' %} label-danger {% endif %}">{{ task.urgencyLevel }}</span>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+
+    {% include 'right-sidebar.html.twig' %}
 </div>
+
+<script src="{{ asset('assets/js/paho-mqtt.js') }}"></script>
+<script src="{{ asset('assets/js/js-cookie.js') }}"></script>
+<script>
+let client;
+
+function onConnectMQTT() {
+    // Once a connection has been made, make a subscription and send a message.
+    console.log("onConnect");
+
+    let channels = Cookies.getJSON('channels');
+
+    channels.rid.forEach(function(rid) {
+        client.subscribe('tania/'+rid);
+    });
+}
+
+function onFailureMQTT(response) {
+    console.log(response);
+}
+
+function onConnectionLostMQTT(responseObject) {
+    if (responseObject.errorCode !== 0) {
+        console.log("onConnectionLost:"+responseObject.errorMessage);
+    }
+}
+
+function onMessageArrivedMQTT(message) {
+    // parsing the MQTT topic to get only the RID
+    let rID = message.destinationName.replace('tania/', '');
+    $('#counter-'+rID).text(message.payloadString);
+
+    console.log("["+message.destinationName+"]:"+message.payloadString);
+}
+
+$(document).ready(function() {
+    // default dashboard
+    let areaClicked = $('.area-click-btn').data('area');
+    
+    $.get("/iot/area/"+areaClicked, function(response) {
+        let channels = [];
+        // parsing ajax response
+        response.forEach(function(item) {
+            let statsContent = "<div class=\"col-md-4 block\">";
+            statsContent += "<div class=\"title\">{% trans %}"+item.type+"{% endtrans %} <span class=\"measurement\">"+item.unit+"</span></div>";
+            statsContent += "<div id=\"counter-"+item.rid+"\" class=\"counter\">0</div>";
+            statsContent += "</div>";
+            $('.statpanel').append(statsContent);
+
+            // Add Resource ID to the array
+            channels.push(item.rid);
+        });
+
+        // save the Resource ID to cookies
+        Cookies.set('channels', { rid: channels });
+
+        // connect to mqtt broker
+        client = new Paho.MQTT.Client($('.statpanel').data('mqtthost'), Number($('.statpanel').data('mqttport')), "tania"+String(Math.random()));
+        
+        client.onConnectionLost = onConnectionLostMQTT;
+        client.onMessageArrived = onMessageArrivedMQTT;
+        client.onFailure = onFailureMQTT;
+        client.connect({onSuccess: onConnectMQTT});
+    });
+
+    // when clicked
+    $('.area-click-btn').click(function(e) {
+        e.preventDefault();
+        $('.statpanel').empty();
+
+        let areaClicked = $(this).data('area');
+
+        $('#area-name-btn').text($(this).text());
+        
+        $.get("/iot/area/"+areaClicked, function(response) {
+            if(response === 'no data') {
+                let statsContent = "<div class=\"col-md-4 block\">";
+                    statsContent += "<div class=\"title\">{% trans %}No sensors attached.{% endtrans %}</div>";
+                    statsContent += "</div>";
+                $('.statpanel').html(statsContent);
+            } else {
+                let channels = [];
+                // parsing ajax response
+                response.forEach(function(item) {
+                    let statsContent = "<div class=\"col-md-4 block\">";
+                    statsContent += "<div class=\"title\">{% trans %}"+item.type+"{% endtrans %} <span class=\"measurement\">"+item.unit+"</span></div>";
+                    statsContent += "<div id=\"counter-"+item.rid+"\" class=\"counter\">0</div>";
+                    statsContent += "</div>";
+                    $('.statpanel').append(statsContent);
+
+                    // Add Resource ID to the array
+                    channels.push(item.rid);
+                });
+
+                // save the Resource ID to cookies
+                Cookies.set('channels', { rid: channels });
+
+                // connect to mqtt broker
+                client = new Paho.MQTT.Client($('.statpanel').data('mqtthost'), Number($('.statpanel').data('mqttport')), "tania"+String(Math.random()));
+                
+                client.onConnectionLost = onConnectionLostMQTT;
+                client.onMessageArrived = onMessageArrivedMQTT;
+                client.onFailure = onFailureMQTT;
+                client.connect({onSuccess: onConnectMQTT});
+            }
+        });
+    });
+});
+</script>
 {% endblock %}

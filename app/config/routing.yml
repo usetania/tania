@@ -7,6 +7,12 @@ dashboard:
     defaults: { _controller: AppBundle:Dashboard:index }
     methods: [GET]
 
+dashboard_iot_stats:
+    path: /iot/area/{id}
+    defaults: { _controller: AppBundle:Dashboard:iot}
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
+    methods: [GET]
+
 fields:
     path: /farms{trailingSlash}
     defaults: { _controller: AppBundle:Field:index, trailingSlash : "/" }
@@ -24,6 +30,12 @@ fields_show:
     defaults: { _controller: AppBundle:Field:show, trailingSlash : "/" }
     requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET, POST]
+
+fields_session:
+    path: /farms/{id}/session{trailingSlash}
+    defaults: { _controller: AppBundle:Field:session, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
+    methods: [GET]
 
 areas:
     path: /areas{trailingSlash}
@@ -126,6 +138,60 @@ plants_edit:
     defaults: { _controller: AppBundle:Plant:edit, trailingSlash : "/" }
     requirements: { trailingSlash : "[/]{0,1}", id: '\d+' }
     methods: [GET, POST]
+
+devices:
+    path: /devices{trailingSlash}
+    defaults: { _controller: AppBundle:Device:index, trailingSlash : "/" }
+    methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+devices_create:
+    path: /devices/create{trailingSlash}
+    defaults: { _controller: AppBundle:Device:create, trailingSlash : "/" }
+    methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+devices_show:
+    path: /devices/{id}{trailingSlash}
+    defaults: { _controller: AppBundle:Device:show, trailingSlash : "/" }
+    methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+devices_delete:
+    path: /devices/{id}{trailingSlash}
+    defaults: { _controller: AppBundle:Device:delete, trailingSlash : "/" }
+    methods: [DELETE]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+devices_resources:
+    path: /devices/{id}/resources{trailingSlash}
+    defaults: { _controller: AppBundle:Device:resources, trailingSlash : "/" }
+    methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+devices_resources_delete:
+    path: /devices/{id}/resources{trailingSlash}
+    defaults: { _controller: AppBundle:Device:resourcesDelete, trailingSlash : "/" }
+    methods: [DELETE]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+devices_areas:
+    path: /devices/{id}/areas{trailingSlash}
+    defaults: { _controller: AppBundle:Device:areas, trailingSlash : "/" }
+    methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+devices_areas_delete:
+    path: /devices/{id}/areas{trailingSlash}
+    defaults: { _controller: AppBundle:Device:areasDelete, trailingSlash : "/" }
+    methods: [DELETE]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+settings:
+    path: /settings{trailingSlash}
+    defaults: { _controller: AppBundle:Settings:index, trailingSlash : "/" }
+    methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

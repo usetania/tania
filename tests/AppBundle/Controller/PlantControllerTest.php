@@ -3,6 +3,7 @@
 namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class PlantControllerTest extends WebTestCase
 {
@@ -13,7 +14,10 @@ class PlantControllerTest extends WebTestCase
             'PHP_AUTH_PW' => 'test123'
         ));
 
-        $crawler = $client->request('GET', '/');
+        $container = $client->getContainer();
+        $container->get('session')->set('activeFarm', 1);
+
+        $crawler = $client->request('GET', '/plants');
         
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }

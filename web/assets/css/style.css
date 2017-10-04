@@ -6410,7 +6410,8 @@ button.list-group-item-danger.active:focus {
   border-bottom: 1px solid #ddd;
 }
 .panel-default {
-  border-color: #ddd;
+  border-color: #e3e3e3;
+  border: 1px solid #e3e3e3;
 }
 .panel-default > .panel-heading {
   color: #333333;
@@ -9145,8 +9146,8 @@ canvas {
   display: block;
   padding: 0 20px;
   color: #646464;
-  font-size: 14px;
-  line-height: 38px;
+  font-size: 16px;
+  line-height: 46px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
@@ -16104,7 +16105,7 @@ fieldset[disabled] .btn-color.btn-evernote.active {
 }
 .panel-border {
   box-shadow: none;
-  border: 1px solid #d4d4d4;
+  border: 1px solid #e3e3e3;
 }
 .panel-contrast .panel-heading {
   margin: 0;
@@ -17064,7 +17065,6 @@ fieldset[disabled] .btn-color.btn-evernote.active {
 }
 .table > tbody > tr > td {
   font-weight: 400;
-  vertical-align: middle;
 }
 .table-condensed > thead > tr > th {
   padding-top: 10px;

@@ -32,4 +32,15 @@ class CategoryMaster
             5 => 'oz',
         );
     }
+
+    public static function deviceType()
+    {
+        return array(
+            1 => 'Xiaomi Flora',
+            2 => 'Raspberry Pi',
+            3 => 'Arduino',
+            4 => 'ESP8266',
+            5 => 'Other'
+        );
+    }
 }

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{% trans_default_domain "dashboard" %}
+<div class="be-wrapper">
+    {% include 'navbar.html.twig' %}
+    {% include 'sidebar.html.twig' %}
+
+    <div class="be-content">
+        <div class="page-head">
+            <a href="{{ path('devices_create') }}" class="btn btn-primary pull-right">{% trans %}Add New Device{% endtrans %}</a>
+            <h2 class="page-head-title">{% trans %}All Devices{% endtrans %}</h2>
+        </div>
+        <div class="main-content container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default panel-table">
+                        <div class="panel-body">
+                            <table id="table2" class="table table-fw-widget">
+                                <thead>
+                                    <tr>
+                                        <th>{% trans %}Name{% endtrans %}</th>
+                                        <th>{% trans %}Resources{% endtrans %}</th>
+                                        <th>{% trans %}Register Date{% endtrans %}</th>
+                                        <th>{% trans %}Located On{% endtrans %}</th>
+                                        <th>{% trans %}Last Connected{% endtrans %}</th>
+                                        <th>{% trans %}Actions{% endtrans %}</th>
+                                        <th>{% trans %}Delete?{% endtrans %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for device in devices %}
+                                    <tr>
+                                        <td>{{ device.name }}</td>
+                                        <td>{{ device.resourcesdevices|length }} {% trans %}resources{% endtrans %}</td>
+                                        <td>{{ device.createdAt|date('d-m-Y') }}</td>
+                                        <td>{{ device.areasdevices|length }} {% trans %}areas{% endtrans %}</td>
+                                        <td class="text-danger">None</td>
+                                        <td>
+                                            <a href="{{ path('devices_show', {id: device.id}) }}">{% trans %}Info{% endtrans %}</a> | <a href="{{ path('devices_resources', {id: device.id}) }}">{% trans %}Add Resources{% endtrans %}</a> | <a href="{{ path('devices_areas', {id: device.id}) }}">{% trans %}Add Areas{% endtrans %}</a>
+                                        </td>
+                                        <td>
+                                            <form action="{{ path('devices_delete', {id: device.id}) }}" method="post">
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-xs btn-danger">{% trans %}Delete{% endtrans %}</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+    {% include 'right-sidebar.html.twig' %}
+</div>
+{% endblock %}

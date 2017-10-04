@@ -1,3 +1,69 @@
+body {
+	
+}
+
+a {
+	color: #46B7A9;
+}
+a:hover {
+	color: #21AD9C;
+}
+
+.ataglance ul {
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 0;
+}
+
+.ataglance ul li {
+	list-style-type: none!important;
+	text-align: left;
+	font-size: 16px;
+	line-height: 42px;
+}
+
+.ataglance li .mdi {
+	padding-right: 6px;
+	width: 18px;
+}
+
+.ataglance .panel-body-contrast {
+	background-color: #ececec;
+}
+
+.ataglance .panel-body-contrast p {
+	color: #737577;
+	padding-top: 10px;
+}
+
+/*Area Summary*/
+.areasum ul {
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 0;
+}
+
+.areasum ul li {
+	list-style-type: none!important;
+	text-align: left;
+	font-size: 16px;
+	line-height: 52px;
+}
+
+.areasum li .mdi {
+	width: 22px;
+}
+
+.areasum .gs {
+	display: inline-block;
+	min-width: 140px;
+	color: #646464;
+}
+
 .img-area {
 	width: 100%;
 }
@@ -12,12 +78,13 @@
 	padding-right: 10px;
 }
 
-#plant_harvest_action label {
-	margin: 0 10px 0 3px;
+.backtoarea {
+	font-size: 15px;
 }
 
-#plant_harvest_action input {
-	margin-top: 3px;
+.backtoarea .icon{
+	padding-right: 5px;
+
 }
 
 /* Signup & Login Area */
@@ -70,7 +137,7 @@
 
 .tania .loginform {
 	padding: 100px 0;
-	text-align: left;
+	text-align: center;
 	margin-top: 50px;
 	padding: 80px 80px;
 }
@@ -80,10 +147,6 @@
 	margin-left: -15px;
 	color: #83817E !important;
 	font-weight: 400;
-}
-
-.loginform .forgot-link {
-	text-align: center;
 }
 
 .tania .form-horizontal {
@@ -133,28 +196,185 @@
 }
 
 .user-display-bg {
-	background-position: center center;
-	background-size: cover;
-  height: 200px;
-	border-radius: 2px;
+  max-height: 300px !important;
+  overflow: hidden;
+}
+.user-display-bg img {
+  width: 100%;
+  max-height: 200px;
+  border-radius: 2px;
 }
 
-/* Vich Bundle */
-.vich-image img {
+.managefarm li {
+	display: inline;
+	margin: 10px 0;
+}
+
+.managefarm .picture {
+	display: inline-block;
+}
+
+.managefarm .picture img {
+	width: 60px;
+}
+
+.managefarm .name {
+	color: #737577;
+	display: inline-block;
+	padding-left: 10px;
+}
+
+.managefarm .name h3 {
+	font-size: 20px;
+}
+
+/* AREA */
+
+.area ul {
+	margin-left: -40px;
+}
+
+.area li {
+	list-style-type: none;
+}
+
+.area-block {
+	max-height: 110px;
 	width: 100%;
+	background-color: #fff;
+	margin-bottom: 40px;
 }
 
-/* Branding */
-.be-top-header .navbar-header .navbar-brand {
-	background: none;
+.area-block-bg {
+	display: inline-block;
+	width: 30%;
 }
 
-.be-top-header .navbar-header .navbar-brand img {
-	height: 40px;
-	margin-top: 8px;
+.area-block-bg img {
+	width: auto;
+	height: 110px;
+	margin-top: -50px;
 }
 
-/* panel */
-.panel-body p {
-	padding: 8px 20px 20px;
+.area-block .description {
+	display: inline-block;
+	padding: 15px;
+}
+
+.description .name a {
+	font-size: 22px;
+}
+
+.area-block .type {
+	line-height: 28px;
+	color: #7F7E80;
+}
+
+.area-block .info {
+	line-height: 28px;
+	color: #7F7E80;
+}
+
+.area-block .info span {
+	margin: 0 5px;
+}
+
+.areastatus {
+
+}
+
+.areastatus .tools .mdi-refresh-sync {
+	color: #906fa9;
+}
+
+.statpanel {
+	margin-top: 20px;
+}
+
+.statpanel .block {
+	padding: 10px 20px;
+}
+
+.statpanel .title {
+
+}
+
+.statpanel .counter {
+	font-size: 32px;
+}
+
+.statpanel span.measurement {
+	color: #909090;
+}
+
+.statpanel .icon {
+	font-size: 20px;
+}
+
+.tasklist {
+
+}
+
+.urgency.urgent {
+	display: inline;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 2px;
+	line-height: 9px;
+	font-size: 11px;
+	padding: 4px;
+	margin-left: 4px;
+	margin-top: 1px;
+	background-color: rgba(200,52,52,0.1);
+	border: 1px solid #C83434;
+	color: #C83434;
+}
+
+.urgency.high {
+	display: inline;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 2px;
+	line-height: 9px;
+	font-size: 11px;
+	padding: 4px;
+	margin-left: 4px;
+	margin-top: 1px;
+	background-color: rgba(245,202,46,0.1);
+	border: 1px solid #F5CA2E;
+	color: #F5CA2E;
+}
+
+.urgency.low {
+	display: inline;
+	white-space: nowrap;
+	vertical-align: baseline;
+	border-radius: 2px;
+	line-height: 9px;
+	font-size: 11px;
+	padding: 4px;
+	margin-left: 4px;
+	margin-top: 1px;
+	background-color: rgba(139,139,139,0.1);
+	border: 1px solid #8B8B8B;
+	color: #8B8B8B;
+}
+
+.identifier {
+	display: inline;
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #EBF8F6;
+	border: 1px solid #5FCBBD;
+	border-radius: 2px;
+	line-height: 9px;
+	font-size: 11px;
+	color: #21AD9C;
+	padding: 4px;
+	margin-left: 4px;
+	margin-top: 1px;
+}
+
+.list-info {
+	padding-left: 30px;
 }

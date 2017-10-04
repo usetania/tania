@@ -12,8 +12,10 @@ class ReservoirController extends Controller
 {
     public function indexAction(EntityManagerInterface $em, Request $request, $_route)
     {
+        $activeFarmId = $this->get('session')->get('activeFarm');
+
         $reservoir = new Reservoir();
-        $reservoirs = $em->getRepository('AppBundle:Reservoir')->findAll();
+        $reservoirs = $em->getRepository('AppBundle:Reservoir')->findByField($activeFarmId);
 
         $form = $this->createForm(ReservoirType::class, $reservoir);
         $form->handleRequest($request);
@@ -30,10 +32,14 @@ class ReservoirController extends Controller
             return $this->redirectToRoute('reservoirs');
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('reservoir/index.html.twig', array(
             'form' => $form->createView(),
             'reservoirs' => $reservoirs,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -56,10 +62,14 @@ class ReservoirController extends Controller
             return $this->redirectToRoute('reservoirs');
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('reservoir/show.html.twig', array(
             'form' => $form->createView(),
             'reservoir' => $reservoir,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 }

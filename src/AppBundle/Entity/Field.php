@@ -26,6 +26,27 @@ class Field
     private $reservoirs;
 
     /**
+     * One Field has Many Areas.
+     *
+     * @ORM\OneToMany(targetEntity="Area", mappedBy="field")
+     */
+    private $areas;
+
+    /**
+     * One Field has Many Tasks.
+     *
+     * @ORM\OneToMany(targetEntity="Task", mappedBy="field")
+     */
+    private $tasks;
+
+    /**
+     * One Field has Many Devices.
+     *
+     * @ORM\OneToMany(targetEntity="Device", mappedBy="field")
+     */
+    private $devices;
+    
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -84,7 +105,10 @@ class Field
 
     public function __construct()
     {
+        $this->areas = new ArrayCollection();
         $this->reservoirs = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
+        $this->devices = new ArrayCollection();
         $this->image = new EmbeddedFile();
     }
 
@@ -275,6 +299,108 @@ class Field
     {
         return $this->reservoirs;
     }
+
+    /**
+     * Add area.
+     *
+     * @param \AppBundle\Entity\Area $area
+     *
+     * @return Field
+     */
+     public function addArea(\AppBundle\Entity\Area $area)
+     {
+         $this->areas[] = $area;
+ 
+         return $this;
+     }
+ 
+     /**
+      * Remove area.
+      *
+      * @param \AppBundle\Entity\Area $area
+      */
+     public function removeArea(\AppBundle\Entity\Area $area)
+     {
+         $this->areas->removeElement($area);
+     }
+ 
+     /**
+      * Get areas.
+      *
+      * @return \Doctrine\Common\Collections\Collection
+      */
+     public function getAreas()
+     {
+         return $this->areas;
+     }
+
+    /**
+     * Add task.
+     *
+     * @param \AppBundle\Entity\Task $task
+     *
+     * @return Field
+     */
+    public function addTask(\AppBundle\Entity\Task $task)
+    {
+        $this->tasks[] = $task;
+
+        return $this;
+    }
+ 
+    /**
+     * Remove area.
+     *
+     * @param \AppBundle\Entity\Task $task
+     */
+    public function removeTask(\AppBundle\Entity\Task $task)
+    {
+        $this->tasks->removeElement($task);
+    }
+ 
+    /**
+     * Get tasks.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    /**
+     * Add device.
+     *
+     * @param \AppBundle\Entity\Device $device
+     *
+     * @return Field
+     */
+     public function addDevice(\AppBundle\Entity\Device $device)
+     {
+         $this->devices[] = $device;
+ 
+         return $this;
+     }
+ 
+     /**
+      * Remove device.
+      *
+      * @param \AppBundle\Entity\Device $device
+      */
+     public function removeDevice(\AppBundle\Entity\Device $device)
+     {
+         $this->devices->removeElement($device);
+     }
+ 
+     /**
+      * Get devices.
+      *
+      * @return \Doctrine\Common\Collections\Collection
+      */
+     public function getDevices()
+     {
+         return $this->devices;
+     }
 
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance

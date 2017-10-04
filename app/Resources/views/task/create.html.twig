@@ -77,11 +77,12 @@
             </div>
         </div>
     </div>
+    {% include 'right-sidebar.html.twig' %}
 </div>
 {% endblock %}
 
 {% block javascripts %}
 {{ parent() }}
-    <script src="{{ asset('vendor/datetimepicker/build/jquery.datetimepicker.full.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.4/build/jquery.datetimepicker.full.min.js"></script>
     <script src="{{ asset('assets/js/task.js') }}"></script>
 {% endblock %}

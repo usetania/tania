@@ -47,7 +47,7 @@
                                                 {% endif %}
                                             </td>
                                             <td>
-                                                <a href="{{ path('plants_harvest', {'id': plant.id }) }}">{% trans %}Harvest{% endtrans %}/{% trans %}Dispose{% endtrans %}</a> | <a href="{{ path('plants_edit', {'id': plant.id }) }}">{% trans %}Edit{% endtrans %}</a>
+                                                <a href="{{ path('plants_harvest', {'id': plant.id }) }}">{% trans %}Harvest{% endtrans %}/{% trans %}Dispose{% endtrans %}</a>
                                             </td>
                                         </tr>
                                         {% endfor %}
@@ -60,5 +60,6 @@
             </div>
         </div>
     </div>
+    {% include 'right-sidebar.html.twig' %}
 </div>
 {% endblock %}

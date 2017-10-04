@@ -145,6 +145,12 @@ devices:
     methods: [GET]
     requirements: { trailingSlash : "[/]{0,1}" }
 
+devices_create:
+    path: /devices/create{trailingSlash}
+    defaults: { _controller: AppBundle:Device:create, trailingSlash : "/" }
+    methods: [GET, POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
 devices_show:
     path: /devices/{id}{trailingSlash}
     defaults: { _controller: AppBundle:Device:show, trailingSlash : "/" }
@@ -155,12 +161,6 @@ devices_delete:
     path: /devices/{id}{trailingSlash}
     defaults: { _controller: AppBundle:Device:delete, trailingSlash : "/" }
     methods: [DELETE]
-    requirements: { trailingSlash : "[/]{0,1}" }
-
-devices_create:
-    path: /devices/create{trailingSlash}
-    defaults: { _controller: AppBundle:Device:create, trailingSlash : "/" }
-    methods: [GET, POST]
     requirements: { trailingSlash : "[/]{0,1}" }
 
 devices_resources:

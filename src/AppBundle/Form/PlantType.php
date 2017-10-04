@@ -49,8 +49,9 @@ class PlantType extends AbstractType
 
                     // seeds left
                     $seedsInfo = $options['entityManager']->getRepository('AppBundle:Plant')->findBy(array('seed' => $seed->getId()));
+                    
                     $usedSeed = array_reduce($seedsInfo, function ($carry, $item) {
-                        return $carry += $item->getSeedlingAmount();
+                        return $carry += $item->getAreaCapacity();
                     });
                     $seedLeft = $seed->getQuantity() - $usedSeed;
 

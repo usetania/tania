@@ -43,7 +43,13 @@ Fourth, setup the database tables:
 php bin/console --no-interaction doctrine:migrations:migrate
 ```
 
-Fifth, create user:
+Fifth, load the default data:
+
+```
+php bin/console doctrine:fixtures:load --no-interaction
+```
+
+Sixth, create user:
 
 ```
 php bin/console fos:user:create {{user}} {{email}} {{password}}

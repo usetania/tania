@@ -32,10 +32,14 @@ class ReservoirController extends Controller
             return $this->redirectToRoute('reservoirs');
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('reservoir/index.html.twig', array(
             'form' => $form->createView(),
             'reservoirs' => $reservoirs,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -58,10 +62,14 @@ class ReservoirController extends Controller
             return $this->redirectToRoute('reservoirs');
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('reservoir/show.html.twig', array(
             'form' => $form->createView(),
             'reservoir' => $reservoir,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 }

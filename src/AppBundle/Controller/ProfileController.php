@@ -63,7 +63,7 @@ class ProfileController extends BaseController
 
         return $this->render('@FOSUser/Profile/edit.html.twig', array(
             'form' => $form->createView(),
-            'classActive' => 'fos_user_profile_edit',
+            'classActive' => 'fos_user_profile_edit'
         ));
     }
 }

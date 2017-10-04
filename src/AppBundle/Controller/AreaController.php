@@ -33,11 +33,15 @@ class AreaController extends Controller
             return $unit[$item->getMeasurementUnit()];
         }, $areas);
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('area/index.html.twig', array(
             'areas' => $areas,
             'growingMethods' => $growingMethodNames,
             'measurementUnits' => $measurementUnits,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -56,6 +60,9 @@ class AreaController extends Controller
         // get growing method name from the master or categories
         $growingMethodName = CategoryMaster::growingMethods()[$area->getGrowingMethod()];
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('area/show.html.twig', array(
             'area' => $area,
             'growingMethod' => $growingMethodName,
@@ -65,6 +72,7 @@ class AreaController extends Controller
                 return $carry += $item['area_capacity'];
             }),
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -124,10 +132,14 @@ class AreaController extends Controller
             return $this->redirectToRoute('areas_show', array('id' => $id));
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('area/edit.html.twig', array(
             'form' => $form->createView(),
             'area' => $area,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 }

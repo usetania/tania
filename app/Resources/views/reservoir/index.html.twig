@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="panel panel-default panel-table">
-                        <div class="panel-heading">{% trans %}You have {% endtrans %}{{ reservoirs|length }} reservoir{% if reservoirs|length > 1 %}s {% endif %}</div>
+                        <div class="panel-heading">{% trans %}You have {% endtrans %} {{ reservoirs|length }} reservoir{% if reservoirs|length > 1 %}s {% endif %}</div>
                         <div class="panel-body">
                             <table class="table">
                                 <thead>
@@ -96,5 +96,6 @@
             </div>
         </div>
     </div>
+    {% include 'right-sidebar.html.twig' %}
 </div>
 {% endblock %}

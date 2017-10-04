@@ -136,10 +136,23 @@
 </div>
 
 <script src="{{ asset('assets/js/paho-mqtt.js') }}"></script>
+<script src="{{ asset('assets/js/js-cookie.js') }}"></script>
 <script>
+let client;
+
 function onConnectMQTT() {
     // Once a connection has been made, make a subscription and send a message.
     console.log("onConnect");
+
+    let channels = Cookies.getJSON('channels');
+
+    channels.rid.forEach(function(rid) {
+        client.subscribe('tania/'+rid);
+    });
+}
+
+function onFailureMQTT(response) {
+    console.log(response);
 }
 
 function onConnectionLostMQTT(responseObject) {
@@ -148,25 +161,42 @@ function onConnectionLostMQTT(responseObject) {
     }
 }
 
-$(document).ready(function() {
-    // connect to mqtt broker
-    let client = new Paho.MQTT.Client("test.mosquitto.org", 80, "taniaDev");
-    client.connect({onSuccess: onConnectMQTT});
-    client.onConnectionLost = onConnectionLostMQTT;
+function onMessageArrivedMQTT(message) {
+    // parsing the MQTT topic to get only the RID
+    let rID = message.destinationName.replace('tania/', '');
+    $('#counter-'+rID).text(message.payloadString);
 
+    console.log("["+message.destinationName+"]:"+message.payloadString);
+}
+
+$(document).ready(function() {
     // default dashboard
     let areaClicked = $('.area-click-btn').data('area');
     
     $.get("/iot/area/"+areaClicked, function(response) {
+        let channels = [];
+        // parsing ajax response
         response.forEach(function(item) {
             let statsContent = "<div class=\"col-md-4 block\">";
             statsContent += "<div class=\"title\">{% trans %}"+item.type+"{% endtrans %} <span class=\"measurement\">"+item.unit+"</span></div>";
-            statsContent += "<div class=\"counter\">0</div>";
+            statsContent += "<div id=\"counter-"+item.rid+"\" class=\"counter\">0</div>";
             statsContent += "</div>";
             $('.statpanel').append(statsContent);
 
-            // subscribe to channel
+            // Add Resource ID to the array
+            channels.push(item.rid);
         });
+
+        // save the Resource ID to cookies
+        Cookies.set('channels', { rid: channels });
+
+        // connect to mqtt broker
+        client = new Paho.MQTT.Client("broker.mqttdashboard.com", 8000, "tania"+String(Math.random()));
+        
+        client.onConnectionLost = onConnectionLostMQTT;
+        client.onMessageArrived = onMessageArrivedMQTT;
+        client.onFailure = onFailureMQTT;
+        client.connect({onSuccess: onConnectMQTT});
     });
 
     // when clicked
@@ -185,16 +215,30 @@ $(document).ready(function() {
                     statsContent += "</div>";
                 $('.statpanel').html(statsContent);
             } else {
+                let channels = [];
+                // parsing ajax response
                 response.forEach(function(item) {
                     let statsContent = "<div class=\"col-md-4 block\">";
                     statsContent += "<div class=\"title\">{% trans %}"+item.type+"{% endtrans %} <span class=\"measurement\">"+item.unit+"</span></div>";
                     statsContent += "<div id=\"counter-"+item.rid+"\" class=\"counter\">0</div>";
                     statsContent += "</div>";
                     $('.statpanel').append(statsContent);
-                });
-            }
 
-            // read from MQTT
+                    // Add Resource ID to the array
+                    channels.push(item.rid);
+                });
+
+                // save the Resource ID to cookies
+                Cookies.set('channels', { rid: channels });
+
+                // connect to mqtt broker
+                client = new Paho.MQTT.Client("broker.mqttdashboard.com", 8000, "tania"+String(Math.random()));
+                
+                client.onConnectionLost = onConnectionLostMQTT;
+                client.onMessageArrived = onMessageArrivedMQTT;
+                client.onFailure = onFailureMQTT;
+                client.connect({onSuccess: onConnectMQTT});
+            }
         });
     });
 });

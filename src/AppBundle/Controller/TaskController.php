@@ -16,14 +16,20 @@ class TaskController extends Controller
 
         $tasks = $em->getRepository('AppBundle:Task')->findByField($activeFarmId);
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('task/index.html.twig', array(
             'tasks' => $tasks,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
     public function createAction(Request $request, EntityManagerInterface $em, $_route)
     {
+        $activeFarmId = $this->get('session')->get('activeFarm');
+
         $task = new Task();
 
         $form = $this->createForm(TaskType::class, $task);
@@ -34,6 +40,8 @@ class TaskController extends Controller
             $task = $form->getData();
 
             // save to database here
+            $field = $em->getRepository('AppBundle:Field')->findOneById($activeFarmId);
+            $task->setField($field);
             $task->setCreatedAt(new \DateTime('now'));
 
             $em->persist($task);
@@ -42,9 +50,13 @@ class TaskController extends Controller
             return $this->redirectToRoute('tasks');
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('task/create.html.twig', array(
             'form' => $form->createView(),
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -67,9 +79,13 @@ class TaskController extends Controller
             return $this->redirectToRoute('tasks');
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('task/show.html.twig', array(
             'form' => $form->createView(),
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 }

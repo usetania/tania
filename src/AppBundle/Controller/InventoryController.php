@@ -14,9 +14,13 @@ class InventoryController extends Controller
     {
         $seeds = $em->getRepository('AppBundle:Seed')->findAll();
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('inventory/index.html.twig', array(
             'seeds' => $seeds,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -40,9 +44,13 @@ class InventoryController extends Controller
             return $this->redirectToRoute('inventories');
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('seed/create.html.twig', array(
             'form' => $form->createView(),
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 
@@ -66,10 +74,14 @@ class InventoryController extends Controller
             return $this->redirectToRoute('inventories');
         }
 
+        // for the right bar menu
+        $fields = $em->getRepository('AppBundle:Field')->findAll();
+
         return $this->render('seed/edit.html.twig', array(
             'form' => $form->createView(),
             'seed' => $seed,
             'classActive' => $_route,
+            'farms' => $fields
         ));
     }
 }

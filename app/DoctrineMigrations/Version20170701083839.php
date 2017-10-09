@@ -19,13 +19,13 @@ class Version20170701083839 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql("INSERT INTO `seed_categories` (`id`, `name`, `slug`, `description`, `updated_at`, `created_at`) VALUES
-            (1, 'Herb', 'herb', NULL, NULL, '2017-06-17 00:00:00'),
-            (2, 'Vegetable', 'vegetable', NULL, NULL, '2017-06-17 00:00:00'),
-            (3, 'Sprout/Microgreens', 'sprout-microgreens', NULL, NULL, '2017-06-17 00:00:00'),
-            (4, 'Fruit', 'fruit', NULL, NULL, '2017-06-17 00:00:00'),
-            (5, 'Tubber', 'tubber', NULL, NULL, '2017-06-17 00:00:00'),
-            (6, 'Flower', 'flower', NULL, NULL, '2017-06-17 00:00:00'),
-            (7, 'Other', 'other', NULL, NULL, '2017-06-17 00:00:00');");
+            (1, 'Herb', 'herb', NULL, NULL, NOW()),
+            (2, 'Vegetable', 'vegetable', NULL, NULL, NOW()),
+            (3, 'Sprout/Microgreens', 'sprout-microgreens', NULL, NULL, NOW()),
+            (4, 'Fruit', 'fruit', NULL, NULL, NOW()),
+            (5, 'Tubber', 'tubber', NULL, NULL, NOW()),
+            (6, 'Flower', 'flower', NULL, NULL, NOW()),
+            (7, 'Other', 'other', NULL, NULL, NOW());");
     }
 
     /**

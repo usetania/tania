@@ -10,32 +10,38 @@ class LoadSeedCategory implements FixtureInterface
     public function load(ObjectManager $manager)
     {
         $category = new SeedCategory();
-        $category->setName('Leafy Greens');
-        $category->setSlug('leafy-greens');
+        $category->setName('Herb');
+        $category->setSlug('herb');
         $category->setCreatedAt(new \DateTime('now'));
         $manager->persist($category);
 
         $category = new SeedCategory();
-        $category->setName('Flowers');
-        $category->setSlug('flowers');
+        $category->setName('Vegetable');
+        $category->setSlug('vegetable');
         $category->setCreatedAt(new \DateTime('now'));
         $manager->persist($category);
 
         $category = new SeedCategory();
-        $category->setName('Fruits');
-        $category->setSlug('fruits');
+        $category->setName('Sprout/Microgreens');
+        $category->setSlug('sprout-microgreens');
         $category->setCreatedAt(new \DateTime('now'));
         $manager->persist($category);
 
         $category = new SeedCategory();
-        $category->setName('Herbs');
-        $category->setSlug('herbs');
+        $category->setName('Fruit');
+        $category->setSlug('fruit');
         $category->setCreatedAt(new \DateTime('now'));
         $manager->persist($category);
 
         $category = new SeedCategory();
-        $category->setName('Staple Foods');
-        $category->setSlug('staple-foods');
+        $category->setName('Tubber');
+        $category->setSlug('tubber');
+        $category->setCreatedAt(new \DateTime('now'));
+        $manager->persist($category);
+
+        $category = new SeedCategory();
+        $category->setName('Flower');
+        $category->setSlug('flower');
         $category->setCreatedAt(new \DateTime('now'));
         $manager->persist($category);
 

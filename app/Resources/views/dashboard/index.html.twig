@@ -16,14 +16,20 @@
                     <div class="user-info-list panel panel-default">
                         <div class="panel-heading panel-heading-divider">{% trans %}At a Glance{% endtrans %}</div>
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-6"><i class="mdi mdi-layers"></i> <a href="#">{{ areas|length }} {% trans %}Areas{% endtrans %}</a></div>
-                                <div class="col-md-6"><i class="mdi mdi-flower-alt"></i> <a href="#">{{ totalPlants }} {% trans %}Varieties{% endtrans %}</a></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6"><i class="mdi mdi-assignment-o"></i> <a href="#">{{ totalTask }} {% trans %}Tasks{% endtrans %}</a></div>
-                                <div class="col-md-6"><i class="mdi mdi-memory"></i> <a href="#">{{ devices|length }} {% trans %}Devices{% endtrans %}</a></div>
-                            </div>
+                            <ul>
+                                <li>
+                                    <div class="col-md-6"><i class="mdi mdi-layers"></i> <a href="{{path('areas')}}">{{ areas|length }} {% trans %}Areas{% endtrans %}</a></div>
+                                </li>
+                                <li>
+                                    <div class="col-md-6"><i class="mdi mdi-flower-alt"></i> <a href="{{path('plants')}}">{{ totalPlants }} {% trans %}Varieties{% endtrans %}</a></div>
+                                </li>
+                                <li>
+                                    <div class="col-md-6"><i class="mdi mdi-assignment-o"></i> <a href="{{path('tasks')}}">{{ totalTask }} {% trans %}Tasks{% endtrans %}</a></div>
+                                </li>
+                                <li>
+                                    <div class="col-md-6"><i class="mdi mdi-memory"></i> <a href="{{path('devices')}}">{{ devices|length }} {% trans %}Devices{% endtrans %}</a></div>
+                                </li>
+                            </ul>
                         </div>
                         <div class="panel-body panel-body-contrast">
                             <p>Please, go to our <a href="https://gettania.atlassian.net" target="_blank">issue tracker</a> if you have feedbacks, issues, or feature requests.</p>

@@ -7,29 +7,48 @@
             <div class="left-sidebar-scroll">
                 <div class="left-sidebar-content">
                     <ul class="sidebar-elements">
+                        <!-- DASHBOARD -->
                         <li {% if classActive == 'dashboard' %}class="active"{% endif %}><a href="{{ path('dashboard') }}"><i class="icon mdi mdi-home"></i><span>{% trans %}Dashboard{% endtrans %}</span></a></li>
-                        <li class="divider">{% trans %}Farm Management{% endtrans %}</li>
-                        <li {% if classActive == 'reservoirs' or classActive == 'reservoirs_show' %}class="active"{% endif %}>
-                            <a href="{{ path('reservoirs') }}"><i class="icon mdi mdi-local-drink"></i> {% trans %}Reservoirs{% endtrans %}</a>
-                        </li>
-                        <li {% if classActive == 'areas' or classActive == 'areas_create' or classActive == 'areas_show' or classActive == 'areas_edit' %} class="active" {% endif %}>
-                            <a href="{{ path('areas') }}"><i class="icon mdi mdi-layers"></i> {% trans %}Areas{% endtrans %}</a>
-                        </li>
-                        <li {% if classActive == 'inventories' or classActive == 'seeds_create' or classActive == 'seeds_show' %} class="active" {% endif %}>
-                            <a href="{{ path('inventories') }}"><i class="icon mdi mdi-widgets"></i> {% trans %}Inventories{% endtrans %}</a>
-                        </li>
-                        <li {% if classActive == 'devices' or classActive == 'devices_create' or classActive == 'devices_show' or classActive == 'devices_edit' or classActive == 'resources' %} class="active" {% endif %}>
-                            <a href="{{ path('devices') }}"><i class="icon mdi mdi-memory"></i> {% trans %}Devices{% endtrans %}</a>
-                        </li>
+
+                        <!-- OPERATIONS -->
                         <li class="divider">{% trans %}Operation{% endtrans %}</li>
+                        <!-- PLANTS -->
                         <li {% if classActive == 'plants' or classActive == 'plants_create' or classActive == 'plants_show' or classActive == 'plants_harvest' or classActive == 'plants_edit' %} class="active" {% endif %}>
                             <a href="{{ path('plants') }}"><i class="icon mdi mdi-flower-alt"></i> {% trans %}Plant{% endtrans %}</a>
                         </li>
+                        <!-- TASKS -->
                         <li {% if classActive == 'tasks' or classActive == 'tasks_create' or classActive == 'tasks_show' %} class="active" {% endif %}>
                             <a href="{{ path('tasks') }}"><i class="icon mdi mdi-assignment-o"></i> {% trans %}Tasks{% endtrans %}</a>
                         </li>
+
+                        <!-- FARM MANAGEMENT -->
+                        <li class="divider">{% trans %}Farm Management{% endtrans %}</li>
+                        <!-- AREAS -->
+                        <li {% if classActive == 'areas' or classActive == 'areas_create' or classActive == 'areas_show' or classActive == 'areas_edit' %} class="active" {% endif %}>
+                            <a href="{{ path('areas') }}"><i class="icon mdi mdi-layers"></i> {% trans %}Areas{% endtrans %}</a>
+                        </li>
+                        <!-- RESERVOIRS -->
+                        <li {% if classActive == 'reservoirs' or classActive == 'reservoirs_show' %}class="active"{% endif %}>
+                            <a href="{{ path('reservoirs') }}"><i class="icon mdi mdi-local-drink"></i> {% trans %}Reservoirs{% endtrans %}</a>
+                        </li>
+                        <!-- EXPENSES -->
+                        <li>
+                            <a href="#"><i class="icon mdi mdi-money-box"></i> Expenses</a>
+                        </li>
+                        <!-- INVENTORIES -->
+                        <li {% if classActive == 'inventories' or classActive == 'seeds_create' or classActive == 'seeds_show' %} class="active" {% endif %}>
+                            <a href="{{ path('inventories') }}"><i class="icon mdi mdi-widgets"></i> {% trans %}Seeds Inventory{% endtrans %}</a>
+                        </li>
+                        <!-- DEVICES -->
+                        <li {% if classActive == 'devices' or classActive == 'devices_create' or classActive == 'devices_show' or classActive == 'devices_edit' or classActive == 'resources' %} class="active" {% endif %}>
+                            <a href="{{ path('devices') }}"><i class="icon mdi mdi-memory"></i> {% trans %}Devices{% endtrans %}</a>
+                        </li>
+
+                        <!-- SETTINGS -->
                         <li class="divider">{% trans %}Settings{% endtrans %}</li>
+                        <!-- ACCOUNT -->
                         <li {% if classActive == 'fos_user_profile_edit' %} class="active" {% endif %}><a href="{{ path('fos_user_profile_edit') }}"><i class="icon mdi mdi-account"></i> {% trans %}Account{% endtrans %}</a></li>
+                        <!-- PREFERENCES -->
                         <li {% if classActive == 'settings' %} class="active" {% endif %}><a href="{{ path('settings') }}"><i class="icon mdi mdi-settings"></i> {% trans %}Preferences{% endtrans %}</a></li>
                         <li><a href="{{ path('fos_user_security_logout') }}"><i class="icon mdi mdi-power"></i> {% trans %}Logout{% endtrans %}</a></li>
                         <!--

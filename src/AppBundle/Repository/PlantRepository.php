@@ -73,16 +73,16 @@ class PlantRepository extends AbstractRepository
     {
         $qb = $this->getRepository()->createQueryBuilder('p');
         
-        $qb->select('COUNT (p) AS total_crops')
+        $qb->select('p')
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
             ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')
             ->where('a.field = '.$farmId)
             ->groupBy('p.seed')
             ->getQuery();
-        
-        $query = $qb->getQuery()->getOneOrNullResult();
 
-        return (int) $query['total_crops'];
+        $query = $qb->getQuery()->getResult();
+        
+        return (int) count($query);
     }
 
     /**

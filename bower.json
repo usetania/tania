@@ -3,7 +3,7 @@
   "homepage": "https://github.com/Tanibox/tania",
   "description": "",
   "main": "",
-  "license": "MIT",
+  "license": "Apache License 2.0 (Apache-2.0)",
   "ignore": [
     "**/.*",
     "node_modules",

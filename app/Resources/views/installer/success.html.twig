@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="be-wrapper">
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <img src="{{ asset('assets/img/tania.png') }}" width="180" class="tania-img">
+                    <h1>You are successfully installing Tania. <a href="{{ path('dashboard') }}">Let's begin</a>.</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -45,6 +45,9 @@
         "symfony/phpunit-bridge": "^3.0"
     },
     "scripts": {
+    	"pre-install-cmd": [
+    	    "cp .env-example .env"
+    	],
         "symfony-scripts": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",

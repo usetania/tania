@@ -195,3 +195,21 @@ settings:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+installer:
+    path: /installer{trailingSlash}
+    defaults: { _controller: AppBundle:Installer:index, trailingSlash : "/" }
+    methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+installer_create:
+    path: /installer/create{trailingSlash}
+    defaults: { _controller: AppBundle:Installer:create, trailingSlash : "/" }
+    methods: [POST]
+    requirements: { trailingSlash : "[/]{0,1}" }
+
+installer_success:
+    path: /installer/success{trailingSlash}
+    defaults: { _controller: AppBundle:Installer:success, trailingSlash : "/" }
+    methods: [GET]
+    requirements: { trailingSlash : "[/]{0,1}" }

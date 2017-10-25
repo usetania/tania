@@ -3,6 +3,8 @@
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/taniafarm/Lobby)
 [![Build Status](https://travis-ci.org/Tanibox/tania.svg?branch=development)](https://travis-ci.org/Tanibox/tania)
 
+__NOTE__: `project/QNAP` is a branch to package Tania as a QPKG for QNAP NAS. Please use `development` or `master` branch to get general Tania version. 
+
 Tania is a free and open source farming management system for everyone. You can manage your growing areas, reservoirs, farm tasks, inventories, and the crop growing progress.
 
 It is developed on top of Symfony PHP web framework.

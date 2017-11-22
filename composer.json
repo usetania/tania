@@ -1,10 +1,11 @@
 {
-    "name": "bepit/taniaos",
-    "license": "proprietary",
+    "name": "tanibox/tania",
+    "description": "Free and open source farming management system.",
+    "license": "Apache-2.0",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "AppBundle\\": "src/AppBundle"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -68,7 +69,6 @@
         "symfony-var-dir": "var",
         "symfony-web-dir": "web",
         "symfony-tests-dir": "tests",
-        "symfony-assets-install": "relative",
-        "branch-alias": "NULL"
+        "symfony-assets-install": "relative"
     }
 }

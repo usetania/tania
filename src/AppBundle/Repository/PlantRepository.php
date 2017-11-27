@@ -56,8 +56,9 @@ class PlantRepository extends AbstractRepository
             ->innerJoin('AppBundle:Seed', 's', 'WITH', 'p.seed = s.id')
             ->innerJoin('AppBundle:Area', 'a', 'WITH', 'p.area = a.id')
             ->innerJoin('AppBundle:SeedCategory', 'sc', 'WITH', 's.seedCategory = sc.id')
-            ->where('a.field = '.$farmId)
+            ->where('a.field = :farm_id')
             ->groupBy('p.seed')
+            ->setParameter('farm_id', $farmId)
             ->getQuery();
 
         return $query->getResult();

@@ -7,7 +7,11 @@ Tania is a free and open source farming management system for everyone. You can 
 
 It is developed on top of Symfony PHP web framework.
 
-This project is under active development. The `development` branch is considered as a beta version. To get the stable release, you can checkout to the `master` branch or from the [release tab](https://github.com/Tanibox/tania/releases).
+## SUNSET ANNOUNCEMENT
+
+Currently, we are working privately with the new version of Tania. We are rewriting it from PHP Symfony into Go lang and adding more features to it. Therefore, there will be no more development in this repository. This repository will meet end-of-life in March 2018. We plan to code drop the new version of Tania to the public on [tania-core](https://github.com/Tanibox/tania-core) on March 2018.
+
+To get the stable release, you can checkout to the `master` branch or from the [release tab](https://github.com/Tanibox/tania/releases).
 
 ## Screenshots
 

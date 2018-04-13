@@ -1,6 +1,6 @@
-# SUNSET ANNOUNCEMENT
+# End Official Support and Maintenance for Tania PHP
 
-Currently, we are working privately with the new version of Tania. We are rewriting it from PHP Symfony into Go lang and adding more features to it. Therefore, there will be no more development in this repository. This repository will meet end-of-life in March 2018. We plan to code drop the new version of Tania to the public on [tania-core](https://github.com/Tanibox/tania-core) on March 2018.
+As the rewrite of Tania from PHP to Go is completed, and we have released the new Tania project to the public repository. The support for Tania PHP is ended. Please, check the new project at [tania-core](https://github.com/Tanibox/tania-core).
 
 ![Tania](readme-assets/project-logo.png "Tania Logo")
 
